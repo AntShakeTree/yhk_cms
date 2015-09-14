@@ -1,6 +1,7 @@
 package com.ykh.dao.suport;
 
 import java.beans.PropertyDescriptor;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -63,14 +64,17 @@ public class QueryUtil {
 		PropertyDescriptor[] pros = bean.getPropertyDescriptors();
 		StringBuffer hql = new StringBuffer();
 		hql.append(" from ");
-		hql.append(GenericsUtils.getMethodParameterGenericsInterfaceType(req)
-				.getSimpleName());
+		String fromname=GenericsUtils.getMethodParameterGenericsInterfaceType(req)
+				.getSimpleName();
+		hql.append(fromname);
 		hql.append(" where ");
 		List<Object> strs = new ArrayList<Object>();
 		for (PropertyDescriptor propertyDescriptor : pros) {
 			try {
 				Method methodGetX = propertyDescriptor.getReadMethod(); // Read对应get()方法
 				Method methodSet = propertyDescriptor.getWriteMethod();
+
+
 				String properyName = propertyDescriptor.getName();
 				if (methodGetX != null && methodSet != null) {
 					Object reValue = methodGetX.invoke(req);
@@ -80,6 +84,7 @@ public class QueryUtil {
 					}
 					DaoHelper daoHelper = methodGetX
 							.getAnnotation(DaoHelper.class);
+//
 					boolean iscontinu = false;
 					if (daoHelper != null) {
 						DaoHelper.IgnoreValue ignoreValue = daoHelper.ignore();
@@ -161,11 +166,13 @@ public class QueryUtil {
 		if (req instanceof PageRequest)
 		{
 			Map<String, Sort.Direction> od =((PageRequest) req).getOrders();
+			if(od!=null){
 			StringBuilder sb= new StringBuilder(" order by ");
+			
 			for (String key: od.keySet()){
 				sb.append(key).append(" ").append(od.get(key)).append(",");
 			}
-			hql.append(sb.substring(0,sb.length()-1));
+			hql.append(sb.substring(0,sb.length()-1));}
 		}
 
 

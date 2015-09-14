@@ -1,5 +1,6 @@
 package com.ykh.dao;
 
+import com.ykh.dao.conference.domain.Conference;
 import org.springframework.data.domain.*;
 
 import java.lang.reflect.ParameterizedType;
@@ -110,4 +111,8 @@ public class GenericsUtils {
 	// {
 	// return getFieldGenericType(field, 0);
 	// }
+	public static void main(String[]args){
+		Conference conference =new Conference();
+		System.out.println(GenericsUtils.getMethodParameterGenericsInterfaceType(conference).getSimpleName());
+	}
 }

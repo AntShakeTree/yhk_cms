@@ -1,7 +1,5 @@
 package com.ykh.dao.suport;
 
-
-
 import com.ykh.dao.PageRequest;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.transaction.annotation.Transactional;
@@ -109,9 +107,11 @@ public class DaoSupport<T,ID extends  Serializable>  extends SimpleJpaRepository
         QueryUtil queryUtil = QueryUtil.getHqlByDomain(request);
         PageView pageView=new PageView(request.getPageSize(),request.getCurrentpage());
         pageView.setTotalpage(getCount(queryUtil.getHql(), queryUtil.getValues().toArray()));
-        List<T> ls= this.entityManager.createQuery(queryUtil.getHql()).setFirstResult(pageView.getFirstResult()).setMaxResults(pageView.getPageSize()).getResultList();
+        Query query=this.entityManager.createQuery(queryUtil.getHql()).setFirstResult(pageView.getFirstResult())
+                .setMaxResults(pageView.getPageSize());
+        query =  prepareParamlizedQuery(query,queryUtil.getValues().toArray());
         PageVO<T> pageVO =new PageVO<>();
-        pageVO.setContents(ls);
+        pageVO.setContents(query.getResultList());
         pageVO.setPage(pageView);
         return pageVO;
     }
@@ -120,4 +120,3 @@ public class DaoSupport<T,ID extends  Serializable>  extends SimpleJpaRepository
     }
 
 }
-

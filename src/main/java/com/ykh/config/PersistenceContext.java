@@ -50,7 +50,6 @@ public class PersistenceContext {
     private static final String PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO = "hibernate.hbm2ddl.auto";
     private static final String PROPERTY_NAME_HIBERNATE_NAMING_STRATEGY = "hibernate.ejb.naming_strategy";
     private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
-
     @Resource
     private Environment environment;
 
@@ -67,6 +66,9 @@ public class PersistenceContext {
         dataSource.setPartitionCount(environment.getProperty(PROPERTY_NAME_DATABASE_PARTITIONCOUNT, Integer.class));
         dataSource.setAcquireIncrement(environment.getProperty(PROPERTY_NAME_DATABASE_ACQUIREINCREMENT, Integer.class));
         dataSource.setStatementsCacheSize(environment.getProperty(PROPERTY_NAME_DATABASE_STATEMENTSCACHESIZE,Integer.class));
+        dataSource.setConnectionTimeoutInMs(9000);
+        dataSource.setAcquireRetryAttempts(3);
+
         return dataSource;
     }
 

@@ -7,11 +7,14 @@ import com.alibaba.fastjson.JSON;
 import com.ykh.common.ParseJSON;
 //import com.ykh.pojo.Product;
 import com.ykh.dao.PageRequest;
+import com.ykh.dao.annotation.DaoHelper;
 import com.ykh.tang.agent.vo.AutoStopParams;
 import com.ykh.tang.agent.vo.RoleInfo;
 
 import com.ykh.common.cache.CacheDomain;
 import com.ykh.dao.Request;
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * ClassName: Conference
  * :
@@ -20,7 +23,7 @@ import com.ykh.dao.Request;
  */
 @Entity
 @Table
-public class Conference  extends PageRequest implements CacheDomain {
+public class Conference  extends PageRequest<Conference> implements CacheDomain{
 	/**
 	 * serialVersionUID:
 	 * @since JDK 1.7
@@ -74,7 +77,7 @@ public class Conference  extends PageRequest implements CacheDomain {
 	private Integer conferenceminutes;
 	private Date reservtime;
 	private Integer noticetime;
-	private Integer valid = 0;	//初始值
+	private Integer valid;	//初始值
 	private Integer cycle;
 	private Boolean pin;
 	private Boolean callout;
@@ -307,8 +310,13 @@ public class Conference  extends PageRequest implements CacheDomain {
 
 		@Override
 		public List<String> convertToEntityAttribute(String dbData) {
-			return JSON.parseArray(dbData, String.class);
-
+			if(StringUtils.isEmpty(dbData)){
+				return  new ArrayList<>(1);
+			}try {
+				return JSON.parseArray(dbData, String.class);
+			}catch (Exception e){
+				return  new ArrayList<>(1);
+			}
 		}
 	}
 	public  static  class  ListRuleInfoConverJson implements AttributeConverter<Object,String>{
@@ -320,7 +328,13 @@ public class Conference  extends PageRequest implements CacheDomain {
 
 		@Override
 		public List<RoleInfo>  convertToEntityAttribute(String dbData) {
-			return JSON.parseArray(dbData, RoleInfo.class);
+			if(StringUtils.isEmpty(dbData)){
+				return  new ArrayList<>(1);
+			}try {
+				return JSON.parseArray(dbData, RoleInfo.class);
+			}catch (Exception e){
+				return  new ArrayList<>(1);
+			}
 		}
 	}
 
@@ -333,7 +347,6 @@ public class Conference  extends PageRequest implements CacheDomain {
 		public List<String> getServiceConfigs() {
 			return serviceConfigs;
 		}
-
 		public void setServiceConfigs(List<String> serviceConfigs) {
 			this.serviceConfigs = serviceConfigs;
 		}
@@ -378,4 +391,6 @@ public class Conference  extends PageRequest implements CacheDomain {
 	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
 	}
+
+
 }

@@ -7,7 +7,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 @Retention(RUNTIME)
-@Target({ElementType.METHOD})
+@Target({ElementType.METHOD,ElementType.FIELD})
 public @interface DaoHelper {
 	String value() default "";
 	IgnoreValue ignore() default IgnoreValue.DEFAULT;

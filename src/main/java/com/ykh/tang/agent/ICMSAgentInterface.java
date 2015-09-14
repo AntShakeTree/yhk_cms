@@ -13,17 +13,17 @@ import com.ykh.tang.agent.vo.UserConferenceStatus;
 public interface ICMSAgentInterface
 {
 	// 1--------废除--------
-	
+
 	// 2--------废除--------
-	
+
 	// 3 获得会议信息
 	public ConferenceInfoBMS getConfInfo(int site, int confID) throws CMSException;
 
-	// 4获得用户列表 
+	// 4获得用户列表
 	public List<BMSUserInfo> getUserList(int site, int confID)throws CMSException;
 
 	// 5--------废除--------
-	
+
 	// 6--------废除--------
 
 	// 7更新服务配置
@@ -75,7 +75,7 @@ public interface ICMSAgentInterface
 
 	// 23不带user停止会议
 	public void stopConferenceWithoutUser(int site, int confID)throws CMSException;
-	
+
 	// 24不带user删除会议
 	public void deleteConferenceWithoutUser(int site, int confID)throws CMSException;
 
@@ -105,35 +105,35 @@ public interface ICMSAgentInterface
 
 	// 33 根据临时会议ID查询会议扩展信息
 	//public ConferenceInfoBMSExt getBMSConferenceInfoExt(int site, int confID, ConferenceInfoBMSExt bMSConferenceInfoExt)throws CMSException;
-	
+
 	// 34 根据临时会议ID和临时用户ID查询该用户在该会议中的状态
 	public UserConferenceStatus getUserConferenceStatus(int site, int confID, int userID)throws CMSException;
-	
+
 	// 35 --------废除--------
 
 	// 36会议消息定义接口，CMS使用
 	public String subConfMsg(int site, int confID, String result)throws CMSException;
-	
+
 	/*** JNI对CMS的单独接口  */
-	
+
 	// 1  注册用户消息回调接口     备注:CMS调用此接口，向JNI注册回调函数
 	public void addMessageHandler(IMessageHandler handler);
-	
+
 	// 2 注册业务消息回调接口       备注:CMS调用此接口，向JNI注册回调函数
 	public void addServiceMessageHandler(IMessageHandler serviceHandler);
-	
+
 	public void setConfigTimes(int site, int confID, int time1, int time2) throws CMSException;
-	
+
 	// 27创建会议，不带用户。该方法直接提供给系统管理员调用。
 	public void createConferenceBillInfoWithoutUser(int site, ConferenceBillInfoBMS confInfo, List<String> typeArr)throws CMSException;
 
 	// 28带用户创建会议。
 	public UserChannel createConferenceBillInfoWithUser(int site, ConferenceBillInfoBMS confInfo, BMSUserBillInfo userInfo, List<String> typeArr)throws CMSException;
-	
+
 	public UserChannel userJoinConferenceWithBillInfo(int site, int confID, BMSUserBillInfo userInfo)throws CMSException;
-	
+
 	public UserChannel startConferenceBillInfoWithUser(int site, int confID, BMSUserBillInfo userinfo)throws CMSException;
-	
+
 	public void agentInit();
 
 	void agentDestroy();

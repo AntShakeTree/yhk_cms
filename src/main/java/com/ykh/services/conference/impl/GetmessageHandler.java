@@ -2,22 +2,22 @@
  * Copyright (c) 2006-2009 G-Net All rights
  * reserved. G-Net Integrated Services co. Ltd.
  * *******************************************************************
- * 
+ *
  * @(#)GetmessageHandler.java 1.0 Oct 30, 2009
- * 
+ *
  *  消息处理业务类
- * 
+ *
  * @author Dongyu Zhang
- * 
+ *
  * @date Oct 30, 2009
- * 
+ *
  * @version 0.2
- * 
+ *
  * @warning
- * 
+ *
  * @par 需求: REQ1.10[Tang]:
  *      svn://vobserver/tang/doc/SRS.doc
- * 
+ *
  */
 package com.ykh.services.conference.impl;
 
@@ -51,7 +51,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Qualifier("getmessageHandler")
 public class GetmessageHandler implements IMessageHandler {
-	
+
 	private final static Logger LOGGER = Logger.getLogger(GetmessageHandler.class);
 
 	@Autowired
@@ -60,7 +60,7 @@ public class GetmessageHandler implements IMessageHandler {
 	ConfJoinTempConfDao confJoinTempConfDao;
 	/**
 	 * handle接口实现，判断接收信号的类型，做相应的处理
-	 * 
+	 *
 	 * @param msg
 	 *            消息操作句柄
 	 */
@@ -68,15 +68,15 @@ public class GetmessageHandler implements IMessageHandler {
 	public void handler(IMessage msg) {
 		// 解析消息类型
 		int messagetype = msg.getMsgID();
-	
+
 		// 判断信号类型
 		switch (messagetype) {
 		case com.ykh.tang.agent.Consts.ConfStartMsgResult_key&0xFFFF:
 			// 收到会议启动消息
 			LOGGER.info("Tang CMS receive start conference message!!!!!");
-		
+
 			try {
-				ConfStartMsgResult confStartMsgResult = (ConfStartMsgResult)msg;			
+				ConfStartMsgResult confStartMsgResult = (ConfStartMsgResult)msg;
 				Integer tempConfID = confStartMsgResult.getConfID();
 				LOGGER.info("Tang CMS receive start conference message=" + tempConfID);
 				//TempUser tempUser =new TempUser();
@@ -89,7 +89,7 @@ public class GetmessageHandler implements IMessageHandler {
 //				cdrconferencemsg.setTimestamp(new Date());
 //				cdrConferencemsgManager.create(cdrconferencemsg);
 //				/******************end***********************/
-//				
+//
 //				//add by tanyunhua 2011-10-31		user online时，start conference后，修改会议状态
 				ConfJoinTempConf confJoinTempConf = confJoinTempConfDao.findByTempConfIdAndBmsStatus(tempConfID, 1);
 				if(confJoinTempConf != null){
@@ -114,7 +114,7 @@ public class GetmessageHandler implements IMessageHandler {
 			LOGGER.info("Tang Tang CMS receive user online message!!!!!");
 			// 修改用户状态，获得用户ID
 			UserOnlineMsgResult userOnlineMsgResult = (UserOnlineMsgResult)msg;
-			
+
 			LOGGER.info("Tang Tang CMS receive user online message=" + userOnlineMsgResult.getConfID()
 					+ "|" + userOnlineMsgResult.getUserID() + "|" + Consts.ONLINE + "|" +
 					userOnlineMsgResult.getTimestamp());
@@ -132,9 +132,9 @@ public class GetmessageHandler implements IMessageHandler {
 //			cdruserinfo.setTempuserid(onLineUserid);
 //			cdruserinfo.setActiontypeid(Consts.ONLINE);
 //			cdruserinfo.setMsgtimestamp(userOnlineMsgResult.getTimestamp());
-//			
+//
 //			try {
-//				ConferenceBusinessImpl.getCdrUserInfoManager().create(cdruserinfo);			
+//				ConferenceBusinessImpl.getCdrUserInfoManager().create(cdruserinfo);
 //			} catch (Exception e) {
 //				dealKeysException(e);
 //			}
@@ -144,13 +144,13 @@ public class GetmessageHandler implements IMessageHandler {
 			// 收到用户加入会议消息
 			LOGGER.info("Tang CMS receive user enter message!!!!!");
 			UserJoinConfResult userJoinConfResult = (UserJoinConfResult)msg;
-			
+
 			JoinUserInfo joinUserInfo = (JoinUserInfo)userJoinConfResult.getUserInfo();
-			
+
 			LOGGER.info("Tang Tang CMS receive user enter message=" + userJoinConfResult.getConfID()
-					+"|" + joinUserInfo.getUserID() + "|" + Consts.JOIN + "|" + 
+					+"|" + joinUserInfo.getUserID() + "|" + Consts.JOIN + "|" +
 					userJoinConfResult.getTimestamp());
-			
+
 			Ip ip = (Ip)joinUserInfo.getIP();
 			String ips = ip.getIP0() + "." + ip.getIP1() + "." + ip.getIP2() + "." + ip.getIP3();
 			Integer id=joinUserInfo.getUserID();
@@ -169,7 +169,7 @@ public class GetmessageHandler implements IMessageHandler {
 //			cdruserinfoJoin.setDomain(joinUserInfo.getDomain());
 //			cdruserinfoJoin.setTimestamp(new Date());
 //			cdruserinfoJoin.setMsgtimestamp(userJoinConfResult.getTimestamp());
-//			
+//
 //			String role = "";
 //			if(joinUserInfo.getRoleArr() != null) {
 //				for(String roleid : joinUserInfo.getRoleArr()) {
@@ -177,20 +177,20 @@ public class GetmessageHandler implements IMessageHandler {
 //				}
 //			}
 //			cdruserinfoJoin.setRole(role);
-//			
+//
 //			try {
-//				ConferenceBusinessImpl.getCdrUserInfoManager().create(cdruserinfoJoin);			
+//				ConferenceBusinessImpl.getCdrUserInfoManager().create(cdruserinfoJoin);
 //			} catch (Exception e) {
 //				dealKeysException(e);
 //			}
-			
+
 			break;
 		case com.ykh.tang.agent.Consts.UserOfflineMsgResult_key&0xFFFF:
 			//用户下线消息
 			LOGGER.info("Tang CMS receive user offline message!!!!!");
-			
+
 			UserOfflineMsgResult userOfflineMsgResult = (UserOfflineMsgResult)msg;
-			
+
 			LOGGER.info("Tang Tang CMS receive user offline message=" + userOfflineMsgResult.getConfID()
 					+ "|" + userOfflineMsgResult.getUserID() + "|" + Consts.OFFLINE + "|" +
 					userOfflineMsgResult.getTimestamp());
@@ -219,7 +219,7 @@ public class GetmessageHandler implements IMessageHandler {
 			// 收到踢人成功信号
 			LOGGER.info("Tang CMS receive user expel message!!!!!");
 
-			ExpelUserMsgResult userExpelMsgResult = (ExpelUserMsgResult)msg;			
+			ExpelUserMsgResult userExpelMsgResult = (ExpelUserMsgResult)msg;
 
 			for(String userid : userExpelMsgResult.getUserArr())
 			{
@@ -232,9 +232,9 @@ public class GetmessageHandler implements IMessageHandler {
 //				cdruserinfoExpel.setTempconferenceid(userExpelMsgResult.getConfID());
 //				cdruserinfoExpel.setTempuserid(Integer.parseInt(userid));
 //				cdruserinfoExpel.setMsgtimestamp(userExpelMsgResult.getTimestamp());
-//				
+//
 //				try {
-//					ConferenceBusinessImpl.getCdrUserInfoManager().create(cdruserinfoExpel);		
+//					ConferenceBusinessImpl.getCdrUserInfoManager().create(cdruserinfoExpel);
 //				} catch (Exception e) {
 //					dealKeysException(e);
 //				}
@@ -261,7 +261,7 @@ public class GetmessageHandler implements IMessageHandler {
 				ConfStopMsgResult confStopMsgResult = (ConfStopMsgResult)msg;
 				LOGGER.info("Tang Tang CMS receive conference stop message=" + confStopMsgResult.getConfID());
 				Integer tempConfID = confStopMsgResult.getConfID();
-				
+
 				Date endtime = new Date();
 				confJoinTempConfDao.deleteByTempConfId(tempConfID);
 				tempUserService.deleteByTempConferenceId(tempConfID);
@@ -271,7 +271,7 @@ public class GetmessageHandler implements IMessageHandler {
 //				cdrconferencemsg.setActiontypeid(Consts.OFFLINE);
 //				cdrconferencemsg.setTimestamp(endtime);
 //				cdrConferencemsgManager.create(cdrconferencemsg);
-//				/******************end***********************/	
+//				/******************end***********************/
 //
 //				ConferenceBusinessImpl.getConfJoinTempConfManager().deleteConfJoinTempConfByTempConfID(tempConfID);
 //				try
@@ -283,7 +283,7 @@ public class GetmessageHandler implements IMessageHandler {
 //					LOGGER.info("delete userinfo");
 //				}
 //				Cdrconferenceinfo cdrconf = ConferenceBusinessImpl.getCdrConferenceInfoManager().queryCdrConfByConfIDAndTempID(tempConfID);
-//				
+//
 //				if (cdrconf == null) {
 //					LOGGER.info("database not found tempConfID[" + tempConfID + "] cdrconference");
 //					break;
@@ -315,7 +315,7 @@ public class GetmessageHandler implements IMessageHandler {
 //					}
 //				}
 //				routerManager.deleteRouterByTempConfID(tempConfID);
-//				
+//
 ////				tempUserManager.deleteTempuserByTempconfid(tempConfID);	//delete tempconfid and tempuserid
 			} catch (Exception e) {
 				dealKeysException(e);
@@ -331,11 +331,11 @@ public class GetmessageHandler implements IMessageHandler {
 		case com.ykh.tang.agent.Consts.UserExitConfMsgResult_key&0xFFFF:
 			//用户退出消息
 			LOGGER.info("Tang CMS receive user quit message!!!!!");
-			
-			UserExitConfMsgResult userExitConfMsgResult = (UserExitConfMsgResult)msg;			
+
+			UserExitConfMsgResult userExitConfMsgResult = (UserExitConfMsgResult)msg;
 
 			LOGGER.info("Tang Tang CMS receive user online message=" + userExitConfMsgResult.getConfID()
-			+"|" + userExitConfMsgResult.getUserID() + "|" + Consts.EXIT + "|" + 
+			+"|" + userExitConfMsgResult.getUserID() + "|" + Consts.EXIT + "|" +
 			userExitConfMsgResult.getTimestamp());
 //			// 添加数据库cdruser记录
 //			Cdruserinfo cdruserinfoExit = new Cdruserinfo();
@@ -344,9 +344,9 @@ public class GetmessageHandler implements IMessageHandler {
 //			cdruserinfoExit.setTempconferenceid(userExitConfMsgResult.getConfID());
 //			cdruserinfoExit.setTempuserid(userExitConfMsgResult.getUserID());
 //			cdruserinfoExit.setMsgtimestamp(userExitConfMsgResult.getTimestamp());
-//			
+//
 //			try {
-//				ConferenceBusinessImpl.getCdrUserInfoManager().create(cdruserinfoExit);		
+//				ConferenceBusinessImpl.getCdrUserInfoManager().create(cdruserinfoExit);
 //			} catch (Exception e) {
 //				dealKeysException(e);
 //			}
@@ -368,7 +368,7 @@ public class GetmessageHandler implements IMessageHandler {
 				//1增加，3替换
 				if(changeUserRoleMsgResult.getType() == 1 || changeUserRoleMsgResult.getType() == 3)
 				{
-					
+
 				}
 			} catch (Exception e) {
 				dealKeysException(e);
@@ -378,7 +378,7 @@ public class GetmessageHandler implements IMessageHandler {
 			break;
 		}
 	}
-	
+
 //	public void setConferenceManager(IConference conferenceManager) {
 //		this.conferenceManager = conferenceManager;
 //	}
@@ -402,5 +402,5 @@ public class GetmessageHandler implements IMessageHandler {
 			LOGGER.error(e.getMessage());
 		}
 	}
-	
+
 }

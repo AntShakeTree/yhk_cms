@@ -78,7 +78,7 @@ public class ConferenceFacadeImplTest {
         Thread.sleep(100);
         this.joinConference(response1.getBody().getTempConferenceId());
         Thread.sleep(100);
-//        this.stopConference(response1.getBody().getTempConferenceId());
+        this.stopConference(response1.getBody().getTempConferenceId());
         System.out.println(ws);
         Files.write(Paths.get("test2.txt"),ws,Charset.defaultCharset(),StandardOpenOption.CREATE);
     }
@@ -125,14 +125,14 @@ public class ConferenceFacadeImplTest {
         conferenceSeedBody.setTempConferenceId(temId);
         ws.add("startConf request : ===>" + JSON.toJSONString(conferenceSeedBody));
         Response response =conferenceFacade.startConference(conferenceSeedBody);
-        ws.add("startConf response : ===> "+JSON.toJSONString(response));
+        ws.add("startConf response : ===> " + JSON.toJSONString(response));
     }
 
     public  void stopConference(int temid){
         ConferenceSeedBody conferenceSeedBody =new ConferenceSeedBody();
         conferenceSeedBody.setTempConferenceId(temid);
         ///System.out.print(pushService.push("http://devyt.xiezuoyun.cn:8080/ykh_cms_v01/","conference/stopConference",conferenceSeedBody));
-        conferenceFacade.stopConference(conferenceSeedBody);
+//        conferenceFacade.stopConference(conferenceSeedBody);
     }
 
     public  void joinConference(int tempid)  {
@@ -141,6 +141,17 @@ public class ConferenceFacadeImplTest {
         ws.add("joinConference request : ===>" + JSON.toJSONString(this.buildUser(tempid)));
         ws.add("joinConference response : ===>" + JSON.toJSONString(conferenceFacade.joinConference(this.buildUser(tempid))));
     }
+
+
+
+    @Test
+    public  void searchConf(){
+        Conference conference=new Conference();
+        conference.setBillingcode("753053");
+        System.out.println(JSON.toJSONString(conference));
+        System.out.println(JSON.toJSONString(conferenceFacade.searchConferenceTemp(conference)));
+    }
+
 
     public static ConferenceInfoBMS getTestConferenceInfo() {
         // create conference without user
@@ -603,4 +614,11 @@ public class ConferenceFacadeImplTest {
         userChannel.setCtsAddr(l);
         System.out.print(JSON.toJSONString(userChannel));
     }
+    public static void main(String[] args){
+        Conference conference=new Conference();
+        conference.setBillingcode("753053");
+        System.out.println(JSON.toJSONString(conference));
+        JSON.parseObject("{\"billingcode\":\"753053\",\"currentpage\":1,\"pageSize\":15,\"valid\":0}",Conference.class);
+    }
+
 }
