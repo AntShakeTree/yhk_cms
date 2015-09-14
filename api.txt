@@ -1,0 +1,540 @@
+http://devyt.xiezuoyun.cn:8080/ykh_cms/conference/openConference
+request : ===>
+{
+                                  "autoStopParams": {
+                                      "roles": [
+                                          "1",
+                                          "2"
+                                      ],
+                                      "stopwhenoneuser": false,
+                                      "time1": 45,
+                                      "time2": 45
+                                  },
+                                  "billingcode": "753053",
+                                  "confScale": 200,
+                                  "conferenceId": 98,
+                                  "conferencename": "test",
+                                  "currentpage": 1,
+                                  "id": 98,
+                                  "pageSize": 15,
+                                  "password": "",
+                                  "ruleInfos": [
+                                      {
+                                          "a": 0,
+                                          "maxUser": 100,
+                                          "roleType": 1,
+                                          "servPrivArr": [
+                                              "0x4e0307df",
+                                              "0xe031fff",
+                                              "0x1e03ffff",
+                                              "0xde001fff",
+                                              "0x3e03001f",
+                                              "0x5e03000f",
+                                              "0x8e0300ff",
+                                              "0x9e0301ff",
+                                              "0x2e03001f",
+                                              "0x4b0307df",
+                                              "0x4c0307df"
+                                          ]
+                                      },
+                                      {
+                                          "a": 0,
+                                          "maxUser": 100,
+                                          "roleType": 2,
+                                          "servPrivArr": [
+                                              "0x4e0307ff",
+                                              "0xe031fff",
+                                              "0x1e0300ff",
+                                              "0xde000fff",
+                                              "0x3e03001f",
+                                              "0x5e03000f",
+                                              "0x8e0300ff",
+                                              "0x9e0301ff",
+                                              "0x2e03001f",
+                                              "0x4b0307df",
+                                              "0x4c0307df"
+                                          ]
+                                      },
+                                      {
+                                          "a": 0,
+                                          "maxUser": 100,
+                                          "roleType": 3,
+                                          "servPrivArr": [
+                                              "0xe031fff",
+                                              "0x1e0300ff",
+                                              "0xde000fff",
+                                              "0x4e0307df",
+                                              "0x3e03001f",
+                                              "0x5e03000f",
+                                              "0x8e0300ff",
+                                              "0x9e0301ff",
+                                              "0x2e03001f",
+                                              "0x4b0307df",
+                                              "0x4c0307df"
+                                          ]
+                                      },
+                                      {
+                                          "a": 0,
+                                          "maxUser": 100,
+                                          "roleType": 4,
+                                          "servPrivArr": [
+                                              "0x4e0307df",
+                                              "0xe000002",
+                                              "0x1e0000e0",
+                                              "0xde000000",
+                                              "0x3e01801f"
+                                          ]
+                                      }
+                                  ],
+                                  "serviceConfigs": [
+                                      "0x2e03001f",
+                                      "0x1400000f",
+                                      "0xe031fff",
+                                      "0x5e03000f",
+                                      "0x5d000001",
+                                      "0xc000007",
+                                      "0x12000010",
+                                      "0x1600000e",
+                                      "0x52000001",
+                                      "0x36000010",
+                                      "0x1100000f",
+                                      "0x9f000000",
+                                      "0x3d000001",
+                                      "0x42000010",
+                                      "0x8f000001",
+                                      "0x1e0300ff",
+                                      "0x1",
+                                      "0x8e0300ff",
+                                      "0xa000001",
+                                      "0x1d000001",
+                                      "0x40003ff",
+                                      "0x9100000f",
+                                      "0x37000001",
+                                      "0x5f000000",
+                                      "0x41000003",
+                                      "0x3e01801f",
+                                      "0x90000001",
+                                      "0x54000007",
+                                      "0xd0000001",
+                                      "0x2000002",
+                                      "0xd000001",
+                                      "0x35000003",
+                                      "0x40000001",
+                                      "0x4d000001",
+                                      "0x23000032",
+                                      "0x4b0307ff",
+                                      "0x100000f",
+                                      "0x3f000000",
+                                      "0xde000fff",
+                                      "0x5000010",
+                                      "0x4c0307ff",
+                                      "0x8d000001",
+                                      "0x9e0301ff",
+                                      "0x330012c0",
+                                      "0x9000000",
+                                      "0x8100000f",
+                                      "0x26000001",
+                                      "0x10000001",
+                                      "0x82000000",
+                                      "0x53000001",
+                                      "0x50000001",
+                                      "0x51000007",
+                                      "0x2f000000",
+                                      "0x4a000007",
+                                      "0x20000001",
+                                      "0x15000007",
+                                      "0x24000001",
+                                      "0x6000007",
+                                      "0x20000001",
+                                      "0x15000007",
+                                      "0x24000001",
+                                      "0x6000007",
+                                      "0x221fffff",
+                                      "0x21000003",
+                                      "0x30000001",
+                                      "0x13000010",
+                                      "0x300000f",
+                                      "0x2d000001",
+                                      "0x32000007",
+                                      "0x80000001",
+                                      "0x9d000001",
+                                      "0x0f000000",
+                                      "0x92000001",
+                                      "0xb00000f",
+                                      "0x1f00000",
+                                      "0xf000000",
+                                      "0x270007d0",
+                                      "0x2500ffff",
+                                      "0x4e0307ff",
+                                      "0x31000007",
+                                      "0xde000fff"
+                                  ],
+                                  "valid": 0
+                              }
+
+http://devyt.xiezuoyun.cn:8080/ykh_cms/conference/openConference
+ response : ===>
+{
+    "body": {
+        "autoStopParams": {
+            "roles": [
+                "1",
+                "2"
+            ],
+            "stopwhenoneuser": false,
+            "time1": 45,
+            "time2": 45
+        },
+        "billingcode": "753053",
+        "confScale": 200,
+        "conferenceId": 98,
+        "conferencename": "test",
+        "currentpage": 1,
+        "id": 98,
+        "pageSize": 15,
+        "password": "",
+        "ruleInfos": [
+            {
+                "a": 0,
+                "maxUser": 100,
+                "roleType": 1,
+                "servPrivArr": [
+                    "0x4e0307df",
+                    "0xe031fff",
+                    "0x1e03ffff",
+                    "0xde001fff",
+                    "0x3e03001f",
+                    "0x5e03000f",
+                    "0x8e0300ff",
+                    "0x9e0301ff",
+                    "0x2e03001f",
+                    "0x4b0307df",
+                    "0x4c0307df"
+                ]
+            },
+            {
+                "a": 0,
+                "maxUser": 100,
+                "roleType": 2,
+                "servPrivArr": [
+                    "0x4e0307ff",
+                    "0xe031fff",
+                    "0x1e0300ff",
+                    "0xde000fff",
+                    "0x3e03001f",
+                    "0x5e03000f",
+                    "0x8e0300ff",
+                    "0x9e0301ff",
+                    "0x2e03001f",
+                    "0x4b0307df",
+                    "0x4c0307df"
+                ]
+            },
+            {
+                "a": 0,
+                "maxUser": 100,
+                "roleType": 3,
+                "servPrivArr": [
+                    "0xe031fff",
+                    "0x1e0300ff",
+                    "0xde000fff",
+                    "0x4e0307df",
+                    "0x3e03001f",
+                    "0x5e03000f",
+                    "0x8e0300ff",
+                    "0x9e0301ff",
+                    "0x2e03001f",
+                    "0x4b0307df",
+                    "0x4c0307df"
+                ]
+            },
+            {
+                "a": 0,
+                "maxUser": 100,
+                "roleType": 4,
+                "servPrivArr": [
+                    "0x4e0307df",
+                    "0xe000002",
+                    "0x1e0000e0",
+                    "0xde000000",
+                    "0x3e01801f"
+                ]
+            }
+        ],
+        "serviceConfigs": [
+            "0x2e03001f",
+            "0x1400000f",
+            "0xe031fff",
+            "0x5e03000f",
+            "0x5d000001",
+            "0xc000007",
+            "0x12000010",
+            "0x1600000e",
+            "0x52000001",
+            "0x36000010",
+            "0x1100000f",
+            "0x9f000000",
+            "0x3d000001",
+            "0x42000010",
+            "0x8f000001",
+            "0x1e0300ff",
+            "0x1",
+            "0x8e0300ff",
+            "0xa000001",
+            "0x1d000001",
+            "0x40003ff",
+            "0x9100000f",
+            "0x37000001",
+            "0x5f000000",
+            "0x41000003",
+            "0x3e01801f",
+            "0x90000001",
+            "0x54000007",
+            "0xd0000001",
+            "0x2000002",
+            "0xd000001",
+            "0x35000003",
+            "0x40000001",
+            "0x4d000001",
+            "0x23000032",
+            "0x4b0307ff",
+            "0x100000f",
+            "0x3f000000",
+            "0xde000fff",
+            "0x5000010",
+            "0x4c0307ff",
+            "0x8d000001",
+            "0x9e0301ff",
+            "0x330012c0",
+            "0x9000000",
+            "0x8100000f",
+            "0x26000001",
+            "0x10000001",
+            "0x82000000",
+            "0x53000001",
+            "0x50000001",
+            "0x51000007",
+            "0x2f000000",
+            "0x4a000007",
+            "0x20000001",
+            "0x15000007",
+            "0x24000001",
+            "0x6000007",
+            "0x20000001",
+            "0x15000007",
+            "0x24000001",
+            "0x6000007",
+            "0x221fffff",
+            "0x21000003",
+            "0x30000001",
+            "0x13000010",
+            "0x300000f",
+            "0x2d000001",
+            "0x32000007",
+            "0x80000001",
+            "0x9d000001",
+            "0x0f000000",
+            "0x92000001",
+            "0xb00000f",
+            "0x1f00000",
+            "0xf000000",
+            "0x270007d0",
+            "0x2500ffff",
+            "0x4e0307ff",
+            "0x31000007",
+            "0xde000fff"
+        ],
+        "valid": 0
+    },
+    "head": {
+        "error": 0
+    }
+}
+//===================================================createConference===============================================================
+
+http://devyt.xiezuoyun.cn:8080/ykh_cms/conference/createConference
+request : ===>
+{
+    "conferenceId": 98,
+    "conferencename": "潘足迹",
+    "currentpage": 1,
+    "id": 98,
+    "pageSize": 15,
+    "password": "xxx",
+    "valid": 0
+}
+http://devyt.xiezuoyun.cn:8080/ykh_cms/conference/createConference
+response: ===>
+{
+    "body": {
+        "tempConferenceId": 11862016
+    },
+    "head": {
+        "error": 0
+    }
+}
+//===========================================startConference=======================================================================
+http://devyt.xiezuoyun.cn:8080/ykh_cms/conference/startConference
+request : ===>
+{"tempConferenceId":11862016}
+http://devyt.xiezuoyun.cn:8080/ykh_cms/conference/startConference
+response : ===>
+{"head":{"error":0}}
+//===========================================stopConference=======================================================================
+http://devyt.xiezuoyun.cn:8080/ykh_cms/conference/stopConference
+request : ===>
+{"tempConferenceId":11862016}
+http://devyt.xiezuoyun.cn:8080/ykh_cms/conference/stopConference
+response : ===>
+{"head":{"error":0}}
+//========================================joinConference==========================================================================
+
+http://devyt.xiezuoyun.cn:8080/ykh_cms/conference/joinConference
+request : ===>
+{
+    "clientType": 2,
+    "domain": 1,
+    "ipaddr": "192.168.13.99",
+    "isowner": true,
+    "pinCode": 1234,
+    "rolemap": [
+        "1",
+        "2"
+    ],
+    "tempConferenceId": 11862016,
+    "userStatus": 0,
+    "username": "liming"
+}
+
+http://devyt.xiezuoyun.cn:8080/ykh_cms/conference/joinConference
+response : ===>
+{
+    "body": {
+        "ctsaddrlist": [
+            {
+                "accessip": "192.168.100.138",
+                "bakassessip": "0.0.0.0",
+                "channelID": 167772369,
+                "groupID": 167772369,
+                "type": 1
+            },
+            {
+                "accessip": "192.168.100.138",
+                "bakassessip": "0.0.0.0",
+                "channelID": 167772371,
+                "groupID": 167772371,
+                "type": 517
+            }
+        ],
+        "dtsaddrlist": [
+            {
+                "channelID": 167772370,
+                "groupID": 167772370,
+                "transportip": "192.168.100.139",
+                "type": 1
+            },
+            {
+                "channelID": 167772372,
+                "groupID": 167772372,
+                "transportip": "192.168.100.139",
+                "type": 517
+            }
+        ],
+        "tempconfernceid": 12582912,
+        "user": {
+            "clientType": 2,
+            "domain": 1,
+            "ipaddr": "192.168.13.99",
+            "isowner": true,
+            "pinCode": 1234,
+            "rolemap": [
+                "1",
+                "2"
+            ],
+            "tempuserid": 193,
+            "userStatus": 0
+        }
+    },
+    "head": {
+        "error": 0
+    }
+}
+//========startConferecneWithUser=======================================================================================
+http://devyt.xiezuoyun.cn:8080/ykh_cms/conference/startConferecneWithUser
+request==>
+{
+    "clientType": 2,
+    "conferenceId": 101,
+    "domain": 1,
+    "ipaddr": "192.168.13.99",
+    "isowner": true,
+    "pinCode": 1234,
+    "rolemap": [
+        "1",
+        "2"
+    ],
+    "tempConferenceId": 12058624,
+    "tempuserid": 185,
+    "userStatus": 0,
+    "username": "liming"
+}
+http://devyt.xiezuoyun.cn:8080/ykh_cms/conference/startConferecneWithUser
+response===>
+
+    "body": {
+        "ctsaddrlist": [
+            {
+                "accessip": "192.168.100.138",
+                "bakassessip": "0.0.0.0",
+                "channelID": 167772365,
+                "groupID": 167772365,
+                "type": 1
+            },
+            {
+                "accessip": "192.168.100.138",
+                "bakassessip": "0.0.0.0",
+                "channelID": 167772367,
+                "groupID": 167772367,
+                "type": 517
+            }
+        ],
+        "dtsaddrlist": [
+            {
+                "channelID": 167772366,
+                "groupID": 167772366,
+                "transportip": "192.168.100.139",
+                "type": 1
+            },
+            {
+                "channelID": 167772368,
+                "groupID": 167772368,
+                "transportip": "192.168.100.139",
+                "type": 517
+            }
+        ],
+        "tempconfernceid": 12517376,
+        "user": {
+            "clientType": 2,
+            "domain": 1,
+            "ipaddr": "192.168.13.99",
+            "isowner": true,
+            "pinCode": 1234,
+            "rolemap": [
+                "1",
+                "2"
+            ],
+            "tempuserid": 192,
+            "userStatus": 0
+        }
+    },
+    "head": {
+        "error": 0
+    }
+}
+//========================================searchConferenceTemp===================================================
+http://devyt.xiezuoyun.cn:8080/ykh_cms/conference/searchConferenceTemp
+request:
+{"billingcode":"753053","currentpage":1,"pageSize":15}
+response:
+{"body":{"contents":[{"autoStopParams":{"roles":["1","2"],"stopwhenoneuser":false,"time1":45,"time2":45},"billingcode":"753053","confScale":200,"conferenceId":30,"conferencename":"test","currentpage":1,"id":30,"pageSize":15,"password":"","ruleInfos":[{"a":0,"maxUser":100,"roleType":1,"servPrivArr":["0x4e0307df","0xe031fff","0x1e03ffff","0xde001fff","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":2,"servPrivArr":["0x4e0307ff","0xe031fff","0x1e0300ff","0xde000fff","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":3,"servPrivArr":["0xe031fff","0x1e0300ff","0xde000fff","0x4e0307df","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":4,"servPrivArr":["0x4e0307df","0xe000002","0x1e0000e0","0xde000000","0x3e01801f"]}],"serviceConfigs":["0x2e03001f","0x1400000f","0xe031fff","0x5e03000f","0x5d000001","0xc000007","0x12000010","0x1600000e","0x52000001","0x36000010","0x1100000f","0x9f000001","0x3d000001","0x42000010","0x8f000001","0x1e0300ff","0x1","0x8e0300ff","0xa000001","0x1d000001","0x40003ff","0x9100000f","0x37000001","0x5f000000","0x41000003","0x3e01801f","0x90000001","0x54000007","0xd0000001","0x2000002","0xd000001","0x35000003","0x40000001","0x4d000001","0x23000032","0x4b0307ff","0x100000f","0x3f000001","0xde000fff","0x5000010","0x4c0307ff","0x8d000001","0x9e0301ff","0x330012c0","0x9000000","0x8100000f","0x26000001","0x10000001","0x82000000","0x53000001","0x50000001","0x51000007","0x2f000001","0x4a000007","0x20000001","0x15000007","0x24000001","0x6000007","0x20000001","0x15000007","0x24000001","0x6000007","0x221fffff","0x21000003","0x30000001","0x13000010","0x300000f","0x2d000001","0x32000007","0x80000001","0x9d000001","0x4f000001","0x92000001","0xb00000f","0x1f000001","0xf000001","0x270007d0","0x2500ffff","0x4e0307ff","0x31000007","0xde000fff"],"valid":0},{"autoStopParams":{"roles":["1","2"],"stopwhenoneuser":false,"time1":45,"time2":45},"billingcode":"753053","confScale":200,"conferenceId":31,"conferencename":"test","currentpage":1,"id":31,"pageSize":15,"password":"","ruleInfos":[{"a":0,"maxUser":100,"roleType":1,"servPrivArr":["0x4e0307df","0xe031fff","0x1e03ffff","0xde001fff","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":2,"servPrivArr":["0x4e0307ff","0xe031fff","0x1e0300ff","0xde000fff","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":3,"servPrivArr":["0xe031fff","0x1e0300ff","0xde000fff","0x4e0307df","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":4,"servPrivArr":["0x4e0307df","0xe000002","0x1e0000e0","0xde000000","0x3e01801f"]}],"serviceConfigs":["0x2e03001f","0x1400000f","0xe031fff","0x5e03000f","0x5d000001","0xc000007","0x12000010","0x1600000e","0x52000001","0x36000010","0x1100000f","0x9f000001","0x3d000001","0x42000010","0x8f000001","0x1e0300ff","0x1","0x8e0300ff","0xa000001","0x1d000001","0x40003ff","0x9100000f","0x37000001","0x5f000000","0x41000003","0x3e01801f","0x90000001","0x54000007","0xd0000001","0x2000002","0xd000001","0x35000003","0x40000001","0x4d000001","0x23000032","0x4b0307ff","0x100000f","0x3f000001","0xde000fff","0x5000010","0x4c0307ff","0x8d000001","0x9e0301ff","0x330012c0","0x9000000","0x8100000f","0x26000001","0x10000001","0x82000000","0x53000001","0x50000001","0x51000007","0x2f000001","0x4a000007","0x20000001","0x15000007","0x24000001","0x6000007","0x20000001","0x15000007","0x24000001","0x6000007","0x221fffff","0x21000003","0x30000001","0x13000010","0x300000f","0x2d000001","0x32000007","0x80000001","0x9d000001","0x4f000001","0x92000001","0xb00000f","0x1f000001","0xf000001","0x270007d0","0x2500ffff","0x4e0307ff","0x31000007","0xde000fff"],"valid":0},{"autoStopParams":{"roles":["1","2"],"stopwhenoneuser":false,"time1":45,"time2":45},"billingcode":"753053","confScale":200,"conferenceId":32,"conferencename":"test","currentpage":1,"id":32,"pageSize":15,"password":"","ruleInfos":[{"a":0,"maxUser":100,"roleType":1,"servPrivArr":["0x4e0307df","0xe031fff","0x1e03ffff","0xde001fff","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":2,"servPrivArr":["0x4e0307ff","0xe031fff","0x1e0300ff","0xde000fff","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":3,"servPrivArr":["0xe031fff","0x1e0300ff","0xde000fff","0x4e0307df","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":4,"servPrivArr":["0x4e0307df","0xe000002","0x1e0000e0","0xde000000","0x3e01801f"]}],"serviceConfigs":["0x2e03001f","0x1400000f","0xe031fff","0x5e03000f","0x5d000001","0xc000007","0x12000010","0x1600000e","0x52000001","0x36000010","0x1100000f","0x9f000001","0x3d000001","0x42000010","0x8f000001","0x1e0300ff","0x1","0x8e0300ff","0xa000001","0x1d000001","0x40003ff","0x9100000f","0x37000001","0x5f000000","0x41000003","0x3e01801f","0x90000001","0x54000007","0xd0000001","0x2000002","0xd000001","0x35000003","0x40000001","0x4d000001","0x23000032","0x4b0307ff","0x100000f","0x3f000001","0xde000fff","0x5000010","0x4c0307ff","0x8d000001","0x9e0301ff","0x330012c0","0x9000000","0x8100000f","0x26000001","0x10000001","0x82000000","0x53000001","0x50000001","0x51000007","0x2f000001","0x4a000007","0x20000001","0x15000007","0x24000001","0x6000007","0x20000001","0x15000007","0x24000001","0x6000007","0x221fffff","0x21000003","0x30000001","0x13000010","0x300000f","0x2d000001","0x32000007","0x80000001","0x9d000001","0x4f000001","0x92000001","0xb00000f","0x1f000001","0xf000001","0x270007d0","0x2500ffff","0x4e0307ff","0x31000007","0xde000fff"],"valid":0},{"autoStopParams":{"roles":["1","2"],"stopwhenoneuser":false,"time1":45,"time2":45},"billingcode":"753053","confScale":200,"conferenceId":33,"conferencename":"test","currentpage":1,"id":33,"pageSize":15,"password":"","ruleInfos":[{"a":0,"maxUser":100,"roleType":1,"servPrivArr":["0x4e0307df","0xe031fff","0x1e03ffff","0xde001fff","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":2,"servPrivArr":["0x4e0307ff","0xe031fff","0x1e0300ff","0xde000fff","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":3,"servPrivArr":["0xe031fff","0x1e0300ff","0xde000fff","0x4e0307df","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":4,"servPrivArr":["0x4e0307df","0xe000002","0x1e0000e0","0xde000000","0x3e01801f"]}],"serviceConfigs":["0x2e03001f","0x1400000f","0xe031fff","0x5e03000f","0x5d000001","0xc000007","0x12000010","0x1600000e","0x52000001","0x36000010","0x1100000f","0x9f000001","0x3d000001","0x42000010","0x8f000001","0x1e0300ff","0x1","0x8e0300ff","0xa000001","0x1d000001","0x40003ff","0x9100000f","0x37000001","0x5f000000","0x41000003","0x3e01801f","0x90000001","0x54000007","0xd0000001","0x2000002","0xd000001","0x35000003","0x40000001","0x4d000001","0x23000032","0x4b0307ff","0x100000f","0x3f000001","0xde000fff","0x5000010","0x4c0307ff","0x8d000001","0x9e0301ff","0x330012c0","0x9000000","0x8100000f","0x26000001","0x10000001","0x82000000","0x53000001","0x50000001","0x51000007","0x2f000001","0x4a000007","0x20000001","0x15000007","0x24000001","0x6000007","0x20000001","0x15000007","0x24000001","0x6000007","0x221fffff","0x21000003","0x30000001","0x13000010","0x300000f","0x2d000001","0x32000007","0x80000001","0x9d000001","0x4f000001","0x92000001","0xb00000f","0x1f000001","0xf000001","0x270007d0","0x2500ffff","0x4e0307ff","0x31000007","0xde000fff"],"valid":0},{"autoStopParams":{"roles":["1","2"],"stopwhenoneuser":false,"time1":45,"time2":45},"billingcode":"753053","confScale":200,"conferenceId":34,"conferencename":"test","currentpage":1,"id":34,"pageSize":15,"password":"","ruleInfos":[{"a":0,"maxUser":100,"roleType":1,"servPrivArr":["0x4e0307df","0xe031fff","0x1e03ffff","0xde001fff","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":2,"servPrivArr":["0x4e0307ff","0xe031fff","0x1e0300ff","0xde000fff","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":3,"servPrivArr":["0xe031fff","0x1e0300ff","0xde000fff","0x4e0307df","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":4,"servPrivArr":["0x4e0307df","0xe000002","0x1e0000e0","0xde000000","0x3e01801f"]}],"serviceConfigs":["0x2e03001f","0x1400000f","0xe031fff","0x5e03000f","0x5d000001","0xc000007","0x12000010","0x1600000e","0x52000001","0x36000010","0x1100000f","0x9f000001","0x3d000001","0x42000010","0x8f000001","0x1e0300ff","0x1","0x8e0300ff","0xa000001","0x1d000001","0x40003ff","0x9100000f","0x37000001","0x5f000000","0x41000003","0x3e01801f","0x90000001","0x54000007","0xd0000001","0x2000002","0xd000001","0x35000003","0x40000001","0x4d000001","0x23000032","0x4b0307ff","0x100000f","0x3f000001","0xde000fff","0x5000010","0x4c0307ff","0x8d000001","0x9e0301ff","0x330012c0","0x9000000","0x8100000f","0x26000001","0x10000001","0x82000000","0x53000001","0x50000001","0x51000007","0x2f000001","0x4a000007","0x20000001","0x15000007","0x24000001","0x6000007","0x20000001","0x15000007","0x24000001","0x6000007","0x221fffff","0x21000003","0x30000001","0x13000010","0x300000f","0x2d000001","0x32000007","0x80000001","0x9d000001","0x4f000001","0x92000001","0xb00000f","0x1f000001","0xf000001","0x270007d0","0x2500ffff","0x4e0307ff","0x31000007","0xde000fff"],"valid":0},{"autoStopParams":{"roles":["1","2"],"stopwhenoneuser":false,"time1":45,"time2":45},"billingcode":"753053","confScale":200,"conferenceId":35,"conferencename":"test","currentpage":1,"id":35,"pageSize":15,"password":"","ruleInfos":[{"a":0,"maxUser":100,"roleType":1,"servPrivArr":["0x4e0307df","0xe031fff","0x1e03ffff","0xde001fff","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":2,"servPrivArr":["0x4e0307ff","0xe031fff","0x1e0300ff","0xde000fff","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":3,"servPrivArr":["0xe031fff","0x1e0300ff","0xde000fff","0x4e0307df","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":4,"servPrivArr":["0x4e0307df","0xe000002","0x1e0000e0","0xde000000","0x3e01801f"]}],"serviceConfigs":["0x2e03001f","0x1400000f","0xe031fff","0x5e03000f","0x5d000001","0xc000007","0x12000010","0x1600000e","0x52000001","0x36000010","0x1100000f","0x9f000001","0x3d000001","0x42000010","0x8f000001","0x1e0300ff","0x1","0x8e0300ff","0xa000001","0x1d000001","0x40003ff","0x9100000f","0x37000001","0x5f000000","0x41000003","0x3e01801f","0x90000001","0x54000007","0xd0000001","0x2000002","0xd000001","0x35000003","0x40000001","0x4d000001","0x23000032","0x4b0307ff","0x100000f","0x3f000001","0xde000fff","0x5000010","0x4c0307ff","0x8d000001","0x9e0301ff","0x330012c0","0x9000000","0x8100000f","0x26000001","0x10000001","0x82000000","0x53000001","0x50000001","0x51000007","0x2f000001","0x4a000007","0x20000001","0x15000007","0x24000001","0x6000007","0x20000001","0x15000007","0x24000001","0x6000007","0x221fffff","0x21000003","0x30000001","0x13000010","0x300000f","0x2d000001","0x32000007","0x80000001","0x9d000001","0x4f000001","0x92000001","0xb00000f","0x1f000001","0xf000001","0x270007d0","0x2500ffff","0x4e0307ff","0x31000007","0xde000fff"],"valid":0},{"autoStopParams":{"roles":["1","2"],"stopwhenoneuser":false,"time1":45,"time2":45},"billingcode":"753053","confScale":200,"conferenceId":36,"conferencename":"test","currentpage":1,"id":36,"pageSize":15,"password":"","ruleInfos":[{"a":0,"maxUser":100,"roleType":1,"servPrivArr":["0x4e0307df","0xe031fff","0x1e03ffff","0xde001fff","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":2,"servPrivArr":["0x4e0307ff","0xe031fff","0x1e0300ff","0xde000fff","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":3,"servPrivArr":["0xe031fff","0x1e0300ff","0xde000fff","0x4e0307df","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":4,"servPrivArr":["0x4e0307df","0xe000002","0x1e0000e0","0xde000000","0x3e01801f"]}],"serviceConfigs":["0x2e03001f","0x1400000f","0xe031fff","0x5e03000f","0x5d000001","0xc000007","0x12000010","0x1600000e","0x52000001","0x36000010","0x1100000f","0x9f000001","0x3d000001","0x42000010","0x8f000001","0x1e0300ff","0x1","0x8e0300ff","0xa000001","0x1d000001","0x40003ff","0x9100000f","0x37000001","0x5f000000","0x41000003","0x3e01801f","0x90000001","0x54000007","0xd0000001","0x2000002","0xd000001","0x35000003","0x40000001","0x4d000001","0x23000032","0x4b0307ff","0x100000f","0x3f000001","0xde000fff","0x5000010","0x4c0307ff","0x8d000001","0x9e0301ff","0x330012c0","0x9000000","0x8100000f","0x26000001","0x10000001","0x82000000","0x53000001","0x50000001","0x51000007","0x2f000001","0x4a000007","0x20000001","0x15000007","0x24000001","0x6000007","0x20000001","0x15000007","0x24000001","0x6000007","0x221fffff","0x21000003","0x30000001","0x13000010","0x300000f","0x2d000001","0x32000007","0x80000001","0x9d000001","0x4f000001","0x92000001","0xb00000f","0x1f000001","0xf000001","0x270007d0","0x2500ffff","0x4e0307ff","0x31000007","0xde000fff"],"valid":0},{"autoStopParams":{"roles":["1","2"],"stopwhenoneuser":false,"time1":45,"time2":45},"billingcode":"753053","confScale":200,"conferenceId":37,"conferencename":"test","currentpage":1,"id":37,"pageSize":15,"password":"","ruleInfos":[{"a":0,"maxUser":100,"roleType":1,"servPrivArr":["0x4e0307df","0xe031fff","0x1e03ffff","0xde001fff","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":2,"servPrivArr":["0x4e0307ff","0xe031fff","0x1e0300ff","0xde000fff","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":3,"servPrivArr":["0xe031fff","0x1e0300ff","0xde000fff","0x4e0307df","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":4,"servPrivArr":["0x4e0307df","0xe000002","0x1e0000e0","0xde000000","0x3e01801f"]}],"serviceConfigs":["0x2e03001f","0x1400000f","0xe031fff","0x5e03000f","0x5d000001","0xc000007","0x12000010","0x1600000e","0x52000001","0x36000010","0x1100000f","0x9f000001","0x3d000001","0x42000010","0x8f000001","0x1e0300ff","0x1","0x8e0300ff","0xa000001","0x1d000001","0x40003ff","0x9100000f","0x37000001","0x5f000000","0x41000003","0x3e01801f","0x90000001","0x54000007","0xd0000001","0x2000002","0xd000001","0x35000003","0x40000001","0x4d000001","0x23000032","0x4b0307ff","0x100000f","0x3f000001","0xde000fff","0x5000010","0x4c0307ff","0x8d000001","0x9e0301ff","0x330012c0","0x9000000","0x8100000f","0x26000001","0x10000001","0x82000000","0x53000001","0x50000001","0x51000007","0x2f000001","0x4a000007","0x20000001","0x15000007","0x24000001","0x6000007","0x20000001","0x15000007","0x24000001","0x6000007","0x221fffff","0x21000003","0x30000001","0x13000010","0x300000f","0x2d000001","0x32000007","0x80000001","0x9d000001","0x4f000001","0x92000001","0xb00000f","0x1f000001","0xf000001","0x270007d0","0x2500ffff","0x4e0307ff","0x31000007","0xde000fff"],"valid":0},{"autoStopParams":{"roles":["1","2"],"stopwhenoneuser":false,"time1":45,"time2":45},"billingcode":"753053","confScale":200,"conferenceId":38,"conferencename":"test","currentpage":1,"id":38,"pageSize":15,"password":"","ruleInfos":[{"a":0,"maxUser":100,"roleType":1,"servPrivArr":["0x4e0307df","0xe031fff","0x1e03ffff","0xde001fff","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":2,"servPrivArr":["0x4e0307ff","0xe031fff","0x1e0300ff","0xde000fff","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":3,"servPrivArr":["0xe031fff","0x1e0300ff","0xde000fff","0x4e0307df","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":4,"servPrivArr":["0x4e0307df","0xe000002","0x1e0000e0","0xde000000","0x3e01801f"]}],"serviceConfigs":["0x2e03001f","0x1400000f","0xe031fff","0x5e03000f","0x5d000001","0xc000007","0x12000010","0x1600000e","0x52000001","0x36000010","0x1100000f","0x9f000001","0x3d000001","0x42000010","0x8f000001","0x1e0300ff","0x1","0x8e0300ff","0xa000001","0x1d000001","0x40003ff","0x9100000f","0x37000001","0x5f000000","0x41000003","0x3e01801f","0x90000001","0x54000007","0xd0000001","0x2000002","0xd000001","0x35000003","0x40000001","0x4d000001","0x23000032","0x4b0307ff","0x100000f","0x3f000001","0xde000fff","0x5000010","0x4c0307ff","0x8d000001","0x9e0301ff","0x330012c0","0x9000000","0x8100000f","0x26000001","0x10000001","0x82000000","0x53000001","0x50000001","0x51000007","0x2f000001","0x4a000007","0x20000001","0x15000007","0x24000001","0x6000007","0x20000001","0x15000007","0x24000001","0x6000007","0x221fffff","0x21000003","0x30000001","0x13000010","0x300000f","0x2d000001","0x32000007","0x80000001","0x9d000001","0x4f000001","0x92000001","0xb00000f","0x1f000001","0xf000001","0x270007d0","0x2500ffff","0x4e0307ff","0x31000007","0xde000fff"],"valid":0},{"autoStopParams":{"roles":["1","2"],"stopwhenoneuser":false,"time1":45,"time2":45},"billingcode":"753053","confScale":200,"conferenceId":39,"conferencename":"test","currentpage":1,"id":39,"pageSize":15,"password":"","ruleInfos":[{"a":0,"maxUser":100,"roleType":1,"servPrivArr":["0x4e0307df","0xe031fff","0x1e03ffff","0xde001fff","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":2,"servPrivArr":["0x4e0307ff","0xe031fff","0x1e0300ff","0xde000fff","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":3,"servPrivArr":["0xe031fff","0x1e0300ff","0xde000fff","0x4e0307df","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":4,"servPrivArr":["0x4e0307df","0xe000002","0x1e0000e0","0xde000000","0x3e01801f"]}],"serviceConfigs":["0x2e03001f","0x1400000f","0xe031fff","0x5e03000f","0x5d000001","0xc000007","0x12000010","0x1600000e","0x52000001","0x36000010","0x1100000f","0x9f000001","0x3d000001","0x42000010","0x8f000001","0x1e0300ff","0x1","0x8e0300ff","0xa000001","0x1d000001","0x40003ff","0x9100000f","0x37000001","0x5f000000","0x41000003","0x3e01801f","0x90000001","0x54000007","0xd0000001","0x2000002","0xd000001","0x35000003","0x40000001","0x4d000001","0x23000032","0x4b0307ff","0x100000f","0x3f000001","0xde000fff","0x5000010","0x4c0307ff","0x8d000001","0x9e0301ff","0x330012c0","0x9000000","0x8100000f","0x26000001","0x10000001","0x82000000","0x53000001","0x50000001","0x51000007","0x2f000001","0x4a000007","0x20000001","0x15000007","0x24000001","0x6000007","0x20000001","0x15000007","0x24000001","0x6000007","0x221fffff","0x21000003","0x30000001","0x13000010","0x300000f","0x2d000001","0x32000007","0x80000001","0x9d000001","0x4f000001","0x92000001","0xb00000f","0x1f000001","0xf000001","0x270007d0","0x2500ffff","0x4e0307ff","0x31000007","0xde000fff"],"valid":0},{"autoStopParams":{"roles":["1","2"],"stopwhenoneuser":false,"time1":45,"time2":45},"billingcode":"753053","confScale":200,"conferenceId":40,"conferencename":"test","currentpage":1,"id":40,"pageSize":15,"password":"","ruleInfos":[{"a":0,"maxUser":100,"roleType":1,"servPrivArr":["0x4e0307df","0xe031fff","0x1e03ffff","0xde001fff","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":2,"servPrivArr":["0x4e0307ff","0xe031fff","0x1e0300ff","0xde000fff","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":3,"servPrivArr":["0xe031fff","0x1e0300ff","0xde000fff","0x4e0307df","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":4,"servPrivArr":["0x4e0307df","0xe000002","0x1e0000e0","0xde000000","0x3e01801f"]}],"serviceConfigs":["0x2e03001f","0x1400000f","0xe031fff","0x5e03000f","0x5d000001","0xc000007","0x12000010","0x1600000e","0x52000001","0x36000010","0x1100000f","0x9f000001","0x3d000001","0x42000010","0x8f000001","0x1e0300ff","0x1","0x8e0300ff","0xa000001","0x1d000001","0x40003ff","0x9100000f","0x37000001","0x5f000000","0x41000003","0x3e01801f","0x90000001","0x54000007","0xd0000001","0x2000002","0xd000001","0x35000003","0x40000001","0x4d000001","0x23000032","0x4b0307ff","0x100000f","0x3f000001","0xde000fff","0x5000010","0x4c0307ff","0x8d000001","0x9e0301ff","0x330012c0","0x9000000","0x8100000f","0x26000001","0x10000001","0x82000000","0x53000001","0x50000001","0x51000007","0x2f000001","0x4a000007","0x20000001","0x15000007","0x24000001","0x6000007","0x20000001","0x15000007","0x24000001","0x6000007","0x221fffff","0x21000003","0x30000001","0x13000010","0x300000f","0x2d000001","0x32000007","0x80000001","0x9d000001","0x4f000001","0x92000001","0xb00000f","0x1f000001","0xf000001","0x270007d0","0x2500ffff","0x4e0307ff","0x31000007","0xde000fff"],"valid":0},{"autoStopParams":{"roles":["1","2"],"stopwhenoneuser":false,"time1":45,"time2":45},"billingcode":"753053","confScale":200,"conferenceId":41,"conferencename":"test","currentpage":1,"id":41,"pageSize":15,"password":"","ruleInfos":[{"a":0,"maxUser":100,"roleType":1,"servPrivArr":["0x4e0307df","0xe031fff","0x1e03ffff","0xde001fff","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":2,"servPrivArr":["0x4e0307ff","0xe031fff","0x1e0300ff","0xde000fff","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":3,"servPrivArr":["0xe031fff","0x1e0300ff","0xde000fff","0x4e0307df","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":4,"servPrivArr":["0x4e0307df","0xe000002","0x1e0000e0","0xde000000","0x3e01801f"]}],"serviceConfigs":["0x2e03001f","0x1400000f","0xe031fff","0x5e03000f","0x5d000001","0xc000007","0x12000010","0x1600000e","0x52000001","0x36000010","0x1100000f","0x9f000001","0x3d000001","0x42000010","0x8f000001","0x1e0300ff","0x1","0x8e0300ff","0xa000001","0x1d000001","0x40003ff","0x9100000f","0x37000001","0x5f000000","0x41000003","0x3e01801f","0x90000001","0x54000007","0xd0000001","0x2000002","0xd000001","0x35000003","0x40000001","0x4d000001","0x23000032","0x4b0307ff","0x100000f","0x3f000001","0xde000fff","0x5000010","0x4c0307ff","0x8d000001","0x9e0301ff","0x330012c0","0x9000000","0x8100000f","0x26000001","0x10000001","0x82000000","0x53000001","0x50000001","0x51000007","0x2f000001","0x4a000007","0x20000001","0x15000007","0x24000001","0x6000007","0x20000001","0x15000007","0x24000001","0x6000007","0x221fffff","0x21000003","0x30000001","0x13000010","0x300000f","0x2d000001","0x32000007","0x80000001","0x9d000001","0x4f000001","0x92000001","0xb00000f","0x1f000001","0xf000001","0x270007d0","0x2500ffff","0x4e0307ff","0x31000007","0xde000fff"],"valid":0},{"autoStopParams":{"roles":["1","2"],"stopwhenoneuser":false,"time1":45,"time2":45},"billingcode":"753053","confScale":200,"conferenceId":42,"conferencename":"test","currentpage":1,"id":42,"pageSize":15,"password":"","ruleInfos":[{"a":0,"maxUser":100,"roleType":1,"servPrivArr":["0x4e0307df","0xe031fff","0x1e03ffff","0xde001fff","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":2,"servPrivArr":["0x4e0307ff","0xe031fff","0x1e0300ff","0xde000fff","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":3,"servPrivArr":["0xe031fff","0x1e0300ff","0xde000fff","0x4e0307df","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":4,"servPrivArr":["0x4e0307df","0xe000002","0x1e0000e0","0xde000000","0x3e01801f"]}],"serviceConfigs":["0x2e03001f","0x1400000f","0xe031fff","0x5e03000f","0x5d000001","0xc000007","0x12000010","0x1600000e","0x52000001","0x36000010","0x1100000f","0x9f000001","0x3d000001","0x42000010","0x8f000001","0x1e0300ff","0x1","0x8e0300ff","0xa000001","0x1d000001","0x40003ff","0x9100000f","0x37000001","0x5f000000","0x41000003","0x3e01801f","0x90000001","0x54000007","0xd0000001","0x2000002","0xd000001","0x35000003","0x40000001","0x4d000001","0x23000032","0x4b0307ff","0x100000f","0x3f000001","0xde000fff","0x5000010","0x4c0307ff","0x8d000001","0x9e0301ff","0x330012c0","0x9000000","0x8100000f","0x26000001","0x10000001","0x82000000","0x53000001","0x50000001","0x51000007","0x2f000001","0x4a000007","0x20000001","0x15000007","0x24000001","0x6000007","0x20000001","0x15000007","0x24000001","0x6000007","0x221fffff","0x21000003","0x30000001","0x13000010","0x300000f","0x2d000001","0x32000007","0x80000001","0x9d000001","0x4f000001","0x92000001","0xb00000f","0x1f000001","0xf000001","0x270007d0","0x2500ffff","0x4e0307ff","0x31000007","0xde000fff"],"valid":0},{"autoStopParams":{"roles":["1","2"],"stopwhenoneuser":false,"time1":45,"time2":45},"billingcode":"753053","confScale":200,"conferenceId":43,"conferencename":"test","currentpage":1,"id":43,"pageSize":15,"password":"","ruleInfos":[{"a":0,"maxUser":100,"roleType":1,"servPrivArr":["0x4e0307df","0xe031fff","0x1e03ffff","0xde001fff","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":2,"servPrivArr":["0x4e0307ff","0xe031fff","0x1e0300ff","0xde000fff","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":3,"servPrivArr":["0xe031fff","0x1e0300ff","0xde000fff","0x4e0307df","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":4,"servPrivArr":["0x4e0307df","0xe000002","0x1e0000e0","0xde000000","0x3e01801f"]}],"serviceConfigs":["0x2e03001f","0x1400000f","0xe031fff","0x5e03000f","0x5d000001","0xc000007","0x12000010","0x1600000e","0x52000001","0x36000010","0x1100000f","0x9f000001","0x3d000001","0x42000010","0x8f000001","0x1e0300ff","0x1","0x8e0300ff","0xa000001","0x1d000001","0x40003ff","0x9100000f","0x37000001","0x5f000000","0x41000003","0x3e01801f","0x90000001","0x54000007","0xd0000001","0x2000002","0xd000001","0x35000003","0x40000001","0x4d000001","0x23000032","0x4b0307ff","0x100000f","0x3f000001","0xde000fff","0x5000010","0x4c0307ff","0x8d000001","0x9e0301ff","0x330012c0","0x9000000","0x8100000f","0x26000001","0x10000001","0x82000000","0x53000001","0x50000001","0x51000007","0x2f000001","0x4a000007","0x20000001","0x15000007","0x24000001","0x6000007","0x20000001","0x15000007","0x24000001","0x6000007","0x221fffff","0x21000003","0x30000001","0x13000010","0x300000f","0x2d000001","0x32000007","0x80000001","0x9d000001","0x4f000001","0x92000001","0xb00000f","0x1f000001","0xf000001","0x270007d0","0x2500ffff","0x4e0307ff","0x31000007","0xde000fff"],"valid":0},{"autoStopParams":{"roles":["1","2"],"stopwhenoneuser":false,"time1":45,"time2":45},"billingcode":"753053","confScale":200,"conferenceId":44,"conferencename":"test","currentpage":1,"id":44,"pageSize":15,"password":"","ruleInfos":[{"a":0,"maxUser":100,"roleType":1,"servPrivArr":["0x4e0307df","0xe031fff","0x1e03ffff","0xde001fff","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":2,"servPrivArr":["0x4e0307ff","0xe031fff","0x1e0300ff","0xde000fff","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":3,"servPrivArr":["0xe031fff","0x1e0300ff","0xde000fff","0x4e0307df","0x3e03001f","0x5e03000f","0x8e0300ff","0x9e0301ff","0x2e03001f","0x4b0307df","0x4c0307df"]},{"a":0,"maxUser":100,"roleType":4,"servPrivArr":["0x4e0307df","0xe000002","0x1e0000e0","0xde000000","0x3e01801f"]}],"serviceConfigs":["0x2e03001f","0x1400000f","0xe031fff","0x5e03000f","0x5d000001","0xc000007","0x12000010","0x1600000e","0x52000001","0x36000010","0x1100000f","0x9f000001","0x3d000001","0x42000010","0x8f000001","0x1e0300ff","0x1","0x8e0300ff","0xa000001","0x1d000001","0x40003ff","0x9100000f","0x37000001","0x5f000000","0x41000003","0x3e01801f","0x90000001","0x54000007","0xd0000001","0x2000002","0xd000001","0x35000003","0x40000001","0x4d000001","0x23000032","0x4b0307ff","0x100000f","0x3f000001","0xde000fff","0x5000010","0x4c0307ff","0x8d000001","0x9e0301ff","0x330012c0","0x9000000","0x8100000f","0x26000001","0x10000001","0x82000000","0x53000001","0x50000001","0x51000007","0x2f000000","0x4a000007","0x20000001","0x15000007","0x24000001","0x6000007","0x20000001","0x15000007","0x24000001","0x6000007","0x221fffff","0x21000003","0x30000001","0x13000010","0x300000f","0x2d000001","0x32000007","0x80000001","0x9d000001","0x4f000001","0x92000001","0xb00000f","0x1f000001","0xf000001","0x270007d0","0x2500ffff","0x4e0307ff","0x31000007","0xde000fff"],"valid":0}],"page":{"currentpage":1,"firstResult":0,"pageSize":15,"pagecode":10,"totalpage":0,"totalrecord":0}},"head":{"error":0}}
+
