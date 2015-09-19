@@ -1,6 +1,5 @@
 package com.ykh.tang.agent.message;
 
-public interface IMessage
-{
-	int getMsgID();
+public interface IMessage {
+    int getMsgID();
 }

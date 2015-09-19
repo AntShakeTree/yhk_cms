@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 
 import com.ykh.common.BeanTranslatorUtil;
+import com.ykh.common.Session;
 import com.ykh.dao.conference.domain.Conference;
 
 
@@ -508,5 +509,9 @@ public class PushServiceTest {
 		userChannel.setCtsAddr(l);
 		System.out.print(JSON.toJSONString(userChannel));
 	}
-
+	@Test
+	public void testSession(){
+		Session.setCache("123", 123);
+		System.out.print(Session.getCache("123", Integer.class));
+	}
 }

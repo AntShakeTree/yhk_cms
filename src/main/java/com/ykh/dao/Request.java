@@ -1,5 +1,5 @@
 package com.ykh.dao;
 
 
-public interface Request<V> {	
+public interface Request<V> {
 }

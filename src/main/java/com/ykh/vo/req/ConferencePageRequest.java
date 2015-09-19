@@ -2,7 +2,6 @@ package com.ykh.vo.req;
 
 import com.ykh.dao.PageRequest;
 import com.ykh.dao.conference.domain.Conference;
-import com.ykh.vo.res.Header;
 
 /**
  * Created by ant_shake_tree on 15/9/10.

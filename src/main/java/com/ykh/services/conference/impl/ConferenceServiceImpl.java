@@ -1,507 +1,511 @@
 package com.ykh.services.conference.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.google.common.collect.Lists;
 import com.maxc.rest.common.ConfigUtil;
 import com.maxc.rest.common.RestBeanUtils;
 import com.maxc.rest.common.exception.ResourceNoFoundException;
 import com.maxc.rest.common.exception.RestAssert;
 import com.maxc.rest.common.exception.RestException;
-import com.ykh.common.BeanTranslatorUtil;
-import com.ykh.common.Constants;
-import com.ykh.common.IPTranslatorUtil;
-import com.ykh.common.YkhUtils;
+import com.ykh.common.*;
 import com.ykh.dao.Dao;
+import com.ykh.dao.conference.ConferenceDao;
 import com.ykh.dao.conference.ConferenceSeedDao;
+import com.ykh.dao.conference.domain.ConfJoinTempConf;
+import com.ykh.dao.conference.domain.Conference;
 import com.ykh.dao.conference.domain.ConferenceSeed;
 import com.ykh.dao.user.TempUserDao;
 import com.ykh.dao.user.domain.TempUser;
 import com.ykh.pojo.*;
+import com.ykh.services.ConfJoinTempConfService;
 import com.ykh.services.conference.ConferenceSeedService;
-import com.ykh.services.conference.exception.CMSErrorCode;
-import com.ykh.dao.conference.ConfJoinTempConfDao;
-import com.ykh.dao.conference.ConferenceDao;
-import com.ykh.dao.conference.domain.ConfJoinTempConf;
 import com.ykh.services.conference.ConferenceService;
-import com.ykh.tang.agent.*;
+import com.ykh.services.conference.exception.CMSErrorCode;
+import com.ykh.tang.agent.ICMSAgentInterface;
 import com.ykh.tang.agent.vo.*;
-import com.ykh.vo.res.PageResponse;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.ykh.dao.conference.domain.Conference;
-
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
-public  class ConferenceServiceImpl implements ConferenceService {
-	Logger logger=Logger.getLogger(ConferenceService.class);
-	@Autowired
-	ConferenceSeedService conferenceSeedService;
-	@Autowired
-	ConfJoinTempConfDao confJoinTempConfDao;
-	@Autowired
-	private ICMSAgentInterface icmsAgent;
-	@Autowired
-	private ConferenceDao conferenceDao;
-	@Autowired
-	private ConferenceSeedDao conferenceSeedDao;
-	@Autowired
-	private TempUserDao tempUserDao;
-	@Override
-	public ConferenceInfoBMS createConference( Conference conference) throws RuntimeException {
-		logger.info("createConference===> enter");
-		Integer seed=conference.getTempConferenceId();
-		if(seed!=null){
-			ConfJoinTempConf confJoinTempConf= confJoinTempConfDao.findByBmsStatusLessThanAndTempConfIdAndConfId(3, seed, conference.getConferenceId());
-			if(confJoinTempConf!=null){
-				ConferenceInfoBMS confInfo=icmsAgent.getConfInfo(Integer.parseInt(ConfigUtil.getByKey("site")), conference.getConferenceId());
-				return  confInfo;
-			}
-		}
-		seed =conferenceSeedService.getConfTempId(conference.getConferenceId(), conference.getConferencename());
-		ConfJoinTempConf confJoinTempConf=new ConfJoinTempConf.Bulider().bmsStatus(1).tempConfId(seed).confId(conference.getConferenceId()).create();
-		ConferenceInfoBMS confInfo =new ConferenceInfoBMS();
-		Conference dao = conferenceDao.find(conference.getConferenceId());
-		confInfo.setConfID(seed);
-		confInfo.setName(conference.getConferencename());
-//		confInfo.setPassword(conference.getPassword());
-		confInfo.setStopParams(dao.getAutoStopParams());
-//		confInfo.setRoleInfo(dao.get);
-		confInfo.setRoleInfo(dao.getRuleInfos());
+public class ConferenceServiceImpl implements ConferenceService {
+    Logger logger = Logger.getLogger(ConferenceService.class);
+    @Autowired
+    ConferenceSeedService conferenceSeedService;
+    @Autowired
+    ConfJoinTempConfService confJoinTempConfService;
+    @Autowired
+    private ICMSAgentInterface icmsAgentInterface;
+    @Autowired
+    private ConferenceDao conferenceDao;
+    @Autowired
+    private ConferenceSeedDao conferenceSeedDao;
+    @Autowired
+    private TempUserDao tempUserDao;
 
-		long startSenconde = 0l;
-		if(conference.getStarttime()==null){
+    @Override
+    public ConferenceInfoBMS createConference(Conference conference) throws RuntimeException {
+        logger.info("createConference===> enter");
+        Integer seed = conference.getTempConferenceId();
+        if (seed != null) {
+            ConfJoinTempConf confJoinTempConf = confJoinTempConfService.findByTempConfId(conference.getTempConferenceId());
+            if (confJoinTempConf != null) {
+                ConferenceInfoBMS confInfo = icmsAgentInterface.getConfInfo(Integer.parseInt(ConfigUtil.getByKey("site")), conference.getTempConferenceId());
+                return confInfo;
+            }
+        }
+        seed = conferenceSeedService.getConfTempId(conference.getConferenceId(), conference.getConferencename());
+        ConfJoinTempConf confJoinTempConf = new ConfJoinTempConf.Bulider().status(1).billingcode(conference.getBillingcode()).startTime(new Date()).tempConfId(seed).conferenceId(conference.getConferenceId()).create();
+        ConferenceInfoBMS confInfo=   buildByConference(seed, conference);
+        icmsAgentInterface.createConferenceWithoutUser(Constants.site, confInfo, YkhUtils.getAllServicetypelist());
+//        confJoinTempConf.setConferenceInfoBMS(confInfo);
+        confJoinTempConfService.saveTempConf(confJoinTempConf);
 
-			startSenconde = System.currentTimeMillis()/1000;
+        //开会
+        logger.info("createConference===> end" + JSON.toJSONString(confInfo));
+        return confInfo;
+    }
 
-		}else {
-			startSenconde=conference.getStarttime().getTime()/1000;
-		}
+    @Override
+    public Boolean stopConference(String applicationID, Integer tempConferenceID)
+            throws RuntimeException {
+        ConferenceSeed conferenceSeed = conferenceSeedDao.findOne(tempConferenceID);
+        if (conferenceSeed == null) {
+            throw new ResourceNoFoundException();
+        }
+        ConfJoinTempConf confJoinTempConf = confJoinTempConfService.findByTempConfId(tempConferenceID);
+        if (confJoinTempConf.getStatus() != 2) {
+            RestException restException = new RestException();
+            restException.setErrorCode(CMSErrorCode.CONFERENCE_NOT_FOUND.value());
+            restException.setMessage(CMSErrorCode.CONFERENCE_NOT_FOUND.getDescription());
+            throw restException;
+        }
+        if (confJoinTempConf.getStatus() == 4) {
+            return true;
+        } else {
+            icmsAgentInterface.startConferenceWithoutUser(Constants.site, tempConferenceID);
+            confJoinTempConf.setStatus(4);
+            confJoinTempConf.setEndTime(new Date());
+            confJoinTempConfService.saveTempConf(confJoinTempConf);
+        }
+        icmsAgentInterface.stopConferenceWithoutUser(Constants.site, tempConferenceID);
+        return true;
+    }
 
-		confInfo.setPlanStartTime0((int) startSenconde & 0xFFFFFFFF);
-		confInfo.setPlanStartTime1((int)startSenconde>>32 & 0xffffffff);
+    @Override
+    public Boolean deleteConference(String applicationID, Integer conferenceID)
+            throws RuntimeException {
+        ConferenceSeed conferenceSeed = conferenceSeedDao.findOne(conferenceID);
+        if (conferenceSeed == null) {
+            throw new ResourceNoFoundException();
+        }
+        confJoinTempConfService.deleteByTempConfId(conferenceID);
+        icmsAgentInterface.deleteConferenceWithoutUser(Constants.site, conferenceID);
+        return true;
+    }
 
-		long endTimeSeconds=0;
-		if(conference.getEndTime()==null){
-			endTimeSeconds = (System.currentTimeMillis() + 24*60*60*1000)/1000;
+    @Override
+    public Integer queryUserNum(Integer tempConfID)
+            throws Exception {
 
-		}else {
-			endTimeSeconds=(conference.getEndTime().getTime()/1000);
-		}
+        return 0;
+    }
 
-		confInfo.setPlanStartTime0((int)endTimeSeconds& 0xFFFFFFFF);
-		confInfo.setPlanStartTime1((int)endTimeSeconds>>32 & 0xffffffff);
-		confInfo.setServiceConfigs(dao.getServiceConfigs());
-		confInfo.setConfScale(dao.getConfScale());
-		confInfo.setBillingCode(dao.getBillingcode() + "");
-//		confInfo.setSubConference();
-		//TODO 空的子会议
-		SubConferenceInfo subConfInfo = new SubConferenceInfo();
-		subConfInfo.setServiceConfigArr(dao.getServiceConfigs());
-		subConfInfo.setRoleInfoArr(dao.getRuleInfos());
-		confInfo.setSubConference(subConfInfo);
-		icmsAgent.createConferenceWithoutUser(Constants.site, confInfo, YkhUtils.getAllServicetypelist());
-		confJoinTempConfDao.save(confJoinTempConf);
-		//开会
-		logger.info("createConference===> end"+ JSON.toJSONString(confInfo));
-		return  confInfo;
-	}
-	@Override
-	public Boolean stopConference(String applicationID, Integer tempConferenceID)
-			throws RuntimeException {
-		ConferenceSeed conferenceSeed =conferenceSeedDao.findOne(tempConferenceID);
-		if(conferenceSeed==null){
-			throw new ResourceNoFoundException();
-		}
-		ConfJoinTempConf confJoinTempConf= confJoinTempConfDao.findByTempConfId(tempConferenceID);
-		if(confJoinTempConf.getBmsStatus()!=2){
-			RestException restException = new RestException();
-			restException.setErrorCode(CMSErrorCode.CONFERENCE_NOT_FOUND.value());
-			restException.setMessage(CMSErrorCode.CONFERENCE_NOT_FOUND.getDescription());
-			throw restException;
-		}
-		if(confJoinTempConf.getBmsStatus()==3){
-			return true;
-		}else{
-			icmsAgent.startConferenceWithoutUser(Constants.site,tempConferenceID);
-			confJoinTempConf.setBmsStatus(3);
-			confJoinTempConfDao.save(confJoinTempConf);
-		}
-		icmsAgent.stopConferenceWithoutUser(Constants.site, tempConferenceID);
-		return true;
-	}
+    @Override
+    public Boolean startConference(Integer tempConferenceID) {
+        ConfJoinTempConf confJoinTempConf = confJoinTempConfService.findByTempConfId(tempConferenceID);
+        if (confJoinTempConf.getStatus() > 2) {
+            RestException restException = new RestException();
+            restException.setErrorCode(CMSErrorCode.CONFERENCE_NOT_FOUND.value());
+            restException.setMessage(CMSErrorCode.CONFERENCE_NOT_FOUND.getDescription());
+            throw restException;
+        }
+        if (confJoinTempConf.getStatus() == 2) {
+            return true;
+        } else {
+            icmsAgentInterface.startConferenceWithoutUser(Constants.site, tempConferenceID);
+            confJoinTempConf.setStatus(2);
+            confJoinTempConfService.saveTempConf(confJoinTempConf);
+        }
+        return true;
+    }
 
-	@Override
-	public Boolean deleteConference(String applicationID, Integer conferenceID)
-			throws RuntimeException {
-		ConferenceSeed conferenceSeed =conferenceSeedDao.findOne(conferenceID);
-		if(conferenceSeed==null){
-			throw new ResourceNoFoundException();
-		}
-		confJoinTempConfDao.delete(confJoinTempConfDao.findByTempConfId(conferenceID));
-		icmsAgent.deleteConferenceWithoutUser(Constants.site, conferenceID);
-		return true;
-	}
+    @Override
+    public UserChannel joinConference(String applicationID,
+                                      Integer tempConferenceID, User user) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-	@Override
-	public Integer queryUserNum(Integer tempConfID)
-			throws Exception {
+    @Override
+    public ConfJoinTempConf getConferenceInfo(String applicationID, Integer tempConfID,Integer conferenceId) {
 
-		return 0;
-	}
+            ConfJoinTempConf confJoinTempConf = confJoinTempConfService.findByTempConfId(tempConfID);
+            if (confJoinTempConf != null&&confJoinTempConf.getStatus()>2) {
+                return confJoinTempConf;
+            }else{
+                ConfJoinTempConf confJoinTempConf1 =new ConfJoinTempConf();
+                ConferenceInfoBMS conferenceInfoBMS=       icmsAgentInterface.getConfInfo(Consts.site, tempConfID);
+                if(conferenceInfoBMS!=null){
+                    if(conferenceInfoBMS.getStatus()==8) {
+                        confJoinTempConf1.setStatus(conferenceInfoBMS.getStatus());
+                        //confJoinTempConf1.setEndTime(conferenceInfoBMS.);
+                        confJoinTempConf1.setConfScale(conferenceInfoBMS.getConfScale());
+                        confJoinTempConf1.setTempConfId(confJoinTempConf.getTempConfId());
+                        confJoinTempConf1.setConferenceId(conferenceId);
+                        confJoinTempConf1.setBillingcode(conferenceInfoBMS.getBillingCode());
+                        return confJoinTempConf1;
+                    }else {
+                        return confJoinTempConf1;
+                    }
+                }else
+                    return confJoinTempConf;
+            }
+//        return icmsAgent.getConfInfo(Consts.site,tempConfID);
+    }
 
-	@Override
-	public Boolean startConference(Integer tempConferenceID)  {
-		ConfJoinTempConf confJoinTempConf= confJoinTempConfDao.findByTempConfId(tempConferenceID);
-		if(confJoinTempConf.getBmsStatus()>2){
-			RestException restException = new RestException();
-			restException.setErrorCode(CMSErrorCode.CONFERENCE_NOT_FOUND.value());
-			restException.setMessage(CMSErrorCode.CONFERENCE_NOT_FOUND.getDescription());
-			throw restException;
-		}
-		if(confJoinTempConf.getBmsStatus()==2){
-			return true;
-		}else{
-			icmsAgent.startConferenceWithoutUser(Constants.site,tempConferenceID);
+    @Override
+    public UserConferenceStatus getUserConferenceStatus(String applicationID, Integer tempConfID, String username) {
+        return icmsAgentInterface.getUserConferenceStatus(Consts.site,tempConfID,Session.getCache(username,Integer.class));
+    }
 
-			confJoinTempConf.setBmsStatus(2);
-			confJoinTempConfDao.save(confJoinTempConf);
-		}
-		return true;
-	}
+    @Override
+    public UserConferenceStatus getUserConferenceStatus(String applicationID,
+                                                        Integer tempConfID, Integer tempUserID) {
+        return  icmsAgentInterface.getUserConferenceStatus(Consts.site,tempConfID,tempUserID);
+    }
 
-	@Override
-	public UserChannel joinConference(String applicationID,
-									  Integer tempConferenceID, User user) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public Integer createConference(String applicationID, String billingCode)
+            throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-	@Override
-	public Integer getBMSConferenceInfo(String applicationID, Integer tempConfID)
-			throws Exception {
-		// TODO Auto-generated method stub
-//		icmsAgent.get
-		return null;
-	}
+    @Override
+    public Integer initConference(String applicationID, Integer conferenceID)
+            throws Exception {
+        return null;
+    }
 
-	@Override
-	public UserConferenceStatus getUserConferenceStatus(String applicationID,
-														Integer tempConfID, Integer tempUserID) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    /**
+     * 保存会议模版
+     *
+     * @param conference
+     */
+    @Override
+    public void openConference(Conference conference) {
+        conferenceDao.save(conference);
+    }
 
-	@Override
-	public Integer createConference(String applicationID, String billingCode)
-			throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public Conference modifyConference(Conference conference) {
+        Conference dao = conferenceDao.findOne(conference.getConferenceId());
+        RestAssert.notNull(Conference.class, dao);
+        RestBeanUtils.copyProperties(dao, conference, false);
+        conferenceDao.save(dao);
 
-	@Override
-	public Integer initConference(String applicationID, Integer conferenceID)
-			throws Exception {
-		return null;
-	}
-
-	/**
-	 * 保存会议模版
-	 * @param conference
-	 */
-	@Override
-	public void openConference(Conference conference) {
-		conferenceDao.save(conference);
-	}
-
-	@Override
-	public Conference modifyConference(Conference conference) {
-		Conference dao =conferenceDao.findOne(conference.getConferenceId());
-		RestAssert.notNull(Conference.class, dao);
-		RestBeanUtils.copyProperties(dao, conference, false);
-		conferenceDao.save(dao);
-
-		return  dao;
-	}
+        return dao;
+    }
 
 
+//    @Autowired
+//    TempUserIdGenerateHelper tempUserIdGenerateHelper;
 
-	@Override
-	public UserServiceDTO userJoinConference(User request) {
-		logger.info("UserConferenceServiceImpl ==>"+ JSON.toJSONString(request));
-		TempUser tempUser=null;
-		if(request.getTempuserid()!=null)
-			tempUser= tempUserDao.find(request.getTempuserid());
-		BMSUserInfo userInfo =new BMSUserInfo();
-		if(tempUser!=null){
-			Integer conft= tempUser.getTempConferenceId();
-			ConfJoinTempConf confJoinTempConf= confJoinTempConfDao.findByTempConfId(request.getTempConferenceId());
-			if(confJoinTempConf!=null&&confJoinTempConf.getBmsStatus()!=2){
-				return tempUser.getUserChannel();
-			}
-			//
-			if(conft!=request.getTempConferenceId()){
-				tempUserDao.delete(tempUserDao.findByUsername(request.getUsername()));
-				List<String> userArr = Lists.newLinkedList();
-				userArr.add(tempUser.getIdTempUser()+"");
-				icmsAgent.expelUser(Constants.site,conft, userArr);
-			}
-		}else{
-			tempUser = new TempUser();
-			tempUser.setUserId(request.getSeqNo());
-			tempUser.setUsername(request.getUsername());
-			tempUser.setStatus(request.getUserStatus()==null ? 0:request.getUserStatus());
-			tempUser.setTempConferenceId(request.getTempConferenceId());
-			tempUserDao.save(tempUser);
-		}
-		request.setTempuserid(tempUser.getIdTempUser());
-		try {
-			userInfo= BeanTranslatorUtil.copyUser2UserInfo(request);
-		}catch (Exception e) {
-			e.printStackTrace();
-			RestException  r = new RestException();
-			r.setErrorCode(com.ykh.tang.agent.Consts.ERROR_CODE);
-			r.setMessage(com.ykh.tang.agent.Consts.message+" "+e.getMessage());
-			throw r;
-		}
+    @Override
+    public UserServiceDTO userJoinConference(User request) {
+        BMSUserInfo userInfo = new BMSUserInfo();
+        TempUser tempUser = builderByUser(request);
+        if (tempUser.isJoin()) {
+            return tempUser.getUserChannel();
+        }
+        request.setTempuserid(tempUser.getIdTempUser());
+        try {
+            userInfo = BeanTranslatorUtil.copyUser2UserInfo(request);
+        } catch (Exception e) {
+            e.printStackTrace();
+            RestException r = new RestException();
+            r.setErrorCode(com.ykh.tang.agent.Consts.ERROR_CODE);
+            r.setMessage(com.ykh.tang.agent.Consts.message + " " + e.getMessage());
+            throw r;
+        }
 
-		logger.info("userJoinConference  ===> jni start" + request.getTempConferenceId());
-		UserChannel userChannel = icmsAgent.userJoinConference(Constants.site, request.getTempConferenceId(), userInfo);
-		userChannel.setTempConferenceID(request.getTempConferenceId());
+        logger.info("userJoinConference  ===> jni start" + request.getTempConferenceId());
+        UserChannel userChannel = icmsAgentInterface.userJoinConference(Constants.site, request.getTempConferenceId(), userInfo);
+        userChannel.setTempConferenceID(request.getTempConferenceId());
 
-		UserDTO userDTO= new UserDTO();
+        UserDTO userDTO = new UserDTO();
 
-		userDTO.setTempuserid(tempUser.getIdTempUser());
+        userDTO.setTempuserid(tempUser.getIdTempUser());
 
-		RestBeanUtils.copyProperties(userDTO, request, false);
-		userDTO.setRolemap(request.getRolemap());
-		tempUser.setPinCode(userInfo.pinCode);
+        RestBeanUtils.copyProperties(userDTO, request, false);
+        userDTO.setRolemap(request.getRolemap());
+        tempUser.setPinCode(userInfo.pinCode);
 
-		tempUser.setClientType(userInfo.getClientType());
+        tempUser.setClientType(userInfo.getClientType());
 
-		tempUserDao.save(tempUser);
+        tempUserDao.save(tempUser);
 
-		UserServiceDTO dto = getUserServiceByChannel(userChannel, userDTO);
+        UserServiceDTO dto = getUserServiceByChannel(userChannel, userDTO);
 
-		tempUser.setUserChannel(dto);
+        tempUser.setUserChannel(dto);
 
-		return dto;
-	}
+        return dto;
+    }
 
 
+    @Override
+    public UserServiceDTO startConferenceWithUser(User request) {
+        logger.info("UserConferenceServiceImpl ==>" + JSON.toJSONString(request));
+        BMSUserInfo userInfo = new BMSUserInfo();
+        TempUser tempUser = builderByUser(request);
+        if (tempUser.isJoin()) {
+            return tempUser.getUserChannel();
+        }
+        request.setTempuserid(tempUser.getIdTempUser());
+        try {
+            userInfo = BeanTranslatorUtil.copyUser2UserInfo(request);
+        } catch (Exception e) {
+            e.printStackTrace();
+            RestException r = new RestException();
+            r.setErrorCode(com.ykh.tang.agent.Consts.ERROR_CODE);
+            r.setMessage(com.ykh.tang.agent.Consts.message + " " + e.getMessage());
+            throw r;
+        }
 
-
-
-
-	@Override
-	public UserServiceDTO startConferenceWithUser(User request) {
-		logger.info("UserConferenceServiceImpl ==>"+ JSON.toJSONString(request));
-		TempUser tempUser=null;
-		if(request.getTempuserid()!=null)
-			tempUser= tempUserDao.find(request.getTempuserid());
-		BMSUserInfo userInfo =new BMSUserInfo();
-		if(tempUser!=null){
-			Integer conft= tempUser.getTempConferenceId();
-			ConfJoinTempConf confJoinTempConf= confJoinTempConfDao.findByTempConfId(request.getTempConferenceId());
-			if(confJoinTempConf!=null&&confJoinTempConf.getBmsStatus()!=2){
-				return tempUser.getUserChannel();
-			}
-			//
-			if(conft!=request.getTempConferenceId()){
-				tempUserDao.delete(tempUserDao.findByUsername(request.getUsername()));
-				List<String> userArr = Lists.newLinkedList();
-				userArr.add(tempUser.getIdTempUser()+"");
-				icmsAgent.expelUser(Constants.site,conft, userArr);
-			}
-		}else{
-			tempUser = new TempUser();
-			tempUser.setUserId(request.getSeqNo());
-			tempUser.setUsername(request.getUsername());
-			tempUser.setStatus(request.getUserStatus()==null ? 0:request.getUserStatus());
-			tempUser.setTempConferenceId(request.getTempConferenceId());
-			tempUserDao.save(tempUser);
-		}
-		request.setTempuserid(tempUser.getIdTempUser());
-		try {
-			userInfo= BeanTranslatorUtil.copyUser2UserInfo(request);
-		}catch (Exception e) {
-			e.printStackTrace();
-			RestException  r = new RestException();
-			r.setErrorCode(com.ykh.tang.agent.Consts.ERROR_CODE);
-			r.setMessage(com.ykh.tang.agent.Consts.message+" "+e.getMessage());
-			throw r;
-		}
-
-		logger.info("userJoinConference  ===> jni start" + request.getTempConferenceId());
+        logger.info("userJoinConference  ===> jni start" + request.getTempConferenceId());
 //		UserServiceDTO dto = new UserServiceDTO();
-		UserChannel userChannel = icmsAgent.startConferenceWithUser(Constants.site, request.getTempConferenceId(), userInfo);
-		userChannel.setTempConferenceID(request.getTempConferenceId());
+        UserChannel userChannel = icmsAgentInterface.startConferenceWithUser(Constants.site, request.getTempConferenceId(), userInfo);
+        userChannel.setTempConferenceID(request.getTempConferenceId());
 
-		UserDTO userDTO= new UserDTO();
+        UserDTO userDTO = new UserDTO();
 
-		userDTO.setTempuserid(tempUser.getIdTempUser());
-		RestBeanUtils.copyProperties(userDTO, request, false);
-		userDTO.setRolemap(request.getRolemap());
-		tempUser.setPinCode(userInfo.pinCode);
-		tempUser.setClientType(userInfo.getClientType());
+        userDTO.setTempuserid(tempUser.getIdTempUser());
+        RestBeanUtils.copyProperties(userDTO, request, false);
+        userDTO.setRolemap(request.getRolemap());
+        tempUser.setPinCode(userInfo.pinCode);
+        tempUser.setClientType(userInfo.getClientType());
 
-		tempUserDao.save(tempUser);
+        tempUserDao.save(tempUser);
 
-		UserServiceDTO dto = getUserServiceByChannel(userChannel, userDTO);
+        UserServiceDTO dto = getUserServiceByChannel(userChannel, userDTO);
 
-		tempUser.setUserChannel(dto);
+        tempUser.setUserChannel(dto);
 
-		return dto;
+        return dto;
 
 
+    }
 
+    @Override
+    public Dao.PageVO<Conference> searchConference(Conference conference) {
 
-	}
+        return conferenceDao.findPages(conference);
 
-	@Override
-	public Dao.PageVO<Conference> searchConference(Conference conference) {
+    }
 
-		return 		conferenceDao.findPages(conference);
+    @Override
+    public UserServiceDTO startConferecneWithUser(Integer conferenceId, User request) {
+        Conference conference = this.conferenceDao.find(conferenceId);
+        RestAssert.notNull(Conference.class, conference);
+        ConferenceInfoBMS bms = this.createConference(conference);
+        Integer tempConfId = bms.getConfID();
+        request.setTempConferenceId(tempConfId);
+        return this.startConferenceWithUser(request);
+    }
 
-	}
+    public static void main(String[] args) {
+        System.out.print(JSON.toJSONString(new PageRequest(1, 1)));
+    }
 
-	@Override
-	public UserServiceDTO startConferecneWithUser(Integer conferenceId, User request) {
-		Conference conference =this.conferenceDao.find(conferenceId);
-		RestAssert.notNull(Conference.class, conference);
-		ConferenceInfoBMS bms=	this.createConference(conference);
-		Integer tempConfId=bms.getConfID();
-		request.setTempConferenceId(tempConfId);
-		return this.startConferenceWithUser(request);
-	}
 
-	public  static  void main(String[] args) {
-		System.out.print(JSON.toJSONString(new PageRequest(1,1)));
-	}
+    private UserServiceDTO getUserServiceByChannel(UserChannel userChannel, UserDTO userDTO) {
+        if (userChannel.getUserID() > 0) {
+            userDTO.setTempuserid(Integer.valueOf(userChannel.getUserID()));
+        }
+        UserServiceDTO userServiceDTO = new UserServiceDTO();
 
+        userServiceDTO.setTempconfernceid(userChannel.getTempConferenceID());
 
-	private UserServiceDTO getUserServiceByChannel(UserChannel userChannel, UserDTO userDTO)
-	{
-		if(userChannel.getUserID() > 0)
-		{
-			userDTO.setTempuserid(Integer.valueOf(userChannel.getUserID()));
-		}
-		UserServiceDTO userServiceDTO = new UserServiceDTO();
+        userServiceDTO.setUser(userDTO);
 
-		userServiceDTO.setTempconfernceid(userChannel.getTempConferenceID());
+        String userIpaddr = userDTO.getIpaddr();
 
-		userServiceDTO.setUser(userDTO);
+        logger.info("userIpaddr from userDTO is:" + userIpaddr);
 
-		String userIpaddr = userDTO.getIpaddr();
+        List<DtServiceAddrDTO> dtsaddrDTOlist = new ArrayList<DtServiceAddrDTO>();
 
-		logger.info("userIpaddr from userDTO is:" + userIpaddr);
+        if (userChannel.ctsAddr == null || userChannel.ctsAddr.isEmpty())
 
-		List<DtServiceAddrDTO> dtsaddrDTOlist = new ArrayList<DtServiceAddrDTO>();
+        {
 
-		if (userChannel.ctsAddr == null || userChannel.ctsAddr.isEmpty())
+            logger.error("业务管理返回的ctsAddr地址列表为空！调用中断，直接返回NULL！");
 
-		{
+            throw new NullPointerException("业务管理返回的ctsAddr地址列表为空！调用中断，直接返回NULL！");
 
-			logger.error("业务管理返回的ctsAddr地址列表为空！调用中断，直接返回NULL！");
+        }
 
-			throw new NullPointerException("业务管理返回的ctsAddr地址列表为空！调用中断，直接返回NULL！");
+        if (userChannel.dtsAddr == null || userChannel.dtsAddr.isEmpty())
 
-		}
+        {
 
-		if (userChannel.dtsAddr == null || userChannel.dtsAddr.isEmpty())
+            logger.error("业务管理返回的dtsAddr地址列表为空！");
 
-		{
+            dtsaddrDTOlist = null;
 
-			logger.error("业务管理返回的dtsAddr地址列表为空！");
+        } else
 
-			dtsaddrDTOlist = null;
+        {
 
-		} else
+            DtServiceAddrDTO usAddrDto = null;
 
-		{
+            for (UserServiceAddr usaddr : userChannel.dtsAddr) {
 
-			DtServiceAddrDTO usAddrDto = null;
 
-			for (UserServiceAddr usaddr : userChannel.dtsAddr)
-			{
+                usAddrDto = new DtServiceAddrDTO();
 
+                usAddrDto.setChannelID(intToLong(usaddr.channel));
 
-				usAddrDto = new DtServiceAddrDTO();
+                usAddrDto.setGroupID(intToLong(usaddr.groupID));
 
-				usAddrDto.setChannelID(intToLong(usaddr.channel));
+                usAddrDto.setType(intToLong(usaddr.serviceType));
 
-				usAddrDto.setGroupID(intToLong(usaddr.groupID));
+                usAddrDto.setTransportip(IPTranslatorUtil.longToIP(usaddr.getServerIP0()));
 
-				usAddrDto.setType(intToLong(usaddr.serviceType));
 
-				usAddrDto.setTransportip(IPTranslatorUtil.longToIP(usaddr.getServerIP0()));
+                dtsaddrDTOlist.add(usAddrDto);
 
+            }
 
-				dtsaddrDTOlist.add(usAddrDto);
+        }
 
-			}
+        userServiceDTO.setDtsaddrlist(dtsaddrDTOlist);
 
-		}
+        List<CtServiceAddrDTO> ctsaddrDTOlist = new ArrayList<CtServiceAddrDTO>();
 
-		userServiceDTO.setDtsaddrlist(dtsaddrDTOlist);
+        CtServiceAddrDTO csAddrDto = null;
 
-		List<CtServiceAddrDTO> ctsaddrDTOlist = new ArrayList<CtServiceAddrDTO>();
+        for (UserServiceAddr usaddr : userChannel.ctsAddr) {
 
-		CtServiceAddrDTO csAddrDto = null;
+            csAddrDto = new CtServiceAddrDTO();
 
-		for (UserServiceAddr usaddr : userChannel.ctsAddr)
-		{
+            csAddrDto.setType((usaddr.serviceType));
 
-			csAddrDto = new CtServiceAddrDTO();
+            csAddrDto.setChannelID((usaddr.channel));
 
-			csAddrDto.setType((usaddr.serviceType));
+            csAddrDto.setGroupID((usaddr.groupID));
 
-			csAddrDto.setChannelID((usaddr.channel));
+            csAddrDto.setAccessip(IPTranslatorUtil.longToIP(usaddr.getServerIP0()));
 
-			csAddrDto.setGroupID((usaddr.groupID));
+            csAddrDto.setBakassessip(IPTranslatorUtil.longToIP(usaddr.getHotServerIP0()));
 
-			csAddrDto.setAccessip(IPTranslatorUtil.longToIP(usaddr.getServerIP0()));
+            if (csAddrDto != null) {
 
-			csAddrDto.setBakassessip(IPTranslatorUtil.longToIP(usaddr.getHotServerIP0()));
+                logger.info("Accessip is:" + csAddrDto.getAccessip());
 
-			if(csAddrDto != null)
-			{
+                logger.info("Bakessessip is:" + csAddrDto.getBakassessip());
 
-				logger.info("Accessip is:" + csAddrDto.getAccessip());
+                ctsaddrDTOlist.add(csAddrDto);
+            }
 
-				logger.info("Bakessessip is:" + csAddrDto.getBakassessip());
+        }
 
-				ctsaddrDTOlist.add(csAddrDto);
-			}
+        userServiceDTO.setCtsaddrlist(ctsaddrDTOlist);
 
-		}
+        return userServiceDTO;
 
-		userServiceDTO.setCtsaddrlist(ctsaddrDTOlist);
+    }
 
-		return userServiceDTO;
+    private TempUser builderByUser(User request) {
+        logger.info("UserConferenceServiceImpl ==>" + JSON.toJSONString(request));
+        TempUser tempUser = null;
+        RestAssert.notNull(request.getUsername(), "username");
 
-	}
+        if (request.getTempuserid() != null) {
+            tempUser = tempUserDao.find(request.getTempuserid());
+            Session.setCache(tempUser.getUsername(), request.getTempuserid());
 
-	/**
+        }
+        if (tempUser != null) {
+            tempUser.setIsJoin(false);
+            Session.setCache(tempUser.getUsername(), tempUser.getIdTempUser());
+            Integer conft = tempUser.getTempConferenceId();
+            ConfJoinTempConf confJoinTempConf = confJoinTempConfService.findByTempConfId(request.getTempConferenceId());
+            if (conft == request.getTempConferenceId() && confJoinTempConf != null && confJoinTempConf.getStatus() != 2) {
+                tempUser.setIsJoin(true);
 
-	 * int类型数据转long
+                return tempUser;
+            }
+            if(conft!=request.getTempConferenceId()){
+                tempUser.setIsJoin(true);
+                return tempUser;
+            }
+        } else {
+            tempUser = new TempUser();
+            tempUser.setUsername(request.getUsername());
+            tempUser.setStatus(request.getUserStatus() == null ? 0 : request.getUserStatus());
+            tempUser.setTempConferenceId(request.getTempConferenceId());
+            tempUserDao.save(tempUser);
+            Session.setCache(tempUser.getUsername(), tempUser.getIdTempUser());
 
-	 * @param value
+        }
 
-	 * @return
+        return tempUser;
+    }
 
-	 */
+    private long intToLong(int value) {
 
-	private long intToLong(int value){
+        return value * 1l;
 
-		return value * 1l;
+    }
 
-	}
+    private ConferenceInfoBMS buildByConference(Integer tempId,Conference conference){
+        ConferenceInfoBMS confInfo = new ConferenceInfoBMS();
 
+        Conference dao = conferenceDao.find(conference.getConferenceId());
+        confInfo.setConfID(tempId);
+        confInfo.setName(conference.getConferencename());
+//		confInfo.setPassword(conference.getPassword());
+        confInfo.setStopParams(dao.getAutoStopParams());
+//		confInfo.setRoleInfo(dao.get);
+        confInfo.setRoleInfo(dao.getRuleInfos());
+
+        long startSenconde = 0l;
+        if (conference.getStarttime() == null) {
+
+            startSenconde = System.currentTimeMillis() / 1000;
+
+        } else {
+            startSenconde = conference.getStarttime().getTime() / 1000;
+        }
+
+        confInfo.setPlanStartTime0((int) startSenconde & 0xFFFFFFFF);
+        confInfo.setPlanStartTime1((int) startSenconde >> 32 & 0xffffffff);
+
+        long endTimeSeconds = 0;
+        if (conference.getEndTime() == null) {
+            endTimeSeconds = (System.currentTimeMillis() + 24 * 60 * 60 * 1000) / 1000;
+
+        } else {
+            endTimeSeconds = (conference.getEndTime().getTime() / 1000);
+        }
+
+        confInfo.setPlanStartTime0((int) endTimeSeconds & 0xFFFFFFFF);
+        confInfo.setPlanStartTime1((int) endTimeSeconds >> 32 & 0xffffffff);
+        confInfo.setServiceConfigs(dao.getServiceConfigs());
+        confInfo.setConfScale(dao.getConfScale());
+        confInfo.setBillingCode(dao.getBillingcode() + "");
+//		confInfo.setSubConference();
+        //TODO 空的子会议
+        SubConferenceInfo subConfInfo = new SubConferenceInfo();
+        subConfInfo.setServiceConfigArr(dao.getServiceConfigs());
+        subConfInfo.setRoleInfoArr(dao.getRuleInfos());
+        confInfo.setSubConference(subConfInfo);
+        return confInfo;
+    }
 
 }

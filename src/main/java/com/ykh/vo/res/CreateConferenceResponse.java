@@ -1,17 +1,12 @@
 package com.ykh.vo.res;
 
-import com.ykh.dao.conference.domain.ConfJoinTempConf;
-import com.ykh.dao.conference.domain.Conference;
-import com.ykh.tang.agent.vo.ConferenceInfoBMS;
-import com.ykh.vo.body.ConferenceSeedBody;
-
 /**
  * Created by ant_shake_tree on 15/8/21.
  */
 public class CreateConferenceResponse {
-    Header head=new Header();
+    Header head = new Header();
 
-    private  CreateConferenceBody body;
+    private CreateConferenceBody body;
 
     public Header getHead() {
         return head;
@@ -29,7 +24,7 @@ public class CreateConferenceResponse {
         this.body = body;
     }
 
-    public static class CreateConferenceBody{
+    public static class CreateConferenceBody {
         Integer tempConferenceId;
 
         public Integer getTempConferenceId() {

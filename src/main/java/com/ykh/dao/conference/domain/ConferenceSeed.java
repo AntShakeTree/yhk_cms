@@ -15,9 +15,7 @@ public class ConferenceSeed {
     private String conferenceName;
 
 
-
-
-    public ConferenceSeed(Integer confId,String conferenceName) {
+    public ConferenceSeed(Integer confId, String conferenceName) {
         this.confId = confId;
 
         this.conferenceName = conferenceName;

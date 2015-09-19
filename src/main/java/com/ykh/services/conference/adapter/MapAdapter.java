@@ -1,12 +1,11 @@
 package com.ykh.services.conference.adapter;
 
 
+import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.xml.bind.annotation.adapters.XmlAdapter;
-
-public class MapAdapter  extends XmlAdapter<MapElements[], Map<String, String>> {
+public class MapAdapter extends XmlAdapter<MapElements[], Map<String, String>> {
     public MapElements[] marshal(Map<String, String> arg0) throws Exception {
         MapElements[] mapElements = new MapElements[arg0.size()];
         int i = 0;

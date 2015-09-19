@@ -1,44 +1,45 @@
 package com.ykh.vo.req;
-//public class LoginInfo implements Serializable {  
+
+//public class LoginInfo implements Serializable {
 public class LoginInfo {
-	 private int id;  
-	 private String name;  
-	 private boolean status;  
-	  
-	public LoginInfo(int nid, String strname, boolean bstatus) {
-		// TODO Auto-generated constructor stub
-		id = nid;
-		name=strname;
-		status = bstatus;
-		
-	}
+    private int id;
+    private String name;
+    private boolean status;
 
-	public LoginInfo() {
-		// TODO Auto-generated constructor stub
-	}
+    public LoginInfo(int nid, String strname, boolean bstatus) {
+        // TODO Auto-generated constructor stub
+        id = nid;
+        name = strname;
+        status = bstatus;
 
-	public int getId() {
-		return id;
-	}
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public LoginInfo() {
+        // TODO Auto-generated constructor stub
+    }
 
-	public String getName() {
-		return name;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public boolean isStatus() {
-		return status;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
-	
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
 }

@@ -6,7 +6,7 @@ import com.ykh.dao.conference.domain.Conference;
  * Created by ant_shake_tree on 15/8/21.
  */
 public class ConferenceResponse {
-    private  Header head=new Header();
+    private Header head = new Header();
 
     public Header getHead() {
         return head;
@@ -15,6 +15,7 @@ public class ConferenceResponse {
     public void setHead(Header head) {
         this.head = head;
     }
+
     private Conference body;
 
     public Conference getBody() {

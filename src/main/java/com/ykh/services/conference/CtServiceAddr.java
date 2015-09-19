@@ -1,119 +1,118 @@
 package com.ykh.services.conference;
 
-import java.io.Serializable;
-
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 
 
 @XmlRootElement
 public class CtServiceAddr implements Serializable {
-	private static final long serialVersionUID = -8154315532230981733L;
+    private static final long serialVersionUID = -8154315532230981733L;
 
-	private String accessip; // serverIP
-	
-	private String bakassessip;//备份ip
+    private String accessip; // serverIP
 
-	private Integer channelID; // channel
+    private String bakassessip;//备份ip
 
-	private Integer type;
+    private Integer channelID; // channel
 
-	private Integer groupID;
+    private Integer type;
 
-	public CtServiceAddr(String accessip, String bakassessip, Integer channelID, Integer type, Integer groupID) {
+    private Integer groupID;
 
-		this.accessip = accessip;
-		this.bakassessip = bakassessip;
-		this.channelID = channelID;
-		this.type = type;
-		this.groupID = groupID;
-	}
+    public CtServiceAddr(String accessip, String bakassessip, Integer channelID, Integer type, Integer groupID) {
 
-	/**
-	 * accessip
-	 * 
-	 * @return the accessip
-	 */
+        this.accessip = accessip;
+        this.bakassessip = bakassessip;
+        this.channelID = channelID;
+        this.type = type;
+        this.groupID = groupID;
+    }
 
-	public String getAccessip() {
-		return accessip;
-	}
+    /**
+     * accessip
+     *
+     * @return the accessip
+     */
 
-	/**
-	 * accessip
-	 * 
-	 * @param accessip the accessip to set
-	 */
+    public String getAccessip() {
+        return accessip;
+    }
 
-	public void setAccessip(String accessip) {
-		this.accessip = accessip;
-	}
+    /**
+     * accessip
+     *
+     * @param accessip the accessip to set
+     */
 
-	/**
-	 * channelID
-	 * 
-	 * @return the channelID
-	 */
+    public void setAccessip(String accessip) {
+        this.accessip = accessip;
+    }
 
-	public Integer getChannelID() {
-		return channelID;
-	}
+    /**
+     * channelID
+     *
+     * @return the channelID
+     */
 
-	/**
-	 * channelID
-	 * 
-	 * @param channelID the channelID to set
-	 */
+    public Integer getChannelID() {
+        return channelID;
+    }
 
-	public void setChannelID(Integer channelID) {
-		this.channelID = channelID;
-	}
+    /**
+     * channelID
+     *
+     * @param channelID the channelID to set
+     */
 
-	/**
-	 * type
-	 * 
-	 * @return the type
-	 */
+    public void setChannelID(Integer channelID) {
+        this.channelID = channelID;
+    }
 
-	public Integer getType() {
-		return type;
-	}
+    /**
+     * type
+     *
+     * @return the type
+     */
 
-	/**
-	 * type
-	 * 
-	 * @param type the type to set
-	 */
+    public Integer getType() {
+        return type;
+    }
 
-	public void setType(Integer type) {
-		this.type = type;
-	}
+    /**
+     * type
+     *
+     * @param type the type to set
+     */
 
-	/**
-	 * groupID
-	 * 
-	 * @return the groupID
-	 */
+    public void setType(Integer type) {
+        this.type = type;
+    }
 
-	public Integer getGroupID() {
-		return groupID;
-	}
+    /**
+     * groupID
+     *
+     * @return the groupID
+     */
 
-	/**
-	 * groupID
-	 * 
-	 * @param groupID the groupID to set
-	 */
+    public Integer getGroupID() {
+        return groupID;
+    }
 
-	public void setGroupID(Integer groupID) {
-		this.groupID = groupID;
-	}
+    /**
+     * groupID
+     *
+     * @param groupID the groupID to set
+     */
 
-	public String getBakassessip() {
-		return bakassessip;
-	}
+    public void setGroupID(Integer groupID) {
+        this.groupID = groupID;
+    }
 
-	public void setBakassessip(String bakassessip) {
-		this.bakassessip = bakassessip;
-	}
+    public String getBakassessip() {
+        return bakassessip;
+    }
+
+    public void setBakassessip(String bakassessip) {
+        this.bakassessip = bakassessip;
+    }
 
 }

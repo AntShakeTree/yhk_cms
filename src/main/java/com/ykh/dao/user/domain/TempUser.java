@@ -2,7 +2,6 @@ package com.ykh.dao.user.domain;
 
 import com.alibaba.fastjson.JSON;
 import com.ykh.pojo.UserServiceDTO;
-import com.ykh.tang.agent.vo.UserChannel;
 
 import javax.persistence.*;
 
@@ -15,21 +14,27 @@ public class TempUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idTempUser;
-
+    private String userGuid;
+    private String domain;
     private Integer userId;
-    private  String username;
+    private String username;
     private Integer clientType;
-    private  Integer pinCode;
+    private Integer pinCode;
     private Integer tempConferenceId;
-//    private domain" type="i"/>
-//    <element name="status" type="u"/>
-//    <element name="ip" type="au" size="4"/>
-//    <element name="role_type" type="au"/>
-//    <element name="time " type="t"/>
     private int status;
+    @Transient
+    private boolean isJoin = false;
+
+    public boolean isJoin() {
+        return isJoin;
+    }
+
+    public void setIsJoin(boolean isJoin) {
+        this.isJoin = isJoin;
+    }
+
     @Convert(converter = UserChannelConverJson.class)
     private UserServiceDTO userChannel;
-
 
 
     public void setStatus(Integer status) {
@@ -83,7 +88,8 @@ public class TempUser {
     public void setPinCode(Integer pinCode) {
         this.pinCode = pinCode;
     }
-    public  static  class  UserChannelConverJson implements AttributeConverter<UserServiceDTO,String>{
+
+    public static class UserChannelConverJson implements AttributeConverter<UserServiceDTO, String> {
 
         @Override
         public String convertToDatabaseColumn(UserServiceDTO attribute) {
@@ -92,8 +98,24 @@ public class TempUser {
 
         @Override
         public UserServiceDTO convertToEntityAttribute(String dbData) {
-            return JSON.parseObject(dbData,UserServiceDTO.class);
+            return JSON.parseObject(dbData, UserServiceDTO.class);
         }
+    }
+
+    public String getUserGuid() {
+        return userGuid;
+    }
+
+    public void setUserGuid(String userGuid) {
+        this.userGuid = userGuid;
+    }
+
+    public String getDomain() {
+        return domain;
+    }
+
+    public void setDomain(String domain) {
+        this.domain = domain;
     }
 
     public int getStatus() {

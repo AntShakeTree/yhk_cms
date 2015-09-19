@@ -6,7 +6,7 @@ import com.ykh.pojo.UserServiceDTO;
  * Created by ant_shake_tree on 15/8/21.
  */
 public class UserChannelResponse {
-    private Header head =new Header();
+    private Header head = new Header();
     private UserServiceDTO body;
 
     public Header getHead() {

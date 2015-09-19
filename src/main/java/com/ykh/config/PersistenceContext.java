@@ -1,11 +1,6 @@
 package com.ykh.config;
 
-import java.util.Properties;
-import java.util.concurrent.TimeUnit;
-
-import javax.annotation.Resource;
-import javax.sql.DataSource;
-
+import com.jolbox.bonecp.BoneCPDataSource;
 import com.ykh.dao.suport.RepositoryFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,18 +13,19 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.jolbox.bonecp.BoneCPDataSource;
+import javax.annotation.Resource;
+import javax.sql.DataSource;
+import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 /**
- *
  * @author ant_shake_tree
- *
  */
 @Configuration
 @EnableTransactionManagement
 @PropertySource("classpath:dev.properties")
 //@EnableJpaRepositories(basePackages={ "com.hm.engine.dao"})
-@EnableJpaRepositories(repositoryFactoryBeanClass = RepositoryFactoryBean.class,basePackages={ "com.ykh.dao"} )
+@EnableJpaRepositories(repositoryFactoryBeanClass = RepositoryFactoryBean.class, basePackages = {"com.ykh.dao"})
 
 @Order(1)
 public class PersistenceContext {
@@ -62,10 +58,10 @@ public class PersistenceContext {
         dataSource.setPassword(environment.getRequiredProperty(PROPERTY_NAME_DATABASE_PASSWORD));
         dataSource.setIdleConnectionTestPeriod(environment.getProperty(PROPERTY_NAME_DATABASE_IDLECONNECTIONTESTPERIOD, Integer.class), TimeUnit.SECONDS);
         dataSource.setIdleMaxAge(environment.getProperty(PROPERTY_NAME_DATABASE_IDLEMAXAGE, Integer.class), TimeUnit.SECONDS);
-        dataSource.setMaxConnectionsPerPartition(environment.getProperty(PROPERTY_NAME_DATABASE_MAXCONNECTIONSPERPARTITION,  Integer.class));
+        dataSource.setMaxConnectionsPerPartition(environment.getProperty(PROPERTY_NAME_DATABASE_MAXCONNECTIONSPERPARTITION, Integer.class));
         dataSource.setPartitionCount(environment.getProperty(PROPERTY_NAME_DATABASE_PARTITIONCOUNT, Integer.class));
         dataSource.setAcquireIncrement(environment.getProperty(PROPERTY_NAME_DATABASE_ACQUIREINCREMENT, Integer.class));
-        dataSource.setStatementsCacheSize(environment.getProperty(PROPERTY_NAME_DATABASE_STATEMENTSCACHESIZE,Integer.class));
+        dataSource.setStatementsCacheSize(environment.getProperty(PROPERTY_NAME_DATABASE_STATEMENTSCACHESIZE, Integer.class));
         dataSource.setConnectionTimeoutInMs(9000);
         dataSource.setAcquireRetryAttempts(3);
 

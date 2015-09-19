@@ -1,35 +1,21 @@
 package com.ykh.common;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import com.ykh.common.IPTranslatorUtil;
-import com.ykh.dao.conference.domain.Conference;
 import com.ykh.pojo.CtServiceAddr;
 import com.ykh.pojo.DtServiceAddr;
 import com.ykh.pojo.User;
-import com.ykh.tang.agent.vo.AutoStopParams;
-import com.ykh.tang.agent.vo.BMSUserBillInfo;
-import com.ykh.tang.agent.vo.BMSUserInfo;
-import com.ykh.tang.agent.vo.ConferenceBillInfoBMS;
-import com.ykh.tang.agent.vo.ConferenceInfoBMS;
-import com.ykh.tang.agent.vo.RoleInfo;
-import com.ykh.tang.agent.vo.SubConferenceInfo;
-import com.ykh.tang.agent.vo.UserServiceAddr;
-
+import com.ykh.tang.agent.vo.*;
 import org.apache.log4j.Logger;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * BeanTranslatorUtil:业务bean翻译工具类，主要负责将一个业务bean转换成另外的业务bean
  *
- * @version 0.0.1
  * @author Dongyu Zhang
- *
- * Revision History
+ *         <p/>
+ *         Revision History
+ * @version 0.0.1
  * @if CR/PR ID Author Date Major Change
  * @endif
  * @bug
@@ -38,110 +24,106 @@ import org.apache.log4j.Logger;
 
 public class BeanTranslatorUtil {
 
-	/**
-	 * logger:log4j变量，用于本地日志的输出
-	 */
-	private static final Logger LOGGER = Logger.getLogger(BeanTranslatorUtil.class);
+    /**
+     * logger:log4j变量，用于本地日志的输出
+     */
+    private static final Logger LOGGER = Logger.getLogger(BeanTranslatorUtil.class);
 
-	/**
-	 *
-	 * 转换user信息到业务管理需要的userinfo
-	 *
-	 * <P>
-	 * <b>Detail:</b>
-	 * <P>
-	 * 适用条件：userinfo对象是业务管理通过dbus生成的对象，user对象是自定义对象，二者结构高度相似，主要转换Integer和UInt
-	 * <P>
-	 * 执行流程：拷贝user对象的每个属性，循环复制到userinfo对象
-	 * <P>
-	 * 使用方法：本方法为静态方法，直接通过类名.copyUser2UserInfo调用
-	 * <P>
-	 * 注意事项：调用过程中需传递IConferenceRole接口
-	 * <P>
-	 *
-	 * @param user
-	 *            用户对象
-	 * @param user
-	 *            IConferenceRole接口
-	 * @return UserInfo dbus生成的userinfo对象
-	 * @throws Exception
-	 *             抛出异常
-	 * @code {这里可以添加函数调用示例代码}
-	 * @endcode
-	 * @since JDK1.6
-	 * @par 需求:REQ1.10[Tang]: svn://vobserver/tang/doc/SRS.doc
-	 * @see
-	 */
-	public static BMSUserInfo copyUser2UserInfo(User user) throws Exception {
+    /**
+     * 转换user信息到业务管理需要的userinfo
+     * <p/>
+     * <p/>
+     * <b>Detail:</b>
+     * <p/>
+     * 适用条件：userinfo对象是业务管理通过dbus生成的对象，user对象是自定义对象，二者结构高度相似，主要转换Integer和UInt
+     * <p/>
+     * 执行流程：拷贝user对象的每个属性，循环复制到userinfo对象
+     * <p/>
+     * 使用方法：本方法为静态方法，直接通过类名.copyUser2UserInfo调用
+     * <p/>
+     * 注意事项：调用过程中需传递IConferenceRole接口
+     * <p/>
+     *
+     * @param user 用户对象
+     * @param user IConferenceRole接口
+     * @return UserInfo dbus生成的userinfo对象
+     * @throws Exception 抛出异常
+     * @code {这里可以添加函数调用示例代码}
+     * @endcode
+     * @par 需求:REQ1.10[Tang]: svn://vobserver/tang/doc/SRS.doc
+     * @see
+     * @since JDK1.6
+     */
+    public static BMSUserInfo copyUser2UserInfo(User user) throws Exception {
 
-		if (user == null) {
-			LOGGER.error("copyUser2UserInfo方法调用，参数为NULL，调用中断，直接返回NULL");
-			return null;
-		}
-		// 转换获得的角色ID信息
+        if (user == null) {
+            LOGGER.error("copyUser2UserInfo方法调用，参数为NULL，调用中断，直接返回NULL");
+            return null;
+        }
+        // 转换获得的角色ID信息
 
 //		List<String> roleIdList = new ArrayList<String>();
 //		for(Integer roleID : roleidSet) {
 //			roleIdList.add(roleID+"");
 //		}
 
-		LOGGER.info("userJoin user ip=" + user.getIpaddr());
+        LOGGER.info("userJoin user ip=" + user.getIpaddr());
 
-		// 转换获得的用户信息
-		String username = user.getUsername();
-		if (username == null) {
-			return null;
-		}
-		// 获得用户外网IP，支持ipv6
-		List<String> ipList = new ArrayList<String>();
-		if(user.getIpaddr() != null) {
-			String[] iplist = user.getIpaddr().split("\\.",-1);
-			for(String ip : iplist) {
-				ipList.add(ip);
-				LOGGER.info("userJoin ip=" + ip);
-			}
-		}
+        // 转换获得的用户信息
+        String username = user.getUsername();
+        if (username == null) {
+            return null;
+        }
+        // 获得用户外网IP，支持ipv6
+        List<String> ipList = new ArrayList<String>();
+        if (user.getIpaddr() != null) {
+            String[] iplist = user.getIpaddr().split("\\.", -1);
+            for (String ip : iplist) {
+                ipList.add(ip);
+                LOGGER.info("userJoin ip=" + ip);
+            }
+        }
 
-		BMSUserInfo userInfo = new BMSUserInfo();
-		userInfo.setUserID(user.getTempuserid());
-		userInfo.setUserName(username);
-		userInfo.setClientType(user.getClientType());
-		if(user.getPinCode() != null)
-			userInfo.setPinCode(user.getPinCode());
-		else
-			userInfo.setPinCode(0);
+        BMSUserInfo userInfo = new BMSUserInfo();
+        userInfo.setUserID(user.getTempuserid());
+        userInfo.setUserName(username);
+        userInfo.setClientType(user.getClientType());
+        if (user.getPinCode() != null)
+            userInfo.setPinCode(user.getPinCode());
+        else
+            userInfo.setPinCode(0);
 
-		userInfo.setDomain(user.getDomain());
-		userInfo.setIPArr(ipList);
-		userInfo.setRoleTypeArr(user.getRolemap());
+        userInfo.setDomain(user.getDomain());
+        userInfo.setIPArr(ipList);
+        userInfo.setRoleTypeArr(user.getRolemap());
 
-		if(user.getUserStatus() != null)
-			userInfo.setStatus(user.getUserStatus());
-		return userInfo;
+        if (user.getUserStatus() != null)
+            userInfo.setStatus(user.getUserStatus());
+        return userInfo;
 
-	}
+    }
 
-	/**
-	 *
-	 * 转换conference信息到业务管理需要的conferenceinfo
-	 *
-	 * @param conference
-	 *            拷贝的会议信息源
-	 * @param tempConferenceID
-	 *            临时会议ID
-	 * @param user
-	 *            用户对象，可为null，代表没有用户信息
-	 * @param conferenceRoleManager
-	 *            角色业务操作接口
-	 * @return ConferenceInfo dbus生成的会议信息
-	 * @throws Exception
-	 *             抛出异常
-	 * @code {这里可以添加函数调用示例代码}
-	 * @endcode
-	 * @since JDK1.6
-	 * @par 需求:REQ1.10[Tang]: svn://vobserver/tang/doc/SRS.doc
-	 * @see
-	//	 */
+    /**
+     *
+     * 转换conference信息到业务管理需要的conferenceinfo
+     *
+     * @param conference
+     *            拷贝的会议信息源
+     * @param tempConferenceID
+     *            临时会议ID
+     * @param user
+     *            用户对象，可为null，代表没有用户信息
+     * @param conferenceRoleManager
+     *            角色业务操作接口
+     * @return ConferenceInfo dbus生成的会议信息
+     * @throws Exception
+     *             抛出异常
+     * @code {这里可以添加函数调用示例代码}
+     * @endcode
+     * @since JDK1.6
+     * @par 需求:REQ1.10[Tang]: svn://vobserver/tang/doc/SRS.doc
+     * @see
+    //	 */
 //	public static ConferenceInfoBMS copyConference2ConferenceInfo(Conference conference, Integer tempConferenceID, User user,
 //			IProductRole productRoleManager) throws Exception {
 //		// 参数为空判断
@@ -276,85 +258,79 @@ public class BeanTranslatorUtil {
 //		return confInfo;
 //	}
 
-	/**
-	 *
-	 * 提取UserServiceAddr列表中DtServiceAddr信息（数据传输服务器地址对象）
-	 *
-	 * @param userservicelist
-	 *            UserServiceAddr列表
-	 * @return List<DtServiceAddr> 数据传输地址列表
-	 * @code {这里可以添加函数调用示例代码}
-	 * @endcode
-	 * @since JDK1.6
-	 * @par 需求:REQ1.10[Tang]: svn://vobserver/tang/doc/SRS.doc
-	 * @see
-	 */
-	public static List<DtServiceAddr> copyUserServiceAddr2DtServiceAddr(List<UserServiceAddr> userservicelist) {
-		// 参数为空判断
-		if (userservicelist == null || userservicelist.isEmpty()) {
-			return null;
-		}
-		List<DtServiceAddr> dtsddrlist = new ArrayList<DtServiceAddr>();
-		for (UserServiceAddr usaddr : userservicelist) {
-			dtsddrlist.add(new DtServiceAddr(IPTranslatorUtil.longToIP(usaddr.getServerIP0()), usaddr.channel, usaddr.serviceType, usaddr.groupID));
-		}
-		return dtsddrlist;
-	}
+    /**
+     * 提取UserServiceAddr列表中DtServiceAddr信息（数据传输服务器地址对象）
+     *
+     * @param userservicelist UserServiceAddr列表
+     * @return List<DtServiceAddr> 数据传输地址列表
+     * @code {这里可以添加函数调用示例代码}
+     * @endcode
+     * @par 需求:REQ1.10[Tang]: svn://vobserver/tang/doc/SRS.doc
+     * @see
+     * @since JDK1.6
+     */
+    public static List<DtServiceAddr> copyUserServiceAddr2DtServiceAddr(List<UserServiceAddr> userservicelist) {
+        // 参数为空判断
+        if (userservicelist == null || userservicelist.isEmpty()) {
+            return null;
+        }
+        List<DtServiceAddr> dtsddrlist = new ArrayList<DtServiceAddr>();
+        for (UserServiceAddr usaddr : userservicelist) {
+            dtsddrlist.add(new DtServiceAddr(IPTranslatorUtil.longToIP(usaddr.getServerIP0()), usaddr.channel, usaddr.serviceType, usaddr.groupID));
+        }
+        return dtsddrlist;
+    }
 
-	/**
-	 *
-	 * 提取UserServiceAddr列表中CtServiceAddr信息（接入服务器地址对象）
-	 *
-	 * @param userservicelist
-	 *            UserServiceAddr列表
-	 * @return List<CtServiceAddr> 接入服务器地址列表
-	 * @code {这里可以添加函数调用示例代码}
-	 * @endcode
-	 * @since JDK1.6
-	 * @par 需求:REQ1.10[Tang]: svn://vobserver/tang/doc/SRS.doc
-	 * @see
-	 */
-	public static List<CtServiceAddr> copyUserServiceAddr2CtServiceAddr(List<UserServiceAddr> userservicelist) {
-		// 参数为空判断
-		if (userservicelist == null || userservicelist.isEmpty()) {
-			return null;
-		}
-		List<CtServiceAddr> ctsddrlist = new ArrayList<CtServiceAddr>();
-		for (UserServiceAddr usaddr : userservicelist) {
-			ctsddrlist.add(new CtServiceAddr(IPTranslatorUtil.longToIP(usaddr.getServerIP0()), IPTranslatorUtil
-					.longToIP(usaddr.getHotServerIP0()), usaddr.channel, usaddr.serviceType, usaddr.groupID));
-		}
-		return ctsddrlist;
-	}
+    /**
+     * 提取UserServiceAddr列表中CtServiceAddr信息（接入服务器地址对象）
+     *
+     * @param userservicelist UserServiceAddr列表
+     * @return List<CtServiceAddr> 接入服务器地址列表
+     * @code {这里可以添加函数调用示例代码}
+     * @endcode
+     * @par 需求:REQ1.10[Tang]: svn://vobserver/tang/doc/SRS.doc
+     * @see
+     * @since JDK1.6
+     */
+    public static List<CtServiceAddr> copyUserServiceAddr2CtServiceAddr(List<UserServiceAddr> userservicelist) {
+        // 参数为空判断
+        if (userservicelist == null || userservicelist.isEmpty()) {
+            return null;
+        }
+        List<CtServiceAddr> ctsddrlist = new ArrayList<CtServiceAddr>();
+        for (UserServiceAddr usaddr : userservicelist) {
+            ctsddrlist.add(new CtServiceAddr(IPTranslatorUtil.longToIP(usaddr.getServerIP0()), IPTranslatorUtil
+                    .longToIP(usaddr.getHotServerIP0()), usaddr.channel, usaddr.serviceType, usaddr.groupID));
+        }
+        return ctsddrlist;
+    }
 
-	public static void copyConferenceBillInfo(ConferenceBillInfoBMS billInfo, ConferenceInfoBMS info)
-	{
-		billInfo.setBillingCode(info.getBillingCode());
-		billInfo.setConfID(info.getConfID());
-		billInfo.setConfScale(info.getConfScale());
-		billInfo.setName(info.getName());
-		billInfo.setPassword(info.getPassword());
-		billInfo.setPlanStartTime0(info.getPlanStartTime0());
-		billInfo.setPlanStartTime1(info.getPlanStartTime1());
-		billInfo.setPlanStopTime0(info.getPlanStopTime0());
-		billInfo.setPlanStopTime1(info.getPlanStopTime1());
-		billInfo.setRoleInfo(info.getRoleInfo());
-		billInfo.setServiceConfigs(info.getServiceConfigs());
-		billInfo.setStatus(info.getStatus());
-		billInfo.setStopParams((AutoStopParams)info.getStopParams());
-		billInfo.setSubConference(info.getSubConference());
-	}
+    public static void copyConferenceBillInfo(ConferenceBillInfoBMS billInfo, ConferenceInfoBMS info) {
+        billInfo.setBillingCode(info.getBillingCode());
+        billInfo.setConfID(info.getConfID());
+        billInfo.setConfScale(info.getConfScale());
+        billInfo.setName(info.getName());
+        billInfo.setPassword(info.getPassword());
+        billInfo.setPlanStartTime0(info.getPlanStartTime0());
+        billInfo.setPlanStartTime1(info.getPlanStartTime1());
+        billInfo.setPlanStopTime0(info.getPlanStopTime0());
+        billInfo.setPlanStopTime1(info.getPlanStopTime1());
+        billInfo.setRoleInfo(info.getRoleInfo());
+        billInfo.setServiceConfigs(info.getServiceConfigs());
+        billInfo.setStatus(info.getStatus());
+        billInfo.setStopParams((AutoStopParams) info.getStopParams());
+        billInfo.setSubConference(info.getSubConference());
+    }
 
-	public static void copyUserBillInfo(BMSUserBillInfo billInfo, BMSUserInfo info)
-	{
-		billInfo.setClientType(info.getClientType());
-		billInfo.setDomain(info.getDomain());
-		billInfo.setIPArr(info.getIPArr());
-		billInfo.setPinCode(info.getPinCode());
-		billInfo.setRoleTypeArr(info.getRoleTypeArr());
-		billInfo.setStatus(info.getStatus());
-		billInfo.setUserID(info.getUserID());
-		billInfo.setUserName(info.getUserName());
-	}
+    public static void copyUserBillInfo(BMSUserBillInfo billInfo, BMSUserInfo info) {
+        billInfo.setClientType(info.getClientType());
+        billInfo.setDomain(info.getDomain());
+        billInfo.setIPArr(info.getIPArr());
+        billInfo.setPinCode(info.getPinCode());
+        billInfo.setRoleTypeArr(info.getRoleTypeArr());
+        billInfo.setStatus(info.getStatus());
+        billInfo.setUserID(info.getUserID());
+        billInfo.setUserName(info.getUserName());
+    }
 
 }

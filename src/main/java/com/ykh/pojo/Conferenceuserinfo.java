@@ -8,94 +8,83 @@ import java.util.Date;
 
 public class Conferenceuserinfo implements java.io.Serializable {
 
-	// Fields
-	private static final long serialVersionUID = 1L;
-	private Integer id;
-	private Integer tempuserid;
-	private Integer tempconferenceid;
-	private Date timestamp;
-	private String role;
-	private Integer status;
-
-	
-	// Constructors
-
-	public Integer getStatus()
-	{
-		return status;
-	}
+    // Fields
+    private static final long serialVersionUID = 1L;
+    private Integer id;
+    private Integer tempuserid;
+    private Integer tempconferenceid;
+    private Date timestamp;
+    private String role;
+    private Integer status;
 
 
-	public void setStatus(Integer status)
-	{
-		this.status = status;
-	}
+    // Constructors
+
+    public Integer getStatus() {
+        return status;
+    }
 
 
-	/** default constructor */
-	public Conferenceuserinfo() {
-	}
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
 
 
-	public Integer getId()
-	{
-		return id;
-	}
+    /**
+     * default constructor
+     */
+    public Conferenceuserinfo() {
+    }
 
 
-	public void setId(Integer id)
-	{
-		this.id = id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
 
-	public Integer getTempuserid()
-	{
-		return tempuserid;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
 
-	public void setTempuserid(Integer tempuserid)
-	{
-		this.tempuserid = tempuserid;
-	}
+    public Integer getTempuserid() {
+        return tempuserid;
+    }
 
 
-	public Integer getTempconferenceid()
-	{
-		return tempconferenceid;
-	}
+    public void setTempuserid(Integer tempuserid) {
+        this.tempuserid = tempuserid;
+    }
 
 
-	public void setTempconferenceid(Integer tempconferenceid)
-	{
-		this.tempconferenceid = tempconferenceid;
-	}
+    public Integer getTempconferenceid() {
+        return tempconferenceid;
+    }
 
 
-	public Date getTimestamp()
-	{
-		return timestamp;
-	}
+    public void setTempconferenceid(Integer tempconferenceid) {
+        this.tempconferenceid = tempconferenceid;
+    }
 
 
-	public void setTimestamp(Date timestamp)
-	{
-		this.timestamp = timestamp;
-	}
+    public Date getTimestamp() {
+        return timestamp;
+    }
 
 
-	public String getRole()
-	{
-		return role;
-	}
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
 
 
-	public void setRole(String role)
-	{
-		this.role = role;
-	}
+    public String getRole() {
+        return role;
+    }
 
-	
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
 
 }

@@ -77,10 +77,30 @@ public class ConferenceFacadeImplTest {
         this.startConf(response1.getBody().getTempConferenceId());
         Thread.sleep(100);
         this.joinConference(response1.getBody().getTempConferenceId());
+        this.getUserConferenceStatus(response1.getBody().getTempConferenceId());
         Thread.sleep(100);
         this.stopConference(response1.getBody().getTempConferenceId());
+        Thread.sleep(100);
+        this.findConfInfo(conference.getConferenceId(),response1.getBody().getTempConferenceId());
+
+        Files.write(Paths.get("test2.txt"), ws, Charset.defaultCharset(), StandardOpenOption.CREATE);
         System.out.println(ws);
-        Files.write(Paths.get("test2.txt"),ws,Charset.defaultCharset(),StandardOpenOption.CREATE);
+    }
+
+    public  void findConfInfo(Integer confId,Integer tmpId){
+        ConferenceSeedBody conferenceSeedBody=new ConferenceSeedBody();
+        conferenceSeedBody.setConferenceId(confId);
+        conferenceSeedBody.setTempConferenceId(tmpId);
+        ws.add("getConferenceInfo request : ===>" + JSON.toJSONString(conferenceSeedBody));
+        ws.add("getConferenceInfo request : ===>" + JSON.toJSONString(conferenceFacade.getConferenceInfo(conferenceSeedBody)));
+
+    }public  void getUserConferenceStatus(Integer tmpId){
+       User user =new User();
+        user.setUsername("liming");
+        user.setTempConferenceId(tmpId);
+        ws.add("getUserConferenceStatus request : ===>" + JSON.toJSONString(user));
+        ws.add("getUserConferenceStatus request : ===>" + JSON.toJSONString(conferenceFacade.getUserConferenceStatus(user)));
+
     }
     @Test
     public void startConferecneWithUserAll() throws InterruptedException, IOException {

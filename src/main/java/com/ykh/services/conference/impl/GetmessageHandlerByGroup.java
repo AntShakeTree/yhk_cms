@@ -1,32 +1,31 @@
 package com.ykh.services.conference.impl;
 
-import org.apache.log4j.Logger;
-
 import com.ykh.tang.agent.IMessageHandler;
 import com.ykh.tang.agent.message.IMessage;
 import com.ykh.tang.agent.message.ServiceOfflineMsgResult;
 import com.ykh.tang.agent.message.ServiceOnlineMsgResult;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
 @Qualifier("getmessageHandlerByGroup")
 public class GetmessageHandlerByGroup implements IMessageHandler {
-	private final static Logger LOGGER = Logger.getLogger(GetmessageHandlerByGroup.class);
+    private final static Logger LOGGER = Logger.getLogger(GetmessageHandlerByGroup.class);
 
-	@Override
-	public void handler(IMessage msg) {
-		// 解析消息类型
-		int messagetype = msg.getMsgID();
+    @Override
+    public void handler(IMessage msg) {
+        // 解析消息类型
+        int messagetype = msg.getMsgID();
 
-		switch (messagetype) {
-			case com.ykh.tang.agent.Consts.ServiceOnlineMsgResult_key&0xFFFF:
-				LOGGER.info("Tang CMS receive user group online msg.");
+        switch (messagetype) {
+            case com.ykh.tang.agent.Consts.ServiceOnlineMsgResult_key & 0xFFFF:
+                LOGGER.info("Tang CMS receive user group online msg.");
 
-				ServiceOnlineMsgResult userOnlineMsgResult = (ServiceOnlineMsgResult)msg;
-				LOGGER.info("user group online msg." + userOnlineMsgResult.getConfID()+"|"+
-				userOnlineMsgResult.getServType() + "|" + userOnlineMsgResult.getGroupID() + "|" +
-				userOnlineMsgResult.getUserID() + "|" + Consts.ONLINE + "|" + userOnlineMsgResult.getTimestamp());
+                ServiceOnlineMsgResult userOnlineMsgResult = (ServiceOnlineMsgResult) msg;
+                LOGGER.info("user group online msg." + userOnlineMsgResult.getConfID() + "|" +
+                        userOnlineMsgResult.getServType() + "|" + userOnlineMsgResult.getGroupID() + "|" +
+                        userOnlineMsgResult.getUserID() + "|" + Consts.ONLINE + "|" + userOnlineMsgResult.getTimestamp());
 //
 //				Cdrusergroupinfo cdrUserGroupInfo = new Cdrusergroupinfo();
 //				cdrUserGroupInfo.setConferenceid(userOnlineMsgResult.getConfID());
@@ -48,15 +47,15 @@ public class GetmessageHandlerByGroup implements IMessageHandler {
 //					}
 //				}
 //
-				break;
-			case com.ykh.tang.agent.Consts.ServiceOfflineMsgResult_key&0xFFFF:
-				LOGGER.info("Tang CMS receive user group offline msg.");
+                break;
+            case com.ykh.tang.agent.Consts.ServiceOfflineMsgResult_key & 0xFFFF:
+                LOGGER.info("Tang CMS receive user group offline msg.");
 
-				ServiceOfflineMsgResult userOfflineMsgResult = (ServiceOfflineMsgResult)msg;
+                ServiceOfflineMsgResult userOfflineMsgResult = (ServiceOfflineMsgResult) msg;
 
-				LOGGER.info("user group offline msg." + userOfflineMsgResult.getConfID()+"|"+
-				userOfflineMsgResult.getServType() + "|" + userOfflineMsgResult.getGroupID() + "|" +
-				userOfflineMsgResult.getUserID() + "|" + Consts.OFFLINE + "|" + userOfflineMsgResult.getTimestamp());
+                LOGGER.info("user group offline msg." + userOfflineMsgResult.getConfID() + "|" +
+                        userOfflineMsgResult.getServType() + "|" + userOfflineMsgResult.getGroupID() + "|" +
+                        userOfflineMsgResult.getUserID() + "|" + Consts.OFFLINE + "|" + userOfflineMsgResult.getTimestamp());
 
 //				Cdrusergroupinfo cdrUserGroupInfoOffLine = new Cdrusergroupinfo();
 //				cdrUserGroupInfoOffLine.setConferenceid(userOfflineMsgResult.getConfID());
@@ -78,7 +77,7 @@ public class GetmessageHandlerByGroup implements IMessageHandler {
 //					}
 //				}
 //
-				break;
-		}
-	}
+                break;
+        }
+    }
 }

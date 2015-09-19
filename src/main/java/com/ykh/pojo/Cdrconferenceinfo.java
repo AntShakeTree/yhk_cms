@@ -8,195 +8,199 @@ import java.util.Date;
 
 public class Cdrconferenceinfo implements java.io.Serializable {
 
-	// Fields
+    // Fields
 
-	private static final long serialVersionUID = 1L;
-	private Integer id;
-	private Integer tempconferenceid;
-	private Integer conferenceid;
-	private Date createtime;
-	private Date starttime;
-	private Date endtime;
-	private String billingcode;
-	private Date reservtime;
-	
-	private String conferencename;
-	private String conferencedesc;
-	private Integer creator;
-	private Integer modifier;
-	private Date modifytime;
-	private Integer duration;
-	private Integer parties;
+    private static final long serialVersionUID = 1L;
+    private Integer id;
+    private Integer tempconferenceid;
+    private Integer conferenceid;
+    private Date createtime;
+    private Date starttime;
+    private Date endtime;
+    private String billingcode;
+    private Date reservtime;
 
-	// Constructors
+    private String conferencename;
+    private String conferencedesc;
+    private Integer creator;
+    private Integer modifier;
+    private Date modifytime;
+    private Integer duration;
+    private Integer parties;
 
-	/** default constructor */
-	public Cdrconferenceinfo() {
-	}
+    // Constructors
 
-	// part constructor
-	public Cdrconferenceinfo(Integer conferenceid, String billingcode, Date reservtime) {
-		this.conferenceid = conferenceid;
-		this.billingcode = billingcode;
-		this.reservtime = reservtime;
-	}
+    /**
+     * default constructor
+     */
+    public Cdrconferenceinfo() {
+    }
 
-	/** full constructor */
-	public Cdrconferenceinfo(Integer tempconferenceid, Integer conferenceid, Date createtime, Date starttime, Date endtime, String billingcode,
-			Date reservtime) {
-		this.tempconferenceid = tempconferenceid;
-		this.conferenceid = conferenceid;
-		this.createtime = createtime;
-		this.starttime = starttime;
-		this.endtime = endtime;
-		this.billingcode = billingcode;
-		this.reservtime = reservtime;
-	}
+    // part constructor
+    public Cdrconferenceinfo(Integer conferenceid, String billingcode, Date reservtime) {
+        this.conferenceid = conferenceid;
+        this.billingcode = billingcode;
+        this.reservtime = reservtime;
+    }
 
-	// Property accessors
+    /**
+     * full constructor
+     */
+    public Cdrconferenceinfo(Integer tempconferenceid, Integer conferenceid, Date createtime, Date starttime, Date endtime, String billingcode,
+                             Date reservtime) {
+        this.tempconferenceid = tempconferenceid;
+        this.conferenceid = conferenceid;
+        this.createtime = createtime;
+        this.starttime = starttime;
+        this.endtime = endtime;
+        this.billingcode = billingcode;
+        this.reservtime = reservtime;
+    }
 
-	public Integer getId() {
-		return this.id;
-	}
+    // Property accessors
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public Integer getId() {
+        return this.id;
+    }
 
-	public Integer getTempconferenceid() {
-		return this.tempconferenceid;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setTempconferenceid(Integer tempconferenceid) {
-		this.tempconferenceid = tempconferenceid;
-	}
+    public Integer getTempconferenceid() {
+        return this.tempconferenceid;
+    }
 
-	public Integer getConferenceid() {
-		return this.conferenceid;
-	}
+    public void setTempconferenceid(Integer tempconferenceid) {
+        this.tempconferenceid = tempconferenceid;
+    }
 
-	public void setConferenceid(Integer conferenceid) {
-		this.conferenceid = conferenceid;
-	}
+    public Integer getConferenceid() {
+        return this.conferenceid;
+    }
 
-	public Date getStarttime() {
-		return this.starttime;
-	}
+    public void setConferenceid(Integer conferenceid) {
+        this.conferenceid = conferenceid;
+    }
 
-	public void setStarttime(Date starttime) {
-		this.starttime = starttime;
-	}
+    public Date getStarttime() {
+        return this.starttime;
+    }
 
-	public Date getEndtime() {
-		return this.endtime;
-	}
+    public void setStarttime(Date starttime) {
+        this.starttime = starttime;
+    }
 
-	public void setEndtime(Date endtime) {
-		this.endtime = endtime;
-	}
+    public Date getEndtime() {
+        return this.endtime;
+    }
 
-	public String getBillingcode() {
-		return this.billingcode;
-	}
+    public void setEndtime(Date endtime) {
+        this.endtime = endtime;
+    }
 
-	public void setBillingcode(String billingcode) {
-		this.billingcode = billingcode;
-	}
+    public String getBillingcode() {
+        return this.billingcode;
+    }
 
-	/**
-	 * createtime
-	 * 
-	 * @return the createtime
-	 */
+    public void setBillingcode(String billingcode) {
+        this.billingcode = billingcode;
+    }
 
-	public Date getCreatetime() {
-		return createtime;
-	}
+    /**
+     * createtime
+     *
+     * @return the createtime
+     */
 
-	/**
-	 * createtime
-	 * 
-	 * @param createtime the createtime to set
-	 */
+    public Date getCreatetime() {
+        return createtime;
+    }
 
-	public void setCreatetime(Date createtime) {
-		this.createtime = createtime;
-	}
+    /**
+     * createtime
+     *
+     * @param createtime the createtime to set
+     */
 
-	/**
-	 * reservtime
-	 * 
-	 * @return the reservtime
-	 */
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
+    }
 
-	public Date getReservtime() {
-		return reservtime;
-	}
+    /**
+     * reservtime
+     *
+     * @return the reservtime
+     */
 
-	/**
-	 * reservtime
-	 * 
-	 * @param reservtime the reservtime to set
-	 */
+    public Date getReservtime() {
+        return reservtime;
+    }
 
-	public void setReservtime(Date reservtime) {
-		this.reservtime = reservtime;
-	}
+    /**
+     * reservtime
+     *
+     * @param reservtime the reservtime to set
+     */
 
-	public String getConferencename() {
-		return conferencename;
-	}
+    public void setReservtime(Date reservtime) {
+        this.reservtime = reservtime;
+    }
 
-	public void setConferencename(String conferencename) {
-		this.conferencename = conferencename;
-	}
+    public String getConferencename() {
+        return conferencename;
+    }
 
-	public String getConferencedesc() {
-		return conferencedesc;
-	}
+    public void setConferencename(String conferencename) {
+        this.conferencename = conferencename;
+    }
 
-	public void setConferencedesc(String conferencedesc) {
-		this.conferencedesc = conferencedesc;
-	}
+    public String getConferencedesc() {
+        return conferencedesc;
+    }
 
-	public Integer getCreator() {
-		return creator;
-	}
+    public void setConferencedesc(String conferencedesc) {
+        this.conferencedesc = conferencedesc;
+    }
 
-	public void setCreator(Integer creator) {
-		this.creator = creator;
-	}
+    public Integer getCreator() {
+        return creator;
+    }
 
-	public Integer getModifier() {
-		return modifier;
-	}
+    public void setCreator(Integer creator) {
+        this.creator = creator;
+    }
 
-	public void setModifier(Integer modifier) {
-		this.modifier = modifier;
-	}
+    public Integer getModifier() {
+        return modifier;
+    }
 
-	public Date getModifytime() {
-		return modifytime;
-	}
+    public void setModifier(Integer modifier) {
+        this.modifier = modifier;
+    }
 
-	public void setModifytime(Date modifytime) {
-		this.modifytime = modifytime;
-	}
+    public Date getModifytime() {
+        return modifytime;
+    }
 
-	public Integer getDuration() {
-		return duration;
-	}
+    public void setModifytime(Date modifytime) {
+        this.modifytime = modifytime;
+    }
 
-	public void setDuration(Integer duration) {
-		this.duration = duration;
-	}
+    public Integer getDuration() {
+        return duration;
+    }
 
-	public Integer getParties() {
-		return parties;
-	}
+    public void setDuration(Integer duration) {
+        this.duration = duration;
+    }
 
-	public void setParties(Integer parties) {
-		this.parties = parties;
-	}
+    public Integer getParties() {
+        return parties;
+    }
+
+    public void setParties(Integer parties) {
+        this.parties = parties;
+    }
 
 }

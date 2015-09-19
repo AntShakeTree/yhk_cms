@@ -7,6 +7,15 @@ public class ConferenceSeedBody {
     private Integer tempConferenceId;
     private Integer applicationId;
     private String conferencename;
+    private Integer conferenceId;
+
+    public Integer getConferenceId() {
+        return conferenceId;
+    }
+
+    public void setConferenceId(Integer conferenceId) {
+        this.conferenceId = conferenceId;
+    }
 
     public String getConferencename() {
         return conferencename;

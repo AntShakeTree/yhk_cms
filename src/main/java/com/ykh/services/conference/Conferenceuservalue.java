@@ -1,8 +1,6 @@
 package com.ykh.services.conference;
 
 
-
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
@@ -12,20 +10,22 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Conferenceuservalue implements java.io.Serializable {
 
-	// Fields
+    // Fields
 
-	private static final long serialVersionUID = 1L;
-	private Integer conferenceuservalueid;
-//	private Conferenceservice conferenceservice;
+    private static final long serialVersionUID = 1L;
+    private Integer conferenceuservalueid;
+    //	private Conferenceservice conferenceservice;
 //	private Conference conference;
-	private Integer value;
+    private Integer value;
 
-	private Integer conferenceserviceid;
-	// Constructors
+    private Integer conferenceserviceid;
+    // Constructors
 
-	/** default constructor */
-	public Conferenceuservalue() {
-	}
+    /**
+     * default constructor
+     */
+    public Conferenceuservalue() {
+    }
 
 //	/** full constructor */
 //	public Conferenceuservalue(Conferenceservice conferenceservice, Conference conference, Integer value) {
@@ -41,20 +41,21 @@ public class Conferenceuservalue implements java.io.Serializable {
 //		return tempConfuservalue;
 //	}
 
-	// Property accessors
-	public int hashCode() {
+    // Property accessors
+    public int hashCode() {
 
-		int result = 179;
-		result = 37 * result + (conferenceuservalueid == null ? System.identityHashCode(this) : conferenceuservalueid.hashCode());
-		return result;
-	}
-	public Integer getConferenceuservalueid() {
-		return this.conferenceuservalueid;
-	}
+        int result = 179;
+        result = 37 * result + (conferenceuservalueid == null ? System.identityHashCode(this) : conferenceuservalueid.hashCode());
+        return result;
+    }
 
-	public void setConferenceuservalueid(Integer conferenceuservalueid) {
-		this.conferenceuservalueid = conferenceuservalueid;
-	}
+    public Integer getConferenceuservalueid() {
+        return this.conferenceuservalueid;
+    }
+
+    public void setConferenceuservalueid(Integer conferenceuservalueid) {
+        this.conferenceuservalueid = conferenceuservalueid;
+    }
 
 //	@XmlElement(name="conferenceservice")
 //	public Conferenceservice getConferenceservice() {
@@ -74,20 +75,20 @@ public class Conferenceuservalue implements java.io.Serializable {
 //		this.conference = conference;
 //	}
 
-	public Integer getValue() {
-		return this.value;
-	}
+    public Integer getValue() {
+        return this.value;
+    }
 
-	public void setValue(Integer value) {
-		this.value = value;
-	}
+    public void setValue(Integer value) {
+        this.value = value;
+    }
 
-	public Integer getConferenceserviceid() {
-		return conferenceserviceid;
-	}
+    public Integer getConferenceserviceid() {
+        return conferenceserviceid;
+    }
 
-	public void setConferenceserviceid(Integer conferenceserviceid) {
-		this.conferenceserviceid = conferenceserviceid;
-	}
-	
+    public void setConferenceserviceid(Integer conferenceserviceid) {
+        this.conferenceserviceid = conferenceserviceid;
+    }
+
 }

@@ -6,8 +6,7 @@ import com.ykh.dao.Dao;
  * Created by ant_shake_tree on 15/9/10.
  */
 public class PageResponse {
-    Header head =new Header();
-
+    Header head = new Header();
 
 
     Dao.PageVO body;

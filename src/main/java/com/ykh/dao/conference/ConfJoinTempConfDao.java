@@ -6,13 +6,14 @@ import com.ykh.dao.conference.domain.ConfJoinTempConf;
 /**
  * Created by ant_shake_tree on 15/8/24.
  */
-public interface ConfJoinTempConfDao extends Dao<ConfJoinTempConf,Long> {
-    ConfJoinTempConf findByBmsStatusGreaterThanAndTempConfIdAndConfId(int bmsStatus, Integer tempConfId, Integer confId);
+public interface ConfJoinTempConfDao extends Dao<ConfJoinTempConf, Long> {
+//    ConfJoinTempConf findByStatusGreaterThanAndTempConfIdAndConfId(int bmsStatus, Integer tempConfId, Integer confId);
 
-    ConfJoinTempConf findByBmsStatusLessThanAndTempConfIdAndConfId(int i, Integer seed, Integer conferenceId);
+//    ConfJoinTempConf findByStatusLessThanAndTempConfIdAndConfId(int i, Integer seed, Integer conferenceId);
 
     ConfJoinTempConf findByTempConfId(Integer tempConferenceID);
+
     Long deleteByTempConfId(Integer tempConferenceID);
 
-    ConfJoinTempConf findByTempConfIdAndBmsStatus(Integer tempConfID, Integer integer);
+//    ConfJoinTempConf findByTempConfIdAndStatus(Integer tempConfID, Integer integer);
 }

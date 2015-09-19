@@ -1,23 +1,21 @@
 package com.ykh.vo.res;
 
+import com.ykh.dao.conference.domain.ConfJoinTempConf;
+import com.ykh.tang.agent.vo.ConferenceInfoBMS;
+
 /**
  * Created by ant_shake_tree on 15/8/21.
  */
 public class BmsResponse {
-    private Header head=new Header();
-    private BmsBody body;
+    private Header head = new Header();
+    private ConfJoinTempConf body;
 
-    public static class BmsBody{
+    public ConfJoinTempConf getBody() {
+        return body;
+    }
 
-            Integer bmsId;
-
-        public Integer getBmsId() {
-            return bmsId;
-        }
-
-        public void setBmsId(Integer bmsId) {
-            this.bmsId = bmsId;
-        }
+    public void setBody(ConfJoinTempConf body) {
+        this.body = body;
     }
 
     public Header getHead() {
@@ -28,11 +26,5 @@ public class BmsResponse {
         this.head = head;
     }
 
-    public BmsBody getBody() {
-        return body;
-    }
 
-    public void setBody(BmsBody body) {
-        this.body = body;
-    }
 }

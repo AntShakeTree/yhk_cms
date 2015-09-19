@@ -6,38 +6,42 @@ package com.ykh.pojo;
 
 public class ReservationPinstore implements java.io.Serializable {
 
-	// Fields
+    // Fields
 
-	private Long recordId;
-	private Integer pin;
+    private Long recordId;
+    private Integer pin;
 
-	// Constructors
+    // Constructors
 
-	/** default constructor */
-	public ReservationPinstore() {
-	}
+    /**
+     * default constructor
+     */
+    public ReservationPinstore() {
+    }
 
-	/** full constructor */
-	public ReservationPinstore(Integer pin) {
-		this.pin = pin;
-	}
+    /**
+     * full constructor
+     */
+    public ReservationPinstore(Integer pin) {
+        this.pin = pin;
+    }
 
-	// Property accessors
+    // Property accessors
 
-	public Long getRecordId() {
-		return this.recordId;
-	}
+    public Long getRecordId() {
+        return this.recordId;
+    }
 
-	public void setRecordId(Long recordId) {
-		this.recordId = recordId;
-	}
+    public void setRecordId(Long recordId) {
+        this.recordId = recordId;
+    }
 
-	public Integer getPin() {
-		return this.pin;
-	}
+    public Integer getPin() {
+        return this.pin;
+    }
 
-	public void setPin(Integer pin) {
-		this.pin = pin;
-	}
+    public void setPin(Integer pin) {
+        this.pin = pin;
+    }
 
 }

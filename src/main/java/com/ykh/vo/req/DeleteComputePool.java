@@ -4,11 +4,9 @@
  * Package Name:com.vdi.vo
  * Date:2014年8月12日下午1:36:52
  * Copyright (c) 2014 All Rights Reserved.
- *
-*/
+ */
 
 package com.ykh.vo.req;
-
 
 
 public class DeleteComputePool {
@@ -22,14 +20,14 @@ public class DeleteComputePool {
 //		this.computepoolids = computepoolids;
 //	}
 
-	private Long computepoolid;
+    private Long computepoolid;
 
-	public Long getComputepoolid() {
-		return computepoolid;
-	}
+    public Long getComputepoolid() {
+        return computepoolid;
+    }
 
-	public void setComputepoolid(Long computepoolid) {
-		this.computepoolid = computepoolid;
-	}
-	
+    public void setComputepoolid(Long computepoolid) {
+        this.computepoolid = computepoolid;
+    }
+
 }

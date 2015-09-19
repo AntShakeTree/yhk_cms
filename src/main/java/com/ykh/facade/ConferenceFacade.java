@@ -21,13 +21,13 @@ public interface ConferenceFacade {
 
     UserNumResponse queryUserNum(ConferenceSeedBody conference);
 
-    UserConferenceStatusResponse getUserConferenceStatus(ConferenceSeedBody conference);
+    UserConferenceStatusResponse getUserConferenceStatus(User conference);
 
     Response startConference(ConferenceSeedBody conference);
 
     UserChannelResponse joinConference(User request);
 
-    BmsResponse getBMSConferenceInfo(ConferenceSeedBody conference);
+    BmsResponse getConferenceInfo(ConferenceSeedBody conference);
 
     PageResponse searchConferenceTemp(Conference conference);
 

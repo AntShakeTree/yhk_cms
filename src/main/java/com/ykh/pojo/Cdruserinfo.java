@@ -8,177 +8,179 @@ import java.util.Date;
 
 public class Cdruserinfo implements java.io.Serializable {
 
-	// Fields
+    // Fields
 
-	private static final long serialVersionUID = 1L;
-	private Integer id;
-	private Integer tempuserid;
-	private Integer tempconferenceid;
-	private Date timestamp;
-	private Integer actiontypeid;
-	private String ipaddr;
-	private String username;
-	private Integer clienttype;
-	private Integer domain;
-	
-	private String role;
-	private String serveraddr;
-	private String proxyaddr;
-	private Integer pin;
-	private Integer msgtimestamp;
-	
-	// Constructors
+    private static final long serialVersionUID = 1L;
+    private Integer id;
+    private Integer tempuserid;
+    private Integer tempconferenceid;
+    private Date timestamp;
+    private Integer actiontypeid;
+    private String ipaddr;
+    private String username;
+    private Integer clienttype;
+    private Integer domain;
 
-	/** default constructor */
-	public Cdruserinfo() {
-	}
+    private String role;
+    private String serveraddr;
+    private String proxyaddr;
+    private Integer pin;
+    private Integer msgtimestamp;
 
-	/** full constructor */
-	public Cdruserinfo(Integer tempuserid, Integer tempconferenceid, Date timestamp, Integer actiontypeid, String ipaddr, String username,Integer clienttype,Integer domain,
-			String role,String serveraddr,String proxyaddr,Integer pin,Integer msgtimestamp) {
-		this.tempuserid = tempuserid;
-		this.tempconferenceid = tempconferenceid;
-		this.timestamp = timestamp;
-		this.actiontypeid = actiontypeid;
-		this.ipaddr = ipaddr;
-		this.username = username;
-		this.clienttype = clienttype;
-		this.domain = domain;
-		this.role = role;
-		this.serveraddr = serveraddr;
-		this.proxyaddr = proxyaddr;
-		this.pin = pin;
-		this.msgtimestamp = msgtimestamp;
-	}
+    // Constructors
 
-	// Property accessors
+    /**
+     * default constructor
+     */
+    public Cdruserinfo() {
+    }
 
-	public Integer getId() {
-		return this.id;
-	}
+    /**
+     * full constructor
+     */
+    public Cdruserinfo(Integer tempuserid, Integer tempconferenceid, Date timestamp, Integer actiontypeid, String ipaddr, String username, Integer clienttype, Integer domain,
+                       String role, String serveraddr, String proxyaddr, Integer pin, Integer msgtimestamp) {
+        this.tempuserid = tempuserid;
+        this.tempconferenceid = tempconferenceid;
+        this.timestamp = timestamp;
+        this.actiontypeid = actiontypeid;
+        this.ipaddr = ipaddr;
+        this.username = username;
+        this.clienttype = clienttype;
+        this.domain = domain;
+        this.role = role;
+        this.serveraddr = serveraddr;
+        this.proxyaddr = proxyaddr;
+        this.pin = pin;
+        this.msgtimestamp = msgtimestamp;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    // Property accessors
 
-	public Integer getTempuserid() {
-		return this.tempuserid;
-	}
+    public Integer getId() {
+        return this.id;
+    }
 
-	public void setTempuserid(Integer tempuserid) {
-		this.tempuserid = tempuserid;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	/**
-	 * tempconferenceid
-	 * 
-	 * @return the tempconferenceid
-	 */
+    public Integer getTempuserid() {
+        return this.tempuserid;
+    }
 
-	public Integer getTempconferenceid() {
-		return tempconferenceid;
-	}
+    public void setTempuserid(Integer tempuserid) {
+        this.tempuserid = tempuserid;
+    }
 
-	/**
-	 * tempconferenceid
-	 * 
-	 * @param tempconferenceid
-	 *            the tempconferenceid to set
-	 */
+    /**
+     * tempconferenceid
+     *
+     * @return the tempconferenceid
+     */
 
-	public void setTempconferenceid(Integer tempconferenceid) {
-		this.tempconferenceid = tempconferenceid;
-	}
+    public Integer getTempconferenceid() {
+        return tempconferenceid;
+    }
 
-	
-	public Date getTimestamp() {
-		return timestamp;
-	}
+    /**
+     * tempconferenceid
+     *
+     * @param tempconferenceid the tempconferenceid to set
+     */
 
-	public void setTimestamp(Date timestamp) {
-		this.timestamp = timestamp;
-	}
+    public void setTempconferenceid(Integer tempconferenceid) {
+        this.tempconferenceid = tempconferenceid;
+    }
 
-	public Integer getActiontypeid() {
-		return actiontypeid;
-	}
 
-	public void setActiontypeid(Integer actiontypeid) {
-		this.actiontypeid = actiontypeid;
-	}
+    public Date getTimestamp() {
+        return timestamp;
+    }
 
-	public String getIpaddr() {
-		return this.ipaddr;
-	}
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
 
-	public void setIpaddr(String ipaddr) {
-		this.ipaddr = ipaddr;
-	}
+    public Integer getActiontypeid() {
+        return actiontypeid;
+    }
 
-	public String getUsername() {
-		return this.username;
-	}
+    public void setActiontypeid(Integer actiontypeid) {
+        this.actiontypeid = actiontypeid;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public String getIpaddr() {
+        return this.ipaddr;
+    }
 
-	public Integer getClienttype() {
-		return clienttype;
-	}
+    public void setIpaddr(String ipaddr) {
+        this.ipaddr = ipaddr;
+    }
 
-	public void setClienttype(Integer clienttype) {
-		this.clienttype = clienttype;
-	}
+    public String getUsername() {
+        return this.username;
+    }
 
-	public Integer getDomain() {
-		return domain;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public void setDomain(Integer domain) {
-		this.domain = domain;
-	}
+    public Integer getClienttype() {
+        return clienttype;
+    }
 
-	public String getRole() {
-		return role;
-	}
+    public void setClienttype(Integer clienttype) {
+        this.clienttype = clienttype;
+    }
 
-	public void setRole(String role) {
-		this.role = role;
-	}
+    public Integer getDomain() {
+        return domain;
+    }
 
-	public String getServeraddr() {
-		return serveraddr;
-	}
+    public void setDomain(Integer domain) {
+        this.domain = domain;
+    }
 
-	public void setServeraddr(String serveraddr) {
-		this.serveraddr = serveraddr;
-	}
+    public String getRole() {
+        return role;
+    }
 
-	public String getProxyaddr() {
-		return proxyaddr;
-	}
+    public void setRole(String role) {
+        this.role = role;
+    }
 
-	public void setProxyaddr(String proxyaddr) {
-		this.proxyaddr = proxyaddr;
-	}
+    public String getServeraddr() {
+        return serveraddr;
+    }
 
-	public Integer getPin() {
-		return pin;
-	}
+    public void setServeraddr(String serveraddr) {
+        this.serveraddr = serveraddr;
+    }
 
-	public void setPin(Integer pin) {
-		this.pin = pin;
-	}
+    public String getProxyaddr() {
+        return proxyaddr;
+    }
 
-	public Integer getMsgtimestamp() {
-		return msgtimestamp;
-	}
+    public void setProxyaddr(String proxyaddr) {
+        this.proxyaddr = proxyaddr;
+    }
 
-	public void setMsgtimestamp(Integer msgtimestamp) {
-		this.msgtimestamp = msgtimestamp;
-	}
+    public Integer getPin() {
+        return pin;
+    }
 
-	
+    public void setPin(Integer pin) {
+        this.pin = pin;
+    }
+
+    public Integer getMsgtimestamp() {
+        return msgtimestamp;
+    }
+
+    public void setMsgtimestamp(Integer msgtimestamp) {
+        this.msgtimestamp = msgtimestamp;
+    }
+
 
 }

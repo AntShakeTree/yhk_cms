@@ -4,12 +4,11 @@
  * Package Name:com.vdi.dao.domain
  * Date:2014年7月31日下午1:55:12
  * Copyright (c) 2014 All Rights Reserved.
- *
-*/
+ */
 
 package com.ykh.common.cache;
 
 
 public interface CacheDomain {
-	Object getId();
+    Object getId();
 }

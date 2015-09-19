@@ -5,63 +5,66 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * ClassName:Conferencerole
- * <p>
+ * <p/>
  * ClassDesc：会议中角色对象，在产品定义的时候确定。
- * 
+ *
  * @author dongyu.zhang
  * @version 1.0
- * @since Ver 1.0
  * @Date 2009 Apr 16, 2009 1:37:39 PM
+ * @since Ver 1.0
  */
 @XmlRootElement
 public class Conferencerole implements java.io.Serializable {
 
-	// Fields
+    // Fields
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private Integer roleid;
-//	private Product product;
-	private String rolename;
-	//private Integer maxuser;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    private Integer roleid;
+    //	private Product product;
+    private String rolename;
+    //private Integer maxuser;
 //	private Set<Conferenceprivilege> conferenceprivileges = new HashSet<Conferenceprivilege>(0);
 
-	//private Integer productid;
-	// Constructors
+    //private Integer productid;
+    // Constructors
 
-	/** default constructor */
-	public Conferencerole() {
-	}
+    /**
+     * default constructor
+     */
+    public Conferencerole() {
+    }
 
-	/** full constructor */
+    /**
+     * full constructor
+     */
 //	public Conferencerole(Product product, String rolename, Integer maxuser, Set<Conferenceprivilege> conferenceprivileges) {
 //		this.product = product;
 //		this.rolename = rolename;
 //		this.maxuser = maxuser;
 //		this.conferenceprivileges = conferenceprivileges;
 //	}
-	
-	public Conferencerole(String rolename) {
-		this.rolename = rolename;
-	}
+    public Conferencerole(String rolename) {
+        this.rolename = rolename;
+    }
 
-	// Property accessors
-	public int hashCode() {
+    // Property accessors
+    public int hashCode() {
 
-		int result = 179;
-		result = 37 * result + (roleid == null ? System.identityHashCode(this) : roleid.hashCode());
-		return result;
-	}
+        int result = 179;
+        result = 37 * result + (roleid == null ? System.identityHashCode(this) : roleid.hashCode());
+        return result;
+    }
 
-	public Integer getRoleid() {
-		return this.roleid;
-	}
+    public Integer getRoleid() {
+        return this.roleid;
+    }
 
-	public void setRoleid(Integer roleid) {
-		this.roleid = roleid;
-	}
+    public void setRoleid(Integer roleid) {
+        this.roleid = roleid;
+    }
 
 //	@XmlElement(name="product")
 //	public Product getProduct() {
@@ -72,13 +75,13 @@ public class Conferencerole implements java.io.Serializable {
 //		this.product = product;
 //	}
 
-	public String getRolename() {
-		return this.rolename;
-	}
+    public String getRolename() {
+        return this.rolename;
+    }
 
-	public void setRolename(String rolename) {
-		this.rolename = rolename;
-	}
+    public void setRolename(String rolename) {
+        this.rolename = rolename;
+    }
 
 //	@XmlElement(name="conferenceprivilege")
 //	public Set<Conferenceprivilege> getConferenceprivileges() {
@@ -89,11 +92,11 @@ public class Conferencerole implements java.io.Serializable {
 //		this.conferenceprivileges = conferenceprivileges;
 //	}
 
-	/**
-	 * maxuser
-	 * 
-	 * @return the maxuser
-	 */
+    /**
+     * maxuser
+     *
+     * @return the maxuser
+     */
 
 //	public Integer getMaxuser() {
 //		return maxuser;

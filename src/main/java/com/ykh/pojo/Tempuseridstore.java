@@ -6,38 +6,42 @@ package com.ykh.pojo;
 
 public class Tempuseridstore implements java.io.Serializable {
 
-	// Fields
+    // Fields
 
-	private Integer recordId;
-	private Integer tempuserid;
+    private Integer recordId;
+    private Integer tempuserid;
 
-	// Constructors
+    // Constructors
 
-	/** default constructor */
-	public Tempuseridstore() {
-	}
+    /**
+     * default constructor
+     */
+    public Tempuseridstore() {
+    }
 
-	/** full constructor */
-	public Tempuseridstore(Integer tempuserid) {
-		this.tempuserid = tempuserid;
-	}
+    /**
+     * full constructor
+     */
+    public Tempuseridstore(Integer tempuserid) {
+        this.tempuserid = tempuserid;
+    }
 
-	// Property accessors
+    // Property accessors
 
-	public Integer getRecordId() {
-		return this.recordId;
-	}
+    public Integer getRecordId() {
+        return this.recordId;
+    }
 
-	public void setRecordId(Integer recordId) {
-		this.recordId = recordId;
-	}
+    public void setRecordId(Integer recordId) {
+        this.recordId = recordId;
+    }
 
-	public Integer getTempuserid() {
-		return this.tempuserid;
-	}
+    public Integer getTempuserid() {
+        return this.tempuserid;
+    }
 
-	public void setTempuserid(Integer tempuserid) {
-		this.tempuserid = tempuserid;
-	}
+    public void setTempuserid(Integer tempuserid) {
+        this.tempuserid = tempuserid;
+    }
 
 }

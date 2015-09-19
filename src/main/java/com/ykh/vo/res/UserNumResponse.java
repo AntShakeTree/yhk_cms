@@ -4,9 +4,10 @@ package com.ykh.vo.res;
  * Created by ant_shake_tree on 15/8/21.
  */
 public class UserNumResponse {
-    private Header head=new Header();
+    private Header head = new Header();
     private UserNumBody body;
-    public static class UserNumBody{
+
+    public static class UserNumBody {
         int userCounts;
 
         public int getUserCounts() {

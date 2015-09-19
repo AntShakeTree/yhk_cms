@@ -6,31 +6,33 @@ package com.ykh.pojo;
 
 public class Tempconfid implements java.io.Serializable {
 
-	// Fields
+    // Fields
 
-	/**
-	 * serialVersionUID:TODO�
-	 *
-	 * @since Ver 1.0
-	 */
-	
-	private static final long serialVersionUID = 1L;
-	private Integer cid;
+    /**
+     * serialVersionUID:TODO�
+     *
+     * @since Ver 1.0
+     */
 
-	// Constructors
+    private static final long serialVersionUID = 1L;
+    private Integer cid;
 
-	/** default constructor */
-	public Tempconfid() {
-	}
+    // Constructors
 
-	// Property accessors
+    /**
+     * default constructor
+     */
+    public Tempconfid() {
+    }
 
-	public Integer getCid() {
-		return this.cid;
-	}
+    // Property accessors
 
-	public void setCid(Integer cid) {
-		this.cid = cid;
-	}
+    public Integer getCid() {
+        return this.cid;
+    }
+
+    public void setCid(Integer cid) {
+        this.cid = cid;
+    }
 
 }

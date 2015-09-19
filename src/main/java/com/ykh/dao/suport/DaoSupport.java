@@ -1,10 +1,10 @@
 package com.ykh.dao.suport;
 
+import com.ykh.dao.Dao;
 import com.ykh.dao.PageRequest;
+import com.ykh.dao.Request;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.transaction.annotation.Transactional;
-import com.ykh.dao.Dao;
-import com.ykh.dao.Request;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -12,12 +12,14 @@ import java.io.Serializable;
 import java.util.List;
 
 @Transactional
-public class DaoSupport<T,ID extends  Serializable>  extends SimpleJpaRepository<T,ID> implements Dao<T, ID> {
+public class DaoSupport<T, ID extends Serializable> extends SimpleJpaRepository<T, ID> implements Dao<T, ID> {
     private final EntityManager entityManager;
+
     public DaoSupport(Class<T> domainClass, EntityManager entityManager) {
         super(domainClass, entityManager);
         this.entityManager = entityManager;
     }
+
     public int getCount(String hql, Object... values) {
         if (hql.contains("select")) {
             hql = hql.substring(hql.indexOf("from"));
@@ -35,6 +37,7 @@ public class DaoSupport<T,ID extends  Serializable>  extends SimpleJpaRepository
         prepareParamlizedQuery(this.entityManager.createQuery(hql), args)
                 .executeUpdate();
     }
+
     public int getCount(String hql, List<Object> values) {
         if (hql.contains("select")) {
             hql = hql.substring(hql.indexOf("from"));
@@ -47,6 +50,7 @@ public class DaoSupport<T,ID extends  Serializable>  extends SimpleJpaRepository
         return ((List<T>) prepareParamlizedQuery(
                 this.entityManager.createQuery(hql), args).getResultList());
     }
+
     @SuppressWarnings("unchecked")
     @Transactional(readOnly = true)
     public List<T> listRequest(Request<T> req) {
@@ -63,10 +67,12 @@ public class DaoSupport<T,ID extends  Serializable>  extends SimpleJpaRepository
 
         return ls;
     }
+
     @Override
     public List<Object> findAllSql(String hql, Object... args) {
-        return  prepareParamlizedQuery(this.entityManager.createNativeQuery(hql), args).getResultList();
+        return prepareParamlizedQuery(this.entityManager.createNativeQuery(hql), args).getResultList();
     }
+
     private static Query prepareParamlizedQuery(final Query query, final Object... params) {
         if (params == null) {
             return query;
@@ -93,6 +99,7 @@ public class DaoSupport<T,ID extends  Serializable>  extends SimpleJpaRepository
             return null;
         }
     }
+
     @Override
     public T findOne(String hql, Object... keys) {
         List<T> ls = this.findHql(hql, keys);
@@ -102,19 +109,21 @@ public class DaoSupport<T,ID extends  Serializable>  extends SimpleJpaRepository
             return null;
         }
     }
+
     @Override
     public PageVO<T> findPages(PageRequest<T> request) {
         QueryUtil queryUtil = QueryUtil.getHqlByDomain(request);
-        PageView pageView=new PageView(request.getPageSize(),request.getCurrentpage());
+        PageView pageView = new PageView(request.getPageSize(), request.getCurrentpage());
         pageView.setTotalpage(getCount(queryUtil.getHql(), queryUtil.getValues().toArray()));
-        Query query=this.entityManager.createQuery(queryUtil.getHql()).setFirstResult(pageView.getFirstResult())
+        Query query = this.entityManager.createQuery(queryUtil.getHql()).setFirstResult(pageView.getFirstResult())
                 .setMaxResults(pageView.getPageSize());
-        query =  prepareParamlizedQuery(query,queryUtil.getValues().toArray());
-        PageVO<T> pageVO =new PageVO<>();
+        query = prepareParamlizedQuery(query, queryUtil.getValues().toArray());
+        PageVO<T> pageVO = new PageVO<>();
         pageVO.setContents(query.getResultList());
         pageVO.setPage(pageView);
         return pageVO;
     }
+
     public T find(ID id) {
         return this.findOne(id);
     }

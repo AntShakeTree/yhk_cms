@@ -3,9 +3,10 @@ package com.ykh.config;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.google.common.collect.Lists;
 import com.maxc.rest.common.Constants;
-import com.ykh.config.PersistenceContext;
 import org.springframework.context.MessageSource;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.format.datetime.DateFormatter;
 import org.springframework.format.datetime.DateFormatterRegistrar;
@@ -14,7 +15,6 @@ import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.HandlerAdapter;
 import org.springframework.web.servlet.HandlerMapping;
 import org.springframework.web.servlet.ViewResolver;
@@ -41,9 +41,10 @@ import java.util.List;
 public class WebConfig extends WebMvcConfigurationSupport {
     /**
      * 描述 : <注册消息资源处理器>. <br>
-     *<p>
-     <使用方法说明>
-     </p>
+     * <p>
+     * <使用方法说明>
+     * </p>
+     *
      * @return
      */
     @Bean
@@ -53,11 +54,13 @@ public class WebConfig extends WebMvcConfigurationSupport {
 
         return messageSource;
     }
+
     /**
      * 描述 : <注册试图处理器>. <br>
-     *<p>
-     <使用方法说明>
-     </p>
+     * <p>
+     * <使用方法说明>
+     * </p>
+     *
      * @return
      */
     @Bean
@@ -67,50 +70,53 @@ public class WebConfig extends WebMvcConfigurationSupport {
         viewResolver.setSuffix(".jsp");
         return viewResolver;
     }
+
     /**
      * 描述 : <注册servlet适配器>. <br>
-     *<p>
-     <只需要在自定义的servlet上用@Controller("映射路径")标注即可>
-     </p>
+     * <p>
+     * <只需要在自定义的servlet上用@Controller("映射路径")标注即可>
+     * </p>
+     *
      * @return
      */
     @Bean
-    public HandlerAdapter servletHandlerAdapter(){
+    public HandlerAdapter servletHandlerAdapter() {
         return new SimpleServletHandlerAdapter();
     }
 
     /**
      * 描述 : <本地化拦截器>. <br>
-     *<p>
-     <使用方法说明>
-     </p>
+     * <p>
+     * <使用方法说明>
+     * </p>
+     *
      * @return
      */
     @Bean
-    public LocaleChangeInterceptor localeChangeInterceptor(){
+    public LocaleChangeInterceptor localeChangeInterceptor() {
         return new LocaleChangeInterceptor();
     }
 
     /**
      * 描述 : <基于cookie的本地化资源处理器>. <br>
-     *<p>
-     <使用方法说明>
-     </p>
+     * <p>
+     * <使用方法说明>
+     * </p>
+     *
      * @return
      */
-    @Bean(name="localeResolver")
-    public CookieLocaleResolver cookieLocaleResolver(){
+    @Bean(name = "localeResolver")
+    public CookieLocaleResolver cookieLocaleResolver() {
         return new CookieLocaleResolver();
     }
 
 
-
-
     /**
      * 描述 : <RequestMappingHandlerMapping需要显示声明，否则不能注册自定义的拦截器>. <br>
-     *<p>
-     <这个比较奇怪,理论上应该是不需要的>
-     </p>
+     * <p>
+     * <这个比较奇怪,理论上应该是不需要的>
+     * </p>
+     *
      * @return
      */
     @Bean
@@ -120,28 +126,26 @@ public class WebConfig extends WebMvcConfigurationSupport {
     }
 
 
-
-
-
-
     /**
      * 描述 : <添加拦截器>. <br>
-     *<p>
-     <使用方法说明>
-     </p>
+     * <p>
+     * <使用方法说明>
+     * </p>
+     *
      * @param registry
      */
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
-       // registry.addInterceptor(initializingInterceptor());
+        // registry.addInterceptor(initializingInterceptor());
     }
 
     /**
      * 描述 : <HandlerMapping需要显示声明，否则不能注册资源访问处理器>. <br>
-     *<p>
-     <这个比较奇怪,理论上应该是不需要的>
-     </p>
+     * <p>
+     * <这个比较奇怪,理论上应该是不需要的>
+     * </p>
+     *
      * @return
      */
     @Bean
@@ -168,30 +172,31 @@ public class WebConfig extends WebMvcConfigurationSupport {
 //    }
 
 
-
     /**
      * 描述 : <RequestMappingHandlerAdapter需要显示声明，否则不能注册通用属性编辑器>. <br>
-     *<p>
-     <这个比较奇怪,理论上应该是不需要的>
-     </p>
+     * <p>
+     * <这个比较奇怪,理论上应该是不需要的>
+     * </p>
+     *
      * @return
      */
     @Bean
     public RequestMappingHandlerAdapter requestMappingHandlerAdapter() {
 
-        List<HttpMessageConverter<?>> a =   getMessageConverters();
+        List<HttpMessageConverter<?>> a = getMessageConverters();
         a.clear();
         a.add(fastJsonHttpMessageConverter());
 
 //        super.requestMappingHandlerAdapter().getMessageConverters().add(fastJsonHttpMessageConverter());
         return super.requestMappingHandlerAdapter();
     }
+
     @Bean
-    public FastJsonHttpMessageConverter fastJsonHttpMessageConverter(){
+    public FastJsonHttpMessageConverter fastJsonHttpMessageConverter() {
         FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
         fastJsonHttpMessageConverter.setCharset(Charset.forName("UTF-8"));
         List<MediaType> mediaTypeList = Lists.newArrayList();
-        MediaType mediatype=MediaType.APPLICATION_JSON;
+        MediaType mediatype = MediaType.APPLICATION_JSON;
         mediaTypeList.add(mediatype);
         fastJsonHttpMessageConverter.setSupportedMediaTypes(mediaTypeList);
         return fastJsonHttpMessageConverter;
@@ -213,8 +218,6 @@ public class WebConfig extends WebMvcConfigurationSupport {
         registrar.registerFormatters(conversionService);
         return conversionService;
     }
-
-
 
 
 }

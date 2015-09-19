@@ -8,66 +8,72 @@ import java.util.Date;
 
 public class Cdrconferencemsg implements java.io.Serializable {
 
-	// Fields
+    // Fields
 
-	private Integer id;
-	private Integer tempconferenceid;
-	private Integer actiontypeid;
-	private Date timestamp;
+    private Integer id;
+    private Integer tempconferenceid;
+    private Integer actiontypeid;
+    private Date timestamp;
 
-	// Constructors
+    // Constructors
 
-	/** default constructor */
-	public Cdrconferencemsg() {
-	}
+    /**
+     * default constructor
+     */
+    public Cdrconferencemsg() {
+    }
 
-	/** minimal constructor */
-	public Cdrconferencemsg(Integer id, Integer tempconferenceid) {
-		this.id = id;
-		this.tempconferenceid = tempconferenceid;
-	}
+    /**
+     * minimal constructor
+     */
+    public Cdrconferencemsg(Integer id, Integer tempconferenceid) {
+        this.id = id;
+        this.tempconferenceid = tempconferenceid;
+    }
 
-	/** full constructor */
-	public Cdrconferencemsg(Integer id, Integer tempconferenceid,
-			Integer actiontypeid, Date timestamp) {
-		this.id = id;
-		this.tempconferenceid = tempconferenceid;
-		this.actiontypeid = actiontypeid;
-		this.timestamp = timestamp;
-	}
+    /**
+     * full constructor
+     */
+    public Cdrconferencemsg(Integer id, Integer tempconferenceid,
+                            Integer actiontypeid, Date timestamp) {
+        this.id = id;
+        this.tempconferenceid = tempconferenceid;
+        this.actiontypeid = actiontypeid;
+        this.timestamp = timestamp;
+    }
 
-	// Property accessors
+    // Property accessors
 
-	public Integer getId() {
-		return this.id;
-	}
+    public Integer getId() {
+        return this.id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public Integer getTempconferenceid() {
-		return this.tempconferenceid;
-	}
+    public Integer getTempconferenceid() {
+        return this.tempconferenceid;
+    }
 
-	public void setTempconferenceid(Integer tempconferenceid) {
-		this.tempconferenceid = tempconferenceid;
-	}
+    public void setTempconferenceid(Integer tempconferenceid) {
+        this.tempconferenceid = tempconferenceid;
+    }
 
-	public Integer getActiontypeid() {
-		return this.actiontypeid;
-	}
+    public Integer getActiontypeid() {
+        return this.actiontypeid;
+    }
 
-	public void setActiontypeid(Integer actiontypeid) {
-		this.actiontypeid = actiontypeid;
-	}
+    public void setActiontypeid(Integer actiontypeid) {
+        this.actiontypeid = actiontypeid;
+    }
 
-	public Date getTimestamp() {
-		return this.timestamp;
-	}
+    public Date getTimestamp() {
+        return this.timestamp;
+    }
 
-	public void setTimestamp(Date timestamp) {
-		this.timestamp = timestamp;
-	}
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
 
 }

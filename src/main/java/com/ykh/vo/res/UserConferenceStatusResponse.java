@@ -6,7 +6,7 @@ import com.ykh.tang.agent.vo.UserConferenceStatus;
  * Created by ant_shake_tree on 15/8/21.
  */
 public class UserConferenceStatusResponse {
-    private Header head=new Header();
+    private Header head = new Header();
     private UserConferenceStatus body;
 
     public Header getHead() {

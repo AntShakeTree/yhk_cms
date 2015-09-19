@@ -22,14 +22,16 @@ public class JniCallBackRegister {
     @Autowired
     @Qualifier("getmessageHandlerByGroup")
     private IMessageHandler getmessageHandlerByGroup;
+
     @PostConstruct
     public void init() {
         LOGGER.info("[Tang CMS addMessageHandler && AddServiceMessageHandler regist ......]");
         this.regist();
         LOGGER.info("[Tang CMS addMessageHandler && AddServiceMessageHandler regist success!]");
     }
+
     @PreDestroy
-    public void destroy(){
+    public void destroy() {
         agent.agentDestroy();
     }
 

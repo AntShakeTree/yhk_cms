@@ -8,59 +8,61 @@ import java.util.Date;
 
 public class Tempuser implements java.io.Serializable {
 
-	// Fields
-	
-	private static final long serialVersionUID = 1L;
-	private Integer uid;
-	private Integer tempconfid;
-	private Integer tempuserid;
-	private Long userID;
-	private Date createtime; 
+    // Fields
 
-	// Constructors
+    private static final long serialVersionUID = 1L;
+    private Integer uid;
+    private Integer tempconfid;
+    private Integer tempuserid;
+    private Long userID;
+    private Date createtime;
 
-	/** default constructor */
-	public Tempuser() {
-	}
+    // Constructors
 
-	public Integer getUid() {
-		return uid;
-	}
+    /**
+     * default constructor
+     */
+    public Tempuser() {
+    }
 
-	public void setUid(Integer uid) {
-		this.uid = uid;
-	}
+    public Integer getUid() {
+        return uid;
+    }
 
-	public Integer getTempconfid() {
-		return tempconfid;
-	}
+    public void setUid(Integer uid) {
+        this.uid = uid;
+    }
 
-	public void setTempconfid(Integer tempconfid) {
-		this.tempconfid = tempconfid;
-	}
+    public Integer getTempconfid() {
+        return tempconfid;
+    }
 
-	public Integer getTempuserid() {
-		return tempuserid;
-	}
+    public void setTempconfid(Integer tempconfid) {
+        this.tempconfid = tempconfid;
+    }
 
-	public void setTempuserid(Integer tempuserid) {
-		this.tempuserid = tempuserid;
-	}
+    public Integer getTempuserid() {
+        return tempuserid;
+    }
 
-	public Long getUserID() {
-		return userID;
-	}
+    public void setTempuserid(Integer tempuserid) {
+        this.tempuserid = tempuserid;
+    }
 
-	public void setUserID(Long userID) {
-		this.userID = userID;
-	}
+    public Long getUserID() {
+        return userID;
+    }
 
-	public Date getCreatetime() {
-		return createtime;
-	}
+    public void setUserID(Long userID) {
+        this.userID = userID;
+    }
 
-	public void setCreatetime(Date createtime) {
-		this.createtime = createtime;
-	}
-	
+    public Date getCreatetime() {
+        return createtime;
+    }
+
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
+    }
+
 }

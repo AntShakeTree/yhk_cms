@@ -1,34 +1,36 @@
 package com.ykh.dao.conference.domain;
-import java.util.*;
-
-import javax.persistence.*;
 
 import com.alibaba.fastjson.JSON;
 import com.ykh.common.ParseJSON;
-//import com.ykh.pojo.Product;
+import com.ykh.common.cache.CacheDomain;
 import com.ykh.dao.PageRequest;
-import com.ykh.dao.annotation.DaoHelper;
 import com.ykh.tang.agent.vo.AutoStopParams;
 import com.ykh.tang.agent.vo.RoleInfo;
-
-import com.ykh.common.cache.CacheDomain;
-import com.ykh.dao.Request;
 import org.apache.commons.lang3.StringUtils;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+//import com.ykh.pojo.Product;
 
 /**
  * ClassName: Conference
  * :
+ *
  * @author todd
  * @date 2013-2-3 上午1:07:59
  */
 @Entity
 @Table
-public class Conference  extends PageRequest<Conference> implements CacheDomain{
-	/**
-	 * serialVersionUID:
-	 * @since JDK 1.7
-	 */
-	/*
+public class Conference extends PageRequest<Conference> implements CacheDomain {
+    /**
+     * serialVersionUID:
+     *
+     * @since JDK 1.7
+     */
+    /*
 	+-------------------+--------------+------+-----+-------------------+-----------------------------+
 	| Field             | Type         | Null | Key | Default           | Extra                       |
 	+-------------------+--------------+------+-----+-------------------+-----------------------------+
@@ -64,87 +66,89 @@ public class Conference  extends PageRequest<Conference> implements CacheDomain{
 	| cmsbridge         | varchar(10)  | YES  |     | NULL              |                             |
 	+-------------------+--------------+------+-----+-------------------+-----------------------------+
 	 */
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer conferenceId;
-	@Transient
-	private Integer tempConferenceId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer conferenceId;
+    @Transient
+    private Integer tempConferenceId;
 // Fields
 
-	private static final long serialVersionUID = 15679L;
+    private static final long serialVersionUID = 15679L;
 
-	private String conferencedesc;
-	private Integer conferenceminutes;
-	private Date reservtime;
-	private Integer noticetime;
-	private Integer valid;	//初始值
-	private Integer cycle;
-	private Boolean pin;
-	private Boolean callout;
-	private Boolean realreserve;
-	private Integer language;
-	private Integer recordType; //0 – 外部录音 1 – 内部录音
-	private String  conferencename;
-	private String billingcode;
-//	@Transient
+    private String conferencedesc;
+    private Integer conferenceminutes;
+    private Date reservtime;
+    private Integer noticetime;
+    private Integer valid;    //初始值
+    private Integer cycle;
+    private Boolean pin;
+    private Boolean callout;
+    private Boolean realreserve;
+    private Integer language;
+    private Integer recordType; //0 – 外部录音 1 – 内部录音
+    private String conferencename;
+    private String billingcode;
+    //	@Transient
 //	private Product product;
-	private String roles;
+    private String roles;
 
-	@Transient
-	private Date endTime;
+    @Transient
+    private Date endTime;
 
-	public String getRoles() {
-		return roles;
-	}
+    public String getRoles() {
+        return roles;
+    }
 
-	public void setRoles(String roles) {
-		this.roles = roles;
-	}
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
 
-	@Convert(converter = JpaConverterJson.class)
-	private AutoStopParams autoStopParams;
-	private  String password;
-	private  Integer confScale;
-	@Convert(converter = ListServiceConfigConverJson.class)
-	private List<String> serviceConfigs;
-	@Convert(converter = ListRuleInfoConverJson.class)
-	List<RoleInfo>  ruleInfos;
-	@Transient
-	public Object getId() {
-		return conferenceId;
-	}
-	@Transient
-	private Date starttime;
+    @Convert(converter = JpaConverterJson.class)
+    private AutoStopParams autoStopParams;
+    private String password;
+    private Integer confScale;
+    @Convert(converter = ListServiceConfigConverJson.class)
+    private List<String> serviceConfigs;
+    @Convert(converter = ListRuleInfoConverJson.class)
+    List<RoleInfo> ruleInfos;
 
-	public Date getStarttime() {
-		return starttime;
-	}
+    @Transient
+    public Object getId() {
+        return conferenceId;
+    }
 
-	public void setStarttime(Date starttime) {
-		this.starttime = starttime;
-	}
+    @Transient
+    private Date starttime;
+
+    public Date getStarttime() {
+        return starttime;
+    }
+
+    public void setStarttime(Date starttime) {
+        this.starttime = starttime;
+    }
 //	SubConferenceInfo subConfInfo = new SubConferenceInfo();
 
-	public static long getSerialVersionUID() {
-		return serialVersionUID;
-	}
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
-	public Integer getConferenceId() {
-		return conferenceId;
-	}
+    public Integer getConferenceId() {
+        return conferenceId;
+    }
 
-	public void setConferenceId(Integer conferenceId) {
-		this.conferenceId = conferenceId;
-	}
+    public void setConferenceId(Integer conferenceId) {
+        this.conferenceId = conferenceId;
+    }
 
 
-	public String getConferencename() {
-		return conferencename;
-	}
+    public String getConferencename() {
+        return conferencename;
+    }
 
-	public void setConferencename(String conferencename) {
-		this.conferencename = conferencename;
-	}
+    public void setConferencename(String conferencename) {
+        this.conferencename = conferencename;
+    }
 
 //	public Product getProduct() {
 //		return product;
@@ -154,243 +158,248 @@ public class Conference  extends PageRequest<Conference> implements CacheDomain{
 //		this.product = product;
 //	}
 
-	public String getConferencedesc() {
-		return conferencedesc;
-	}
+    public String getConferencedesc() {
+        return conferencedesc;
+    }
 
-	public void setConferencedesc(String conferencedesc) {
-		this.conferencedesc = conferencedesc;
-	}
+    public void setConferencedesc(String conferencedesc) {
+        this.conferencedesc = conferencedesc;
+    }
 
-	public Integer getConferenceminutes() {
-		return conferenceminutes;
-	}
+    public Integer getConferenceminutes() {
+        return conferenceminutes;
+    }
 
-	public void setConferenceminutes(Integer conferenceminutes) {
-		this.conferenceminutes = conferenceminutes;
-	}
+    public void setConferenceminutes(Integer conferenceminutes) {
+        this.conferenceminutes = conferenceminutes;
+    }
 
-	public Date getReservtime() {
-		return reservtime;
-	}
+    public Date getReservtime() {
+        return reservtime;
+    }
 
-	public void setReservtime(Date reservtime) {
-		this.reservtime = reservtime;
-	}
+    public void setReservtime(Date reservtime) {
+        this.reservtime = reservtime;
+    }
 
-	public Integer getNoticetime() {
-		return noticetime;
-	}
+    public Integer getNoticetime() {
+        return noticetime;
+    }
 
-	public void setNoticetime(Integer noticetime) {
-		this.noticetime = noticetime;
-	}
+    public void setNoticetime(Integer noticetime) {
+        this.noticetime = noticetime;
+    }
 
-	public Integer getValid() {
-		return valid;
-	}
+    public Integer getValid() {
+        return valid;
+    }
 
-	public void setValid(Integer valid) {
-		this.valid = valid;
-	}
-
-
-
-	public Integer getCycle() {
-		return cycle;
-	}
-
-	public void setCycle(Integer cycle) {
-		this.cycle = cycle;
-	}
-
-	public Boolean getPin() {
-		return pin;
-	}
-
-	public void setPin(Boolean pin) {
-		this.pin = pin;
-	}
-
-	public Boolean getCallout() {
-		return callout;
-	}
-
-	public void setCallout(Boolean callout) {
-		this.callout = callout;
-	}
-
-	public Boolean getRealreserve() {
-		return realreserve;
-	}
-
-	public void setRealreserve(Boolean realreserve) {
-		this.realreserve = realreserve;
-	}
-
-	public Integer getLanguage() {
-		return language;
-	}
-
-	public void setLanguage(Integer language) {
-		this.language = language;
-	}
-
-	public Integer getRecordType() {
-		return recordType;
-	}
-
-	public void setRecordType(Integer recordType) {
-		this.recordType = recordType;
-	}
-
-	public String getBillingcode() {
-		return billingcode;
-	}
-
-	public void setBillingcode(String billingcode) {
-		this.billingcode = billingcode;
-	}
-
-	public AutoStopParams getAutoStopParams() {
-		return autoStopParams;
-	}
-
-	public void setAutoStopParams(AutoStopParams autoStopParams) {
-		this.autoStopParams = autoStopParams;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public Integer getConfScale() {
-		return confScale;
-	}
-
-	public void setConfScale(Integer confScale) {
-		this.confScale = confScale;
-	}
+    public void setValid(Integer valid) {
+        this.valid = valid;
+    }
 
 
+    public Integer getCycle() {
+        return cycle;
+    }
 
-	public static class JpaConverterJson implements AttributeConverter<Object, String> {
+    public void setCycle(Integer cycle) {
+        this.cycle = cycle;
+    }
 
+    public Boolean getPin() {
+        return pin;
+    }
 
-		@Override
-		public String convertToDatabaseColumn(Object meta) {
-			try {
-				return ParseJSON.toJson(meta);
-			} catch (Exception ex) {
-				return null;
+    public void setPin(Boolean pin) {
+        this.pin = pin;
+    }
 
-			}
-		}
+    public Boolean getCallout() {
+        return callout;
+    }
 
-		@Override
-		public AutoStopParams convertToEntityAttribute(String dbData) {
-			try {
-				return ParseJSON.fromJson(dbData, AutoStopParams.class);
-			} catch (Exception ex) {
-				return null;
-			}
-		}
+    public void setCallout(Boolean callout) {
+        this.callout = callout;
+    }
 
-	}
-	public  static  class  ListServiceConfigConverJson implements AttributeConverter<Object, String> {
+    public Boolean getRealreserve() {
+        return realreserve;
+    }
 
-		@Override
-		public String convertToDatabaseColumn(Object attribute) {
-			return JSON.toJSONString(attribute);
-		}
+    public void setRealreserve(Boolean realreserve) {
+        this.realreserve = realreserve;
+    }
 
-		@Override
-		public List<String> convertToEntityAttribute(String dbData) {
-			if(StringUtils.isEmpty(dbData)){
-				return  new ArrayList<>(1);
-			}try {
-				return JSON.parseArray(dbData, String.class);
-			}catch (Exception e){
-				return  new ArrayList<>(1);
-			}
-		}
-	}
-	public  static  class  ListRuleInfoConverJson implements AttributeConverter<Object,String>{
+    public Integer getLanguage() {
+        return language;
+    }
 
-		@Override
-		public String convertToDatabaseColumn(Object attribute) {
-			return JSON.toJSONString(attribute);
-		}
+    public void setLanguage(Integer language) {
+        this.language = language;
+    }
 
-		@Override
-		public List<RoleInfo>  convertToEntityAttribute(String dbData) {
-			if(StringUtils.isEmpty(dbData)){
-				return  new ArrayList<>(1);
-			}try {
-				return JSON.parseArray(dbData, RoleInfo.class);
-			}catch (Exception e){
-				return  new ArrayList<>(1);
-			}
-		}
-	}
+    public Integer getRecordType() {
+        return recordType;
+    }
 
-	public Integer getTempConferenceId() {
-		return tempConferenceId;
-	}
-	public static class ServiceConfig{
-		private List<String> serviceConfigs = null;
+    public void setRecordType(Integer recordType) {
+        this.recordType = recordType;
+    }
 
-		public List<String> getServiceConfigs() {
-			return serviceConfigs;
-		}
-		public void setServiceConfigs(List<String> serviceConfigs) {
-			this.serviceConfigs = serviceConfigs;
-		}
-	}
-	public  static class   RuleInfoBody{
-		private List<RoleInfo> roleInfo = null;
+    public String getBillingcode() {
+        return billingcode;
+    }
 
-		public List<RoleInfo> getRoleInfo() {
-			return roleInfo;
-		}
+    public void setBillingcode(String billingcode) {
+        this.billingcode = billingcode;
+    }
 
-		public void setRoleInfo(List<RoleInfo> roleInfo) {
-			this.roleInfo = roleInfo;
-		}
-	}
+    public AutoStopParams getAutoStopParams() {
+        return autoStopParams;
+    }
+
+    public void setAutoStopParams(AutoStopParams autoStopParams) {
+        this.autoStopParams = autoStopParams;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Integer getConfScale() {
+        return confScale;
+    }
+
+    public void setConfScale(Integer confScale) {
+        this.confScale = confScale;
+    }
 
 
-	public List<String> getServiceConfigs() {
-		return serviceConfigs;
-	}
+    public static class JpaConverterJson implements AttributeConverter<Object, String> {
 
-	public void setServiceConfigs(List<String> serviceConfigs) {
-		this.serviceConfigs = serviceConfigs;
-	}
 
-	public List<RoleInfo> getRuleInfos() {
-		return ruleInfos;
-	}
+        @Override
+        public String convertToDatabaseColumn(Object meta) {
+            try {
+                return ParseJSON.toJson(meta);
+            } catch (Exception ex) {
+                return null;
 
-	public void setRuleInfos(List<RoleInfo> ruleInfos) {
-		this.ruleInfos = ruleInfos;
-	}
+            }
+        }
 
-	public void setTempConferenceId(Integer tempConferenceId) {
-		this.tempConferenceId = tempConferenceId;
-	}
+        @Override
+        public AutoStopParams convertToEntityAttribute(String dbData) {
+            try {
+                return ParseJSON.fromJson(dbData, AutoStopParams.class);
+            } catch (Exception ex) {
+                return null;
+            }
+        }
 
-	public Date getEndTime() {
-		return endTime;
-	}
+    }
 
-	public void setEndTime(Date endTime) {
-		this.endTime = endTime;
-	}
+    public static class ListServiceConfigConverJson implements AttributeConverter<Object, String> {
+
+        @Override
+        public String convertToDatabaseColumn(Object attribute) {
+            return JSON.toJSONString(attribute);
+        }
+
+        @Override
+        public List<String> convertToEntityAttribute(String dbData) {
+            if (StringUtils.isEmpty(dbData)) {
+                return new ArrayList<>(1);
+            }
+            try {
+                return JSON.parseArray(dbData, String.class);
+            } catch (Exception e) {
+                return new ArrayList<>(1);
+            }
+        }
+    }
+
+    public static class ListRuleInfoConverJson implements AttributeConverter<Object, String> {
+
+        @Override
+        public String convertToDatabaseColumn(Object attribute) {
+            return JSON.toJSONString(attribute);
+        }
+
+        @Override
+        public List<RoleInfo> convertToEntityAttribute(String dbData) {
+            if (StringUtils.isEmpty(dbData)) {
+                return new ArrayList<>(1);
+            }
+            try {
+                return JSON.parseArray(dbData, RoleInfo.class);
+            } catch (Exception e) {
+                return new ArrayList<>(1);
+            }
+        }
+    }
+
+    public Integer getTempConferenceId() {
+        return tempConferenceId;
+    }
+
+    public static class ServiceConfig {
+        private List<String> serviceConfigs = null;
+
+        public List<String> getServiceConfigs() {
+            return serviceConfigs;
+        }
+
+        public void setServiceConfigs(List<String> serviceConfigs) {
+            this.serviceConfigs = serviceConfigs;
+        }
+    }
+
+    public static class RuleInfoBody {
+        private List<RoleInfo> roleInfo = null;
+
+        public List<RoleInfo> getRoleInfo() {
+            return roleInfo;
+        }
+
+        public void setRoleInfo(List<RoleInfo> roleInfo) {
+            this.roleInfo = roleInfo;
+        }
+    }
+
+
+    public List<String> getServiceConfigs() {
+        return serviceConfigs;
+    }
+
+    public void setServiceConfigs(List<String> serviceConfigs) {
+        this.serviceConfigs = serviceConfigs;
+    }
+
+    public List<RoleInfo> getRuleInfos() {
+        return ruleInfos;
+    }
+
+    public void setRuleInfos(List<RoleInfo> ruleInfos) {
+        this.ruleInfos = ruleInfos;
+    }
+
+    public void setTempConferenceId(Integer tempConferenceId) {
+        this.tempConferenceId = tempConferenceId;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
 
 
 }
