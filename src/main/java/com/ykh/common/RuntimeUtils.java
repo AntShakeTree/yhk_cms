@@ -1,14 +1,16 @@
 package com.ykh.common;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 
 import java.io.InputStream;
 import java.util.Arrays;
 
 import static com.ykh.common.StringUtils.qstrep;
 
-public abstract class RuntimeUtils {
+public abstract class RuntimeUtils{
 
     private static final Logger log = LoggerFactory.getLogger(RuntimeUtils.class);
 
